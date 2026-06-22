@@ -1,0 +1,327 @@
+{
+  "section_id": "luxury-waves",
+  "section_type": "luxury-waves",
+  "section_path": "sections/luxury-waves.liquid",
+  "section_schema_name": "Luxury wave atmosphere",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Luxury wave atmosphere"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Override theme gradient colors"
+    },
+    {
+      "id": "section_height",
+      "type": "range",
+      "label": "Desktop height"
+    },
+    {
+      "id": "section_height_mobile",
+      "type": "range",
+      "label": "Mobile height"
+    },
+    {
+      "id": "padding_vertical",
+      "type": "range",
+      "label": "Desktop vertical padding"
+    },
+    {
+      "id": "padding_horizontal",
+      "type": "range",
+      "label": "Desktop horizontal padding"
+    },
+    {
+      "id": "padding_vertical_mobile",
+      "type": "range",
+      "label": "Mobile vertical padding"
+    },
+    {
+      "id": "padding_horizontal_mobile",
+      "type": "range",
+      "label": "Mobile horizontal padding"
+    },
+    {
+      "id": "wave_color_1",
+      "type": "color",
+      "label": "Wave 1 color"
+    },
+    {
+      "id": "wave_opacity_1",
+      "type": "range",
+      "label": "Wave 1 opacity"
+    },
+    {
+      "id": "wave_color_2",
+      "type": "color",
+      "label": "Wave 2 color"
+    },
+    {
+      "id": "wave_opacity_2",
+      "type": "range",
+      "label": "Wave 2 opacity"
+    },
+    {
+      "id": "wave_color_3",
+      "type": "color",
+      "label": "Wave 3 color"
+    },
+    {
+      "id": "wave_opacity_3",
+      "type": "range",
+      "label": "Wave 3 opacity"
+    },
+    {
+      "id": "wave_color_4",
+      "type": "color",
+      "label": "Wave 4 color"
+    },
+    {
+      "id": "wave_opacity_4",
+      "type": "range",
+      "label": "Wave 4 opacity"
+    },
+    {
+      "id": "wave_color_5",
+      "type": "color",
+      "label": "Wave 5 color"
+    },
+    {
+      "id": "wave_opacity_5",
+      "type": "range",
+      "label": "Wave 5 opacity"
+    },
+    {
+      "id": "keyword_1",
+      "type": "text",
+      "label": "Keyword 1"
+    },
+    {
+      "id": "keyword_2",
+      "type": "text",
+      "label": "Keyword 2"
+    },
+    {
+      "id": "keyword_3",
+      "type": "text",
+      "label": "Keyword 3"
+    },
+    {
+      "id": "keyword_4",
+      "type": "text",
+      "label": "Keyword 4"
+    },
+    {
+      "id": "keyword_5",
+      "type": "text",
+      "label": "Keyword 5"
+    },
+    {
+      "id": "keyword_6",
+      "type": "text",
+      "label": "Keyword 6"
+    },
+    {
+      "id": "keyword_7",
+      "type": "text",
+      "label": "Keyword 7"
+    },
+    {
+      "id": "keyword_8",
+      "type": "text",
+      "label": "Keyword 8"
+    },
+    {
+      "id": "keyword_9",
+      "type": "text",
+      "label": "Keyword 9"
+    },
+    {
+      "id": "keyword_font",
+      "type": "font_picker",
+      "label": "Font"
+    },
+    {
+      "id": "keyword_size",
+      "type": "range",
+      "label": "Desktop font size"
+    },
+    {
+      "id": "keyword_size_mobile",
+      "type": "range",
+      "label": "Mobile font size"
+    },
+    {
+      "id": "keyword_color",
+      "type": "color",
+      "label": "Color"
+    },
+    {
+      "id": "keyword_opacity",
+      "type": "range",
+      "label": "Opacity"
+    },
+    {
+      "id": "keyword_spacing",
+      "type": "range",
+      "label": "Desktop spacing"
+    },
+    {
+      "id": "keyword_spacing_mobile",
+      "type": "range",
+      "label": "Mobile spacing"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 55,
+  "required": false,
+  "name": "Luxury wave atmosphere",
+  "purpose": "Luxury wave atmosphere section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Luxury wave atmosphere",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "content-centered",
+      "tablet_layout": "content-centered",
+      "mobile_layout": "content-stacked",
+      "alignment_rules": "heading-center",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

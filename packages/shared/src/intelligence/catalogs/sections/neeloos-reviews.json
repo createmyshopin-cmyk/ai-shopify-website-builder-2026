@@ -1,0 +1,367 @@
+{
+  "section_id": "neeloos-reviews",
+  "section_type": "neeloos-reviews",
+  "section_path": "sections/neeloos-reviews.liquid",
+  "section_schema_name": "Neeloos Reviews",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": 12,
+  "section_presets_raw": [
+    "Neeloos Reviews"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "show_heading",
+      "type": "checkbox",
+      "label": "Show heading"
+    },
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "heading_type_preset",
+      "type": "select",
+      "label": "Heading style"
+    },
+    {
+      "id": "heading_font_size",
+      "type": "range",
+      "label": "Heading size"
+    },
+    {
+      "id": "heading_font_size_mobile",
+      "type": "range",
+      "label": "Heading size (mobile)"
+    },
+    {
+      "id": "show_leaf_icons",
+      "type": "checkbox",
+      "label": "Show leaf icons on heading"
+    },
+    {
+      "id": "title_color",
+      "type": "color",
+      "label": "Heading color"
+    },
+    {
+      "id": "leaf_color",
+      "type": "color",
+      "label": "Leaf color"
+    },
+    {
+      "id": "show_view_all",
+      "type": "checkbox",
+      "label": "Show view all link"
+    },
+    {
+      "id": "view_all_text",
+      "type": "text",
+      "label": "Link text"
+    },
+    {
+      "id": "view_all_link",
+      "type": "url",
+      "label": "Link URL"
+    },
+    {
+      "id": "link_color",
+      "type": "color",
+      "label": "Link color"
+    },
+    {
+      "id": "cards_per_view",
+      "type": "range",
+      "label": "Cards per view (desktop)"
+    },
+    {
+      "id": "cards_per_view_tablet",
+      "type": "range",
+      "label": "Cards per view (tablet)"
+    },
+    {
+      "id": "card_gap",
+      "type": "range",
+      "label": "Gap between cards"
+    },
+    {
+      "id": "card_gap_mobile",
+      "type": "range",
+      "label": "Gap (mobile)"
+    },
+    {
+      "id": "mobile_peek_amount",
+      "type": "range",
+      "label": "Mobile next-card peek"
+    },
+    {
+      "id": "mobile_card_ratio",
+      "type": "select",
+      "label": "Mobile card shape"
+    },
+    {
+      "id": "auto_scroll",
+      "type": "checkbox",
+      "label": "Auto scroll"
+    },
+    {
+      "id": "auto_scroll_speed",
+      "type": "range",
+      "label": "Auto scroll speed"
+    },
+    {
+      "id": "card_background",
+      "type": "color",
+      "label": "Card background"
+    },
+    {
+      "id": "card_border_color",
+      "type": "color",
+      "label": "Card border color"
+    },
+    {
+      "id": "card_border_radius",
+      "type": "range",
+      "label": "Card corner radius"
+    },
+    {
+      "id": "card_padding",
+      "type": "range",
+      "label": "Card padding"
+    },
+    {
+      "id": "card_padding_mobile",
+      "type": "range",
+      "label": "Card padding (mobile)"
+    },
+    {
+      "id": "star_color",
+      "type": "color",
+      "label": "Star color"
+    },
+    {
+      "id": "review_text_color",
+      "type": "color",
+      "label": "Review text color"
+    },
+    {
+      "id": "author_color",
+      "type": "color",
+      "label": "Author color"
+    },
+    {
+      "id": "avatar_size",
+      "type": "range",
+      "label": "Avatar size"
+    },
+    {
+      "id": "avatar_size_mobile",
+      "type": "range",
+      "label": "Avatar size (mobile)"
+    },
+    {
+      "id": "dot_active_color",
+      "type": "color",
+      "label": "Active dot color"
+    },
+    {
+      "id": "dot_inactive_color",
+      "type": "color",
+      "label": "Inactive dot color"
+    },
+    {
+      "id": "section_width",
+      "type": "select",
+      "label": "Width"
+    },
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "padding-block-start",
+      "type": "range",
+      "label": "Top padding"
+    },
+    {
+      "id": "padding-block-end",
+      "type": "range",
+      "label": "Bottom padding"
+    }
+  ],
+  "section_blocks_raw": [
+    {
+      "type": "review",
+      "settings": [
+        {
+          "id": "rating",
+          "type": "range"
+        },
+        {
+          "id": "text",
+          "type": "textarea"
+        },
+        {
+          "id": "author_prefix",
+          "type": "text"
+        },
+        {
+          "id": "author",
+          "type": "text"
+        },
+        {
+          "id": "location",
+          "type": "text"
+        },
+        {
+          "id": "avatar",
+          "type": "image_picker"
+        }
+      ]
+    }
+  ],
+  "priority_score": 55,
+  "required": false,
+  "name": "Neeloos Reviews",
+  "purpose": "Neeloos Reviews section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Neeloos Reviews",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "content-centered",
+      "tablet_layout": "content-centered",
+      "mobile_layout": "content-stacked",
+      "alignment_rules": "heading-center",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "4/3",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": true,
+      "reviews": true,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "medium",
+    "cls_risk": "medium",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": "cls"
+  }
+}

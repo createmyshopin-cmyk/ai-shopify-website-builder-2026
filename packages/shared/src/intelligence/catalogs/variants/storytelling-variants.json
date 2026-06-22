@@ -1,0 +1,41 @@
+{
+  "family": "storytelling",
+  "sections": [
+    {
+      "section_type": "brand-story",
+      "schema_name": "Brand storytelling",
+      "preset_scores": {
+        "high-converting": 45,
+        "fashion": 95,
+        "minimal-modern": 50
+      }
+    },
+    {
+      "section_type": "editorial-brand-story",
+      "schema_name": "Editorial Brand Story",
+      "preset_scores": {
+        "high-converting": 40,
+        "fashion": 90,
+        "minimal-modern": 45
+      }
+    },
+    {
+      "section_type": "product-storytelling-v2",
+      "schema_name": "Product storytelling",
+      "preset_scores": {
+        "high-converting": 55,
+        "fashion": 85,
+        "minimal-modern": 50
+      }
+    },
+    {
+      "section_type": "editorial-ugc-strip",
+      "schema_name": "Editorial UGC Strip",
+      "preset_scores": {
+        "high-converting": 50,
+        "fashion": 88,
+        "minimal-modern": 35
+      }
+    }
+  ]
+}

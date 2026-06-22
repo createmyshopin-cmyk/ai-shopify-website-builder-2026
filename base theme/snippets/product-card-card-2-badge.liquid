@@ -1,0 +1,26 @@
+{%- doc -%}
+  Circular badge for Product Card style Card 2.
+
+  Uses product metafield:
+  - Namespace and key: custom.card_2_badge
+  - Type: single line text
+  - Example value: 6+|Months
+{%- enddoc -%}
+
+{%- liquid
+  assign raw_badge = product.metafields.custom.card_2_badge.value | default: ''
+-%}
+
+{%- if raw_badge != blank -%}
+  {%- liquid
+    assign badge_lines = raw_badge | split: '|'
+    assign line_one = badge_lines[0] | strip
+    assign line_two = badge_lines[1] | default: '' | strip
+  -%}
+  <div class="product-card-card-2-badge" aria-hidden="true">
+    <span class="product-card-card-2-badge-line-1">{{ line_one }}</span>
+    {%- if line_two != blank -%}
+      <span class="product-card-card-2-badge-line-2">{{ line_two }}</span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

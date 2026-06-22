@@ -1,0 +1,128 @@
+{
+  "preset_id": "high-converting",
+  "generated_at": "2026-06-22T07:48:42.509Z",
+  "total_slots": 10,
+  "required_slots": 8,
+  "slots": [
+    {
+      "slot": 1,
+      "section_type": "editorial-hero",
+      "section_family": "hero",
+      "variant": "editorial-hero",
+      "required": true,
+      "priority_score": 100,
+      "conversion_score": 90,
+      "visual_weight": "heavy",
+      "previous_slot_family": null,
+      "next_slot_family": "products"
+    },
+    {
+      "slot": 2,
+      "section_type": "editorial-collection-grid",
+      "section_family": "products",
+      "variant": "editorial-collection-grid",
+      "required": true,
+      "priority_score": 100,
+      "conversion_score": 85,
+      "visual_weight": "heavy",
+      "previous_slot_family": "hero",
+      "next_slot_family": "content"
+    },
+    {
+      "slot": 3,
+      "section_type": "benefits",
+      "section_family": "content",
+      "variant": "benefits",
+      "required": true,
+      "priority_score": 100,
+      "conversion_score": 60,
+      "visual_weight": "light",
+      "previous_slot_family": "products",
+      "next_slot_family": "products"
+    },
+    {
+      "slot": 4,
+      "section_type": "featured-product-grid-v2",
+      "section_family": "products",
+      "variant": "featured-product-grid-v2",
+      "required": true,
+      "priority_score": 100,
+      "conversion_score": 85,
+      "visual_weight": "heavy",
+      "previous_slot_family": "content",
+      "next_slot_family": "social_proof"
+    },
+    {
+      "slot": 5,
+      "section_type": "editorial-testimonials",
+      "section_family": "social_proof",
+      "variant": "editorial-testimonials",
+      "required": true,
+      "priority_score": 100,
+      "conversion_score": 80,
+      "visual_weight": "medium",
+      "previous_slot_family": "products",
+      "next_slot_family": "trust"
+    },
+    {
+      "slot": 6,
+      "section_type": "editorial-trust-bar",
+      "section_family": "trust",
+      "variant": "editorial-trust-bar",
+      "required": true,
+      "priority_score": 100,
+      "conversion_score": 95,
+      "visual_weight": "light",
+      "previous_slot_family": "social_proof",
+      "next_slot_family": "faq"
+    },
+    {
+      "slot": 7,
+      "section_type": "faq-v2",
+      "section_family": "faq",
+      "variant": "faq-v2",
+      "required": true,
+      "priority_score": 100,
+      "conversion_score": 65,
+      "visual_weight": "light",
+      "previous_slot_family": "trust",
+      "next_slot_family": "lead_capture"
+    },
+    {
+      "slot": 8,
+      "section_type": "editorial-newsletter",
+      "section_family": "lead_capture",
+      "variant": "editorial-newsletter",
+      "required": true,
+      "priority_score": 100,
+      "conversion_score": 80,
+      "visual_weight": "medium",
+      "previous_slot_family": "faq",
+      "next_slot_family": "urgency"
+    },
+    {
+      "slot": 9,
+      "section_type": "editorial-promo-banner",
+      "section_family": "urgency",
+      "variant": "editorial-promo-banner",
+      "required": false,
+      "priority_score": 60,
+      "conversion_score": 100,
+      "visual_weight": "medium",
+      "previous_slot_family": "lead_capture",
+      "next_slot_family": "social_proof"
+    },
+    {
+      "slot": 10,
+      "section_type": "editorial-ugc-strip",
+      "section_family": "social_proof",
+      "variant": "editorial-ugc-strip",
+      "required": false,
+      "priority_score": 60,
+      "conversion_score": 80,
+      "visual_weight": "medium",
+      "previous_slot_family": "urgency",
+      "next_slot_family": null
+    }
+  ]
+}

@@ -1,0 +1,727 @@
+{
+  "section_id": "ugc-with-product",
+  "section_type": "ugc-with-product",
+  "section_path": "sections/ugc-with-product.liquid",
+  "section_schema_name": "UGC video carousel",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "UGC video carousel"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "section_title",
+      "type": "text",
+      "label": "Section title"
+    },
+    {
+      "id": "title_font_size",
+      "type": "range",
+      "label": "Title font size"
+    },
+    {
+      "id": "title_color",
+      "type": "color",
+      "label": "Title color"
+    },
+    {
+      "id": "cards_per_row",
+      "type": "range",
+      "label": "Cards per row (desktop)"
+    },
+    {
+      "id": "card_spacing",
+      "type": "range",
+      "label": "Card spacing"
+    },
+    {
+      "id": "shadow_strength",
+      "type": "range",
+      "label": "Shadow strength"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button text"
+    },
+    {
+      "id": "button_color",
+      "type": "color",
+      "label": "Button color"
+    },
+    {
+      "id": "button_text_color",
+      "type": "color",
+      "label": "Button text color"
+    },
+    {
+      "id": "button_hover_color",
+      "type": "color",
+      "label": "Button hover color"
+    },
+    {
+      "id": "show_arrows",
+      "type": "checkbox",
+      "label": "Show navigation arrows"
+    },
+    {
+      "id": "auto_slide",
+      "type": "checkbox",
+      "label": "Enable auto-slide"
+    },
+    {
+      "id": "video_1_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_1_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_1_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_1_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_1_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_2_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_2_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_2_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_2_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_2_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_3_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_3_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_3_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_3_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_3_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_4_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_4_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_4_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_4_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_4_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_5_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_5_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_5_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_5_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_5_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_6_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_6_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_6_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_6_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_6_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_7_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_7_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_7_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_7_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_7_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_8_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_8_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_8_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_8_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_8_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_9_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_9_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_9_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_9_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_9_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_10_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_10_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_10_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_10_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_10_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_11_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_11_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_11_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_11_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_11_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_12_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_12_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_12_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_12_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_12_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_13_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_13_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_13_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_13_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_13_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_14_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_14_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_14_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_14_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_14_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_15_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_15_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_15_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_15_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_15_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_16_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_16_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_16_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_16_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_16_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_17_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_17_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_17_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_17_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_17_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_18_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_18_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_18_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_18_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_18_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_19_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_19_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_19_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_19_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_19_product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "video_20_upload",
+      "type": "video",
+      "label": "Upload video"
+    },
+    {
+      "id": "video_20_url",
+      "type": "url",
+      "label": "Or use video URL"
+    },
+    {
+      "id": "video_20_username",
+      "type": "text",
+      "label": "Username"
+    },
+    {
+      "id": "video_20_text",
+      "type": "text",
+      "label": "Headline text"
+    },
+    {
+      "id": "video_20_product",
+      "type": "product",
+      "label": "Product"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 55,
+  "required": false,
+  "name": "UGC video carousel",
+  "purpose": "UGC video carousel section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display UGC video carousel",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "content-centered",
+      "tablet_layout": "content-centered",
+      "mobile_layout": "content-stacked",
+      "alignment_rules": "heading-center",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "medium",
+    "cls_risk": "medium",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": "cls"
+  }
+}

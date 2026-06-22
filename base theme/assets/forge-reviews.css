@@ -1,0 +1,46 @@
+forge-reviews {
+  display: block;
+}
+
+.forge-reviews__stars,
+.forge-reviews__aggregate {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.forge-reviews__item {
+  border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  padding: 1rem 0;
+}
+
+.forge-reviews__form label {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.forge-reviews__form input,
+.forge-reviews__form textarea,
+.forge-reviews__form select,
+.forge-reviews__form button {
+  width: 100%;
+  max-width: 100%;
+}
+
+.forge-reviews__message {
+  margin-top: 0.75rem;
+}
+
+.forge-reviews__sample-badge {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #8a5a00;
+  background: #fff3cd;
+  border: 1px dashed #d4a72c;
+  border-radius: 4px;
+}

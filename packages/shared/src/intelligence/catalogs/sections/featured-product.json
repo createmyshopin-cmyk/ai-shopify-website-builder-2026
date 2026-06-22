@@ -1,0 +1,193 @@
+{
+  "section_id": "featured-product",
+  "section_type": "featured-product",
+  "section_path": "sections/featured-product.liquid",
+  "section_schema_name": "t:names.featured_product",
+  "section_category": "products",
+  "section_role": "conversion",
+  "section_family": "products",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "t:names.featured_product"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "product",
+      "type": "product",
+      "label": "t:settings.product"
+    },
+    {
+      "id": "layout",
+      "type": "select",
+      "label": "t:settings.media_position"
+    },
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "t:settings.color_scheme"
+    },
+    {
+      "id": "padding-block-start",
+      "type": "range",
+      "label": "t:settings.top"
+    },
+    {
+      "id": "padding-block-end",
+      "type": "range",
+      "label": "t:settings.bottom"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 75,
+  "required": false,
+  "name": "t:names.featured_product",
+  "purpose": "t:names.featured_product section — products",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display t:names.featured_product",
+      "conversion_goal": "Intent"
+    },
+    "layout": {
+      "desktop_layout": "3-column-grid",
+      "tablet_layout": "2-column-grid",
+      "mobile_layout": "1-column-stack",
+      "alignment_rules": "heading-center, products-left",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "lift",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "default",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "button"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "main",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 85,
+    "fashion": 70,
+    "minimal_modern": 80
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "background_secondary"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font",
+      "type_size_h2"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius",
+      "card_2_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [
+      "primary_button_background",
+      "primary_button_text"
+    ],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "trust",
+      "storytelling",
+      "content",
+      "promotion",
+      "urgency"
+    ],
+    "allowed_after": [
+      "social_proof",
+      "trust",
+      "urgency",
+      "faq",
+      "lead_capture",
+      "footer",
+      "products",
+      "content"
+    ],
+    "recommended_before": [
+      "hero",
+      "content"
+    ],
+    "recommended_after": [
+      "social_proof",
+      "trust"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

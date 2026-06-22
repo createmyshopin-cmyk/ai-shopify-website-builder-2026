@@ -1,0 +1,127 @@
+{
+  "id": "high-converting",
+  "name": "High Converting",
+  "description": "Maximizes conversion through trust signals, social proof, urgency, and clear CTAs.",
+  "focus": [
+    "conversion",
+    "trust",
+    "urgency",
+    "social proof"
+  ],
+  "section_count_rules": {
+    "min_sections": 8,
+    "max_sections": 10
+  },
+  "characteristics": {
+    "typography_style": "bold",
+    "color_palette_guidance": "High contrast, strong primary CTA color, trust-building neutrals",
+    "spacing_scale": "compact",
+    "animation_intensity": "subtle",
+    "image_treatment": "product-focused, high quality",
+    "cro_emphasis": "Strong — urgency, scarcity, social proof above the fold"
+  },
+  "copy_intelligence": {
+    "headline_style": "bold imperative with clear value proposition",
+    "description_style": "benefit-first, concise, results-oriented",
+    "cta_style": "direct action verbs: Shop Now, Get Yours, Claim Deal",
+    "social_proof_style": "specific numbers and verified reviews",
+    "urgency_style": "scarcity and time-limited offers where appropriate",
+    "emotion_style": "trustworthy and decisive"
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "primary_button_background",
+      "primary_button_text"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font",
+      "type_size_h2"
+    ],
+    "spacing": [
+      "card_gap",
+      "page_width"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [
+      "button_shape",
+      "primary_button_background",
+      "primary_button_text"
+    ],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "section_flow": [
+    {
+      "slot": 1,
+      "section_family": "hero",
+      "preferred_section_type": "editorial-hero",
+      "required": true
+    },
+    {
+      "slot": 2,
+      "section_family": "products",
+      "preferred_section_type": "editorial-collection-grid",
+      "required": true
+    },
+    {
+      "slot": 3,
+      "section_family": "content",
+      "preferred_section_type": "benefits",
+      "required": true
+    },
+    {
+      "slot": 4,
+      "section_family": "products",
+      "preferred_section_type": "featured-product-grid-v2",
+      "required": true
+    },
+    {
+      "slot": 5,
+      "section_family": "social_proof",
+      "preferred_section_type": "editorial-testimonials",
+      "required": true
+    },
+    {
+      "slot": 6,
+      "section_family": "trust",
+      "preferred_section_type": "editorial-trust-bar",
+      "required": true
+    },
+    {
+      "slot": 7,
+      "section_family": "faq",
+      "preferred_section_type": "faq-v2",
+      "required": true
+    },
+    {
+      "slot": 8,
+      "section_family": "lead_capture",
+      "preferred_section_type": "editorial-newsletter",
+      "required": true
+    },
+    {
+      "slot": 9,
+      "section_family": "urgency",
+      "preferred_section_type": "editorial-promo-banner",
+      "required": false
+    },
+    {
+      "slot": 10,
+      "section_family": "social_proof",
+      "preferred_section_type": "editorial-ugc-strip",
+      "required": false
+    }
+  ],
+  "excluded_section_families": [
+    "navigation"
+  ]
+}

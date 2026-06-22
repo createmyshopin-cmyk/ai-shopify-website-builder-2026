@@ -1,0 +1,338 @@
+/* Shared Bestseller / Card 2 product card */
+
+.bestseller-card {
+  background: var(--card-2-bg, var(--color-background));
+  border: 1px solid var(--card-2-border, var(--color-border));
+  border-radius: var(--section-border-radius, var(--card-2-radius, 18px));
+  box-shadow: 0 10px 24px rgba(62, 49, 34, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 12px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bestseller-card:hover {
+  box-shadow: 0 14px 30px rgba(62, 49, 34, 0.12);
+  transform: translateY(-4px);
+}
+
+.bestseller-card__image-link,
+.bestseller-card__title-link {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
+.bestseller-card__image-link {
+  height: 100%;
+  width: 100%;
+}
+
+.bestseller-card__image-wrapper {
+  aspect-ratio: 4 / 5;
+  background: #fbf8ee;
+  border-radius: calc(var(--section-border-radius, var(--card-2-radius, 18px)) - 2px);
+  margin-bottom: 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bestseller-card__image {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  padding: 0;
+  transition: transform 0.35s ease;
+  width: 100%;
+}
+
+.bestseller-card:hover .bestseller-card__image {
+  transform: scale(1.03);
+}
+
+.bestseller-card__placeholder {
+  align-items: center;
+  background: #fbf8ee;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.bestseller-card__placeholder-svg {
+  height: auto;
+  opacity: 0.3;
+  width: 50%;
+}
+
+.bestseller-card__age-badge {
+  background: var(--card-2-badge-bg);
+  border-radius: var(--section-border-radius, var(--card-2-radius, 18px));
+  color: var(--card-2-badge-text);
+  font-size: var(--font-size--xs);
+  font-weight: var(--font-h6--weight);
+  left: 10px;
+  line-height: 1;
+  padding: 7px 10px;
+  position: absolute;
+  top: 10px;
+  z-index: 2;
+}
+
+.bestseller-card__wishlist {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 2;
+}
+
+.bestseller-card__wishlist .wishlist-button__trigger {
+  align-items: center;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  color: #e53935;
+  cursor: pointer;
+  display: flex;
+  height: 34px;
+  justify-content: center;
+  padding: 0;
+  width: 34px;
+}
+
+.bestseller-card__wishlist .wishlist-button__icon {
+  color: #e53935;
+  height: 17px;
+  width: 17px;
+}
+
+.bestseller-card__wishlist .wishlist-button__icon-outline,
+.bestseller-card__wishlist .wishlist-button__icon-filled {
+  color: #e53935;
+}
+
+.bestseller-card__wishlist .wishlist-button__icon-filled {
+  display: none;
+}
+
+.bestseller-card__wishlist.is-active .wishlist-button__trigger {
+  background: #fdecec;
+  border-color: #e53935;
+  color: #e53935;
+}
+
+.bestseller-card__wishlist.is-active .wishlist-button__icon-outline {
+  display: none;
+}
+
+.bestseller-card__wishlist.is-active .wishlist-button__icon-filled {
+  display: block;
+}
+
+.bestseller-card__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0;
+}
+
+.bestseller-card__name {
+  color: var(--color-foreground-heading);
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin: 0 0 4px;
+  overflow: hidden;
+}
+
+.bestseller-card__subtitle {
+  color: rgb(var(--color-foreground-rgb) / 0.7);
+  font-size: var(--font-size--xs);
+  line-height: var(--font-paragraph--line-height);
+  margin: 0 0 8px;
+  min-height: 0.95em;
+}
+
+.bestseller-card__rating {
+  align-items: center;
+  color: rgb(var(--color-foreground-rgb) / 0.7);
+  display: flex;
+  font-size: var(--font-size--xs);
+  font-weight: var(--font-paragraph--weight);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.bestseller-card__star {
+  color: var(--card-2-rating-color);
+  font-size: var(--font-size--sm);
+  line-height: 1;
+}
+
+  .bestseller-card__price {
+    color: var(--card-2-price-color);
+    font-family: var(--font-heading--family);
+    font-size: clamp(0.8125rem, 3.4vw, 15px);
+  font-style: var(--font-heading--style);
+  font-weight: var(--font-heading--weight);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.bestseller-card__cta {
+  margin-top: auto;
+  width: 100%;
+}
+
+.bestseller-card__cta .product-card-card-2-cta,
+.bestseller-card__cta .product-form-buttons,
+.bestseller-card__cta product-form-component,
+.bestseller-card__cta add-to-cart-component {
+  display: block;
+  width: 100%;
+}
+
+.bestseller-card__cta .product-card-card-2-cta__button {
+  align-items: center;
+  border-radius: var(--section-border-radius, var(--style-border-radius-buttons-primary)) !important;
+  display: inline-flex;
+  justify-content: center;
+  min-height: 42px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  --button-color: var(--card-2-button-text, var(--color-primary-button-text));
+  --button-background-color: var(--card-2-button-bg, var(--color-primary-button-background));
+  --button-border-color: var(--card-2-button-bg, var(--color-primary-button-border));
+  --button-border-width: var(--style-border-width-primary);
+}
+
+.bestseller-card__cta .product-card-card-2-cta__button:hover:not(:disabled) {
+  --button-color: var(--color-primary-button-hover-text);
+  --button-background-color: var(--color-primary-button-hover-background);
+  --button-border-color: var(--color-primary-button-hover-border);
+}
+
+.bestseller-card__cta .product-card-card-2-cta__button .add-to-cart-text,
+.bestseller-card__cta .product-card-card-2-cta__button .add-to-cart-text--added {
+  align-items: center;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  width: 100%;
+}
+
+.bestseller-card__cta .product-card-card-2-cta__button .add-to-cart-text--added {
+  inset: 0;
+  position: absolute;
+}
+
+.bestseller-card__cta .product-card-card-2-cta__button .add-to-cart-icon,
+.bestseller-card__cta .product-card-card-2-cta__button .add-to-cart-icon--added {
+  display: none !important;
+}
+
+.bestseller-card__cta .product-card-card-2-cta__button:disabled {
+  opacity: 0.6;
+}
+
+.bestseller-card__button {
+  align-items: center;
+  border-radius: var(--section-border-radius, var(--style-border-radius-buttons-primary));
+  display: inline-flex;
+  gap: 8px;
+  justify-content: center;
+  min-height: 42px;
+  width: 100%;
+  --button-color: var(--card-2-button-text, var(--color-primary-button-text));
+  --button-background-color: var(--card-2-button-bg, var(--color-primary-button-background));
+  --button-border-color: var(--card-2-button-bg, var(--color-primary-button-border));
+  --button-border-width: var(--style-border-width-primary);
+}
+
+.bestseller-card__button svg {
+  height: 18px;
+  width: 18px;
+}
+
+@media screen and (max-width: 749px) {
+  .bestseller-card {
+    box-shadow: 0 8px 18px rgba(62, 49, 34, 0.09);
+    padding: 8px;
+  }
+
+  .bestseller-card__image-wrapper {
+    margin-bottom: 9px;
+  }
+
+  .bestseller-card__image {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .bestseller-card__age-badge {
+    left: 7px;
+    padding: 6px 8px;
+    top: 7px;
+  }
+
+  .bestseller-card__wishlist {
+    right: 7px;
+    top: 7px;
+  }
+
+  .bestseller-card__wishlist .wishlist-button__trigger {
+    height: 28px;
+    width: 28px;
+  }
+
+  .bestseller-card__wishlist .wishlist-button__icon {
+    height: 14px;
+    width: 14px;
+  }
+
+  .bestseller-card__content {
+    padding: 0 2px 2px;
+  }
+
+  .bestseller-card__name {
+    min-height: 2em;
+  }
+
+  .bestseller-card__cta .product-card-card-2-cta__button,
+  .bestseller-card__button {
+    line-height: 1.15;
+    min-height: 30px;
+    padding-block: 4px;
+    padding-inline: 10px;
+  }
+
+  .bestseller-card__subtitle {
+    display: none;
+  }
+
+  .bestseller-card__rating {
+    margin-bottom: 5px;
+  }
+
+  .bestseller-card__price {
+    margin-bottom: 8px;
+  }
+
+  .bestseller-card__cta .product-card-card-2-cta__button .add-to-cart-text,
+  .bestseller-card__cta .product-card-card-2-cta__button .add-to-cart-text--added {
+    gap: 4px;
+  }
+
+  .bestseller-card__button {
+    gap: 4px;
+  }
+
+  .bestseller-card__button svg {
+    height: 14px;
+    width: 14px;
+  }
+}

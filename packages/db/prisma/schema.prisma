@@ -1,0 +1,222 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Session {
+  id                  String    @id
+  shop                String
+  state               String
+  isOnline            Boolean   @default(false)
+  scope               String?
+  expires             DateTime?
+  accessToken         String
+  userId              BigInt?
+  firstName           String?
+  lastName            String?
+  email               String?
+  accountOwner        Boolean   @default(false)
+  locale              String?
+  collaborator        Boolean?  @default(false)
+  emailVerified       Boolean?  @default(false)
+  refreshToken        String?
+  refreshTokenExpires DateTime?
+}
+
+model UserAccount {
+  id        String   @id @default(uuid())
+  shop      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  projects DesignProject[]
+}
+
+model DesignProject {
+  id               String    @id @default(uuid())
+  shop             String
+  merchantId       String
+  status           String    @default("PENDING")
+  draftThemeId     String?
+  publishedThemeId String?
+  productIds       String[]
+  stylePreset      String
+  blueprint        Json?
+  agentOutputs     Json?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  deletedAt        DateTime?
+
+  userAccountId String?
+  userAccount   UserAccount? @relation(fields: [userAccountId], references: [id], onDelete: SetNull)
+
+  jobs             ProjectJob[]
+  assets           GeneratedAsset[]
+  versions         ThemeVersion[]
+  backups          ThemeBackup[]
+  brandMemories    BrandMemory[]
+  events           ProjectEvent[]
+  previewSessions  PreviewSession[]
+  publishedThemes  PublishedTheme[]
+
+  @@index([shop])
+  @@index([merchantId])
+  @@index([shop, deletedAt])
+}
+
+model ProjectEvent {
+  id        String   @id @default(uuid())
+  projectId String
+  step      String
+  message   String
+  status    String
+  createdAt DateTime @default(now())
+
+  project DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([createdAt])
+}
+
+model ProjectJob {
+  id             String    @id @default(uuid())
+  projectId      String
+  type           String
+  status         String    @default("PENDING")
+  retries        Int       @default(0)
+  errors         String?
+  duration       Int?
+  idempotencyKey String?   @unique
+  payload        Json?
+  result         Json?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  deletedAt      DateTime?
+
+  project DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([type])
+  @@index([projectId, deletedAt])
+  @@index([idempotencyKey])
+}
+
+model GeneratedAsset {
+  id            String    @id @default(uuid())
+  projectId     String
+  originalUrl   String?
+  generatedUrl  String?
+  shopifyFileId String?
+  cdnUrl        String?
+  sectionType   String?
+  slotKey       String?
+  mimeType      String?
+  createdAt     DateTime  @default(now())
+  deletedAt     DateTime?
+
+  project DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([projectId, deletedAt])
+  @@index([sectionType])
+}
+
+model ThemeVersion {
+  id              String    @id @default(uuid())
+  projectId       String
+  versionNumber   Int
+  snapshot        Json
+  createdBy       String
+  status          String    @default("DRAFT")
+  shopifyThemeId  String?
+  publishedAt     DateTime?
+  restoredFromId  String?
+  createdAt       DateTime  @default(now())
+  deletedAt       DateTime?
+
+  project         DesignProject    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  publishedThemes PublishedTheme[]
+
+  @@unique([projectId, versionNumber])
+  @@index([projectId, status])
+  @@index([projectId, deletedAt])
+}
+
+model ThemeBackup {
+  id        String   @id @default(uuid())
+  projectId String
+  snapshot  Json
+  createdAt DateTime @default(now())
+
+  project DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+}
+
+model BrandMemory {
+  id         String    @id @default(uuid())
+  projectId  String
+  shop       String
+  typography Json?
+  colors     Json?
+  spacing    Json?
+  tone       String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
+
+  project DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([shop])
+  @@index([shop, deletedAt])
+}
+
+model PreviewSession {
+  id           String    @id @default(uuid())
+  projectId    String
+  shop         String
+  merchantId   String
+  sessionToken String    @unique
+  expiresAt    DateTime
+  previewState Json?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+
+  project DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([shop])
+  @@index([projectId])
+  @@index([sessionToken])
+  @@index([expiresAt])
+  @@index([shop, deletedAt])
+}
+
+model PublishedTheme {
+  id             String    @id @default(uuid())
+  projectId      String
+  shop           String
+  merchantId     String
+  shopifyThemeId String
+  versionId      String?
+  status         String    @default("ACTIVE")
+  publishedAt    DateTime  @default(now())
+  rolledBackAt   DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  deletedAt      DateTime?
+
+  project DesignProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  version ThemeVersion? @relation(fields: [versionId], references: [id], onDelete: SetNull)
+
+  @@index([shop])
+  @@index([projectId])
+  @@index([shopifyThemeId])
+  @@index([shop, status])
+  @@index([shop, deletedAt])
+}

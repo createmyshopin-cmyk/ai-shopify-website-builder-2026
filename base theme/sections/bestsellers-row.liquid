@@ -1,0 +1,1115 @@
+{% liquid
+  assign max_products = section.settings.max_products | default: 5
+  assign collection = section.settings.collection
+  assign heading_type_preset = section.settings.heading_type_preset | default: 'h1'
+  assign subheading_type_preset = section.settings.subheading_type_preset | default: 'paragraph'
+  assign product_title_type_preset = section.settings.product_title_type_preset | default: 'h5'
+
+  if collection != blank
+    assign products_to_show = collection.products
+    assign all_collection_url = collection.url
+  else
+    assign products_to_show = collections.all.products
+    assign all_collection_url = routes.all_products_collection_url
+  endif
+
+  assign show_tabs = section.settings.show_tabs | default: true
+  assign show_all_tab = section.settings.show_all_tab | default: true
+  assign tab_blocks = section.blocks | where: 'type', 'collection_tab'
+  assign tab_count = tab_blocks.size
+  if show_all_tab
+    assign tab_count = tab_count | plus: 1
+  endif
+  assign use_tabs = false
+  if show_tabs and tab_count > 0
+    assign use_tabs = true
+  endif
+  assign first_panel_id = 'all'
+  unless show_all_tab
+    if tab_blocks.size > 0
+      assign first_panel_id = tab_blocks.first.id
+    endif
+  endunless
+  assign default_tab_labels = '6+ Months|8+ Months|1+ Years|2+ Years' | split: '|'
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --br-card-width: {{ section.settings.card_width }}px;
+    --br-gap: {{ section.settings.gap }}px;
+    --section-border-radius: {{ section.settings.section_border_radius }}px;
+    --br-heading-font-size: {{ section.settings.heading_font_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .bestseller-card {
+    border-radius: var(--section-border-radius) !important;
+  }
+
+  #shopify-section-{{ section.id }} .bestsellers-row__track {
+    display: flex;
+    gap: var(--br-gap);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 2px 10px;
+    scroll-padding-inline: 2px;
+    touch-action: pan-x;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .bestsellers-row__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .bestseller-card {
+    flex: 0 0 var(--br-card-width);
+    scroll-snap-align: start;
+  }
+
+  #shopify-section-{{ section.id }} .bestsellers-row__title {
+    font-size: var(--br-heading-font-size) !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --br-card-width: min(224px, calc(100% - 28px));
+      --br-gap: 12px;
+      --br-heading-font-size: {{ section.settings.heading_font_size_mobile }}px;
+    }
+  }
+  #shopify-section-{{ section.id }} .bestseller-card__age-badge,
+  #shopify-section-{{ section.id }} .bestseller-card__cta .product-card-card-2-cta__button,
+  #shopify-section-{{ section.id }} .bestseller-card__button {
+    border-radius: var(--section-border-radius) !important;
+  }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="
+    section
+    section--{{ section.settings.section_width }}
+    color-{{ section.settings.color_scheme }}
+    bestsellers-row
+    spacing-style
+  "
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  {% if section.settings.show_heading %}
+    <div class="bestsellers-row__header">
+      <div class="bestsellers-row__header-content" data-alignment="{{ section.settings.heading_alignment | default: 'center' }}">
+        <h1 class="bestsellers-row__title {{ heading_type_preset }} {{ heading_type_preset }}">
+          <span>{{ section.settings.heading }}</span>
+          <span class="bestsellers-row__leaf" aria-hidden="true">
+            <svg viewBox="0 0 42 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 19C10 19 5 13 3 5c8 0 15 3 18 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M24 16C25 8 31 3 39 2c-1 8-6 14-15 16" fill="currentColor" opacity=".75"/>
+              <path d="M7 12c9 2 18 7 27 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </h1>
+        {% if section.settings.subheading != blank %}
+          <p class="bestsellers-row__subtitle {{ subheading_type_preset }}">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+      {% if section.settings.show_view_all %}
+        <a
+          id="BestsellersViewAll-{{ section.id }}"
+          href="{{ all_collection_url }}"
+          class="bestsellers-row__view-all link"
+          data-default-url="{{ all_collection_url }}"
+        >
+          <span>{{ section.settings.view_all_text | default: 'View All' }}</span>
+          <span class="bestsellers-row__view-all-arrow" aria-hidden="true">→</span>
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if use_tabs %}
+    <bestsellers-row-component data-section-id="{{ section.id }}">
+      <div class="bestsellers-row__tabs-viewport">
+        <div class="bestsellers-row__tabs" role="tablist" aria-label="Best seller categories">
+          {% if show_all_tab %}
+            <button
+              type="button"
+              role="tab"
+              class="bestsellers-row__tab button button-secondary paragraph{% if first_panel_id == 'all' %} is-active{% endif %}"
+              data-tab="all"
+              data-collection-url="{{ all_collection_url }}"
+              aria-selected="{% if first_panel_id == 'all' %}true{% else %}false{% endif %}"
+              aria-controls="BestsellersPanel-all-{{ section.id }}"
+              id="BestsellersTab-all-{{ section.id }}"
+              tabindex="{% if first_panel_id == 'all' %}0{% else %}-1{% endif %}"
+            >
+              {{ section.settings.all_tab_label | default: 'All Products' }}
+            </button>
+          {% endif %}
+
+          {% for block in tab_blocks %}
+            {% liquid
+              assign tab_collection = block.settings.collection
+              assign tab_label = block.settings.label
+              if tab_label == blank and tab_collection != blank
+                assign tab_label = tab_collection.title
+              endif
+              if tab_label == blank or tab_label == 'Tab'
+                assign fallback_index = forloop.index0 | modulo: default_tab_labels.size
+                assign tab_label = default_tab_labels[fallback_index]
+              endif
+              if tab_collection != blank
+                assign tab_collection_url = tab_collection.url
+              else
+                assign tab_collection_url = all_collection_url
+              endif
+              assign is_first_tab = false
+              if first_panel_id == block.id
+                assign is_first_tab = true
+              endif
+            %}
+            <button
+              type="button"
+              role="tab"
+              class="bestsellers-row__tab button button-secondary paragraph{% if is_first_tab %} is-active{% endif %}"
+              data-tab="{{ block.id }}"
+              data-collection-url="{{ tab_collection_url }}"
+              aria-selected="{% if is_first_tab %}true{% else %}false{% endif %}"
+              aria-controls="BestsellersPanel-{{ block.id }}-{{ section.id }}"
+              id="BestsellersTab-{{ block.id }}-{{ section.id }}"
+              tabindex="{% if is_first_tab %}0{% else %}-1{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              {{ tab_label }}
+            </button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="bestsellers-row__panels">
+        {% if show_all_tab %}
+          <div
+            class="bestsellers-row__panel{% if first_panel_id == 'all' %} is-active{% endif %}"
+            role="tabpanel"
+            data-panel="all"
+            id="BestsellersPanel-all-{{ section.id }}"
+            aria-labelledby="BestsellersTab-all-{{ section.id }}"
+            aria-hidden="{% if first_panel_id == 'all' %}false{% else %}true{% endif %}"
+          >
+            <div class="bestsellers-row__wrapper">
+              {% render 'bestsellers-row-track',
+                products: products_to_show,
+                max_products: max_products,
+                section_id: section.id,
+                product_title_type_preset: product_title_type_preset
+              %}
+              <div class="bestsellers-row__dots" data-dots></div>
+            </div>
+          </div>
+        {% endif %}
+
+        {% for block in tab_blocks %}
+          {% liquid
+            assign tab_collection = block.settings.collection
+            assign tab_products = blank
+            if tab_collection != blank
+              assign tab_products = tab_collection.products
+            endif
+            assign is_first_panel = false
+            if first_panel_id == block.id
+              assign is_first_panel = true
+            endif
+          %}
+          <div
+            class="bestsellers-row__panel{% if is_first_panel %} is-active{% endif %}"
+            role="tabpanel"
+            data-panel="{{ block.id }}"
+            id="BestsellersPanel-{{ block.id }}-{{ section.id }}"
+            aria-labelledby="BestsellersTab-{{ block.id }}-{{ section.id }}"
+            aria-hidden="{% if is_first_panel %}false{% else %}true{% endif %}"
+          >
+            <div class="bestsellers-row__wrapper">
+              {% render 'bestsellers-row-track',
+                products: tab_products,
+                max_products: max_products,
+                section_id: section.id,
+                product_title_type_preset: product_title_type_preset
+              %}
+              <div class="bestsellers-row__dots" data-dots></div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </bestsellers-row-component>
+  {% else %}
+    <bestsellers-row-component data-section-id="{{ section.id }}">
+      <div class="bestsellers-row__panels">
+        <div class="bestsellers-row__panel is-active" data-panel="all">
+          <div class="bestsellers-row__wrapper">
+            {% render 'bestsellers-row-track',
+              products: products_to_show,
+              max_products: max_products,
+              section_id: section.id,
+              product_title_type_preset: product_title_type_preset
+            %}
+            <div class="bestsellers-row__dots" data-dots></div>
+          </div>
+        </div>
+      </div>
+    </bestsellers-row-component>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .bestsellers-row {
+    width: 100%;
+  }
+
+  .bestsellers-row__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    gap: 16px;
+    position: relative;
+  }
+
+  .bestsellers-row__header-content[data-alignment="center"] {
+    flex: 1;
+    text-align: center;
+  }
+
+  .bestsellers-row__header-content[data-alignment="center"] ~ .bestsellers-row__view-all {
+    position: absolute;
+    right: 0;
+  }
+
+  .bestsellers-row__header-content {
+    flex: 1;
+    text-align: center;
+  }
+
+  .bestsellers-row__header-content[data-alignment="left"] {
+    text-align: left;
+  }
+
+  .bestsellers-row__header-content[data-alignment="right"] {
+    text-align: right;
+  }
+
+  .bestsellers-row__title {
+    margin: 0;
+    color: var(--color-foreground-heading);
+  }
+
+  .bestsellers-row__leaf {
+    color: var(--color-primary);
+    display: inline-flex;
+    height: .6em;
+    margin-left: 4px;
+    vertical-align: middle;
+    width: .82em;
+  }
+
+  .bestsellers-row__leaf svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  .bestsellers-row__subtitle {
+    color: rgb(var(--color-foreground-rgb) / 0.75);
+    margin: 12px 0 0;
+  }
+
+  .bestsellers-row__view-all {
+    align-items: center;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    color: var(--color-foreground);
+    display: inline-flex;
+    flex-shrink: 0;
+    font-family: var(--font-paragraph--family);
+    font-size: var(--font-size--sm);
+    font-style: var(--font-paragraph--style);
+    font-weight: var(--font-paragraph--weight);
+    gap: 6px;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    min-height: auto;
+    padding: 0;
+    text-decoration: none;
+    text-transform: none;
+    white-space: nowrap;
+  }
+
+  .bestsellers-row__view-all:hover {
+    color: var(--color-foreground);
+    opacity: 0.7;
+  }
+
+  .bestsellers-row__view-all-arrow {
+    font-size: 1.05em;
+    line-height: 1;
+  }
+
+  .bestsellers-row__tabs-viewport {
+    margin: 0 auto 28px;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    touch-action: pan-x;
+  }
+
+  .bestsellers-row__tabs-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bestsellers-row__tabs {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    justify-content: flex-start;
+    min-width: min(100%, max-content);
+    padding: 2px 0;
+    width: max-content;
+  }
+
+  .bestsellers-row__tab {
+    cursor: pointer;
+    flex: 0 0 auto;
+    font-size: var(--font-size--sm);
+    scroll-snap-align: center;
+    white-space: nowrap;
+    width: auto;
+    --button-padding-block: 9px;
+    --button-padding-inline: 18px;
+  }
+
+  .bestsellers-row__tab.is-active {
+    --button-color: var(--color-primary-button-text);
+    --button-background-color: var(--color-primary-button-background);
+    --button-border-color: var(--color-primary-button-border);
+    --button-border-width: var(--style-border-width-primary);
+  }
+
+  .bestsellers-row__tab.is-active:hover {
+    --button-color: var(--color-primary-button-hover-text);
+    --button-background-color: var(--color-primary-button-hover-background);
+    --button-border-color: var(--color-primary-button-hover-border);
+  }
+
+  .bestsellers-row__tab:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .bestsellers-row__panel:not(.is-active) {
+    display: none;
+  }
+
+  .bestsellers-row__panel.is-active {
+    display: block;
+  }
+
+  .bestsellers-row__panels {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .bestsellers-row__wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .bestsellers-row__dots {
+    align-items: center;
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 14px;
+  }
+
+  .bestsellers-row__dots[hidden] {
+    display: none;
+  }
+
+  .bestsellers-row__dot {
+    appearance: none;
+    background: rgb(var(--color-foreground-rgb) / 0.2);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    display: block;
+    height: 6px;
+    padding: 0;
+    transition: background 0.2s ease, width 0.2s ease;
+    width: 6px;
+  }
+
+  .bestsellers-row__dot.is-active {
+    background: var(--color-primary-button-background, var(--color-primary));
+    width: 18px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .bestsellers-row {
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow-x: clip;
+      padding-inline: max(14px, var(--page-margin, 16px));
+      width: 100%;
+    }
+
+    .bestsellers-row__header {
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .bestsellers-row__header-content[data-alignment="center"] {
+      flex: 1;
+      min-width: 0;
+      text-align: left;
+    }
+
+    .bestsellers-row__title {
+      align-items: center;
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      line-height: 1.15;
+      margin: 0;
+      max-width: 100%;
+      min-width: 0;
+      text-wrap: balance;
+      white-space: normal;
+    }
+
+    .bestsellers-row__leaf {
+      flex-shrink: 0;
+    }
+
+    .bestsellers-row__subtitle {
+      margin-top: 6px;
+    }
+
+    .bestsellers-row__header-content[data-alignment="center"] ~ .bestsellers-row__view-all {
+      position: static;
+      flex-shrink: 0;
+    }
+
+    .bestsellers-row__tabs-viewport {
+      margin-bottom: 14px;
+      margin-inline: 0;
+      max-width: 100%;
+      padding-inline: 0;
+      scroll-padding-inline: 0;
+    }
+
+    .bestsellers-row__tab {
+      font-size: var(--font-size--xs);
+      --button-padding-block: 7px;
+      --button-padding-inline: 12px;
+    }
+
+    .bestsellers-row__track {
+      margin-inline: 0;
+      max-width: 100%;
+      padding-inline: 0;
+      scroll-padding-inline: 0;
+      scroll-snap-type: x proximity;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  class BestsellersRowComponent extends HTMLElement {
+    connectedCallback() {
+      this.setup();
+    }
+
+    setup() {
+      this.tablist = this.querySelector('[role="tablist"]');
+      this.tabs = Array.from(this.querySelectorAll('[role="tab"]'));
+      this.panels = Array.from(this.querySelectorAll('[role="tabpanel"]'));
+      this.viewAllLink = document.querySelector(`#BestsellersViewAll-${this.dataset.sectionId}`);
+      this._scrollRaf = null;
+
+      if (this._handleTabClick) {
+        this.tablist?.removeEventListener('click', this._handleTabClick);
+      }
+
+      this._handleTabClick = (event) => {
+        const tab = event.target.closest('[role="tab"]');
+        if (!tab || !this.tablist?.contains(tab)) return;
+        event.preventDefault();
+        this.selectTab(tab);
+      };
+
+      this.tablist?.addEventListener('click', this._handleTabClick);
+
+      if (this._handleTabKeydown) {
+        this.tablist?.removeEventListener('keydown', this._handleTabKeydown);
+      }
+
+      this._handleTabKeydown = (event) => this.onTabKeydown(event);
+      this.tablist?.addEventListener('keydown', this._handleTabKeydown);
+
+      this.panels.forEach((panel) => this.initCarousel(panel));
+
+      const activeTab = this.tabs.find((tab) => tab.classList.contains('is-active'));
+      if (activeTab) {
+        this.syncViewAllLink(activeTab);
+      }
+
+      if (!this._resizeObserver) {
+        this._resizeObserver = new ResizeObserver(() => {
+          this.panels.forEach((panel) => {
+            if (panel.classList.contains('is-active')) this.updateDots(panel);
+          });
+        });
+        this._resizeObserver.observe(this);
+      }
+    }
+
+    disconnectedCallback() {
+      this.tablist?.removeEventListener('click', this._handleTabClick);
+      this.tablist?.removeEventListener('keydown', this._handleTabKeydown);
+      this._resizeObserver?.disconnect();
+      this._resizeObserver = null;
+    }
+
+    findPanel(panelId) {
+      return this.panels.find((panel) => panel.getAttribute('data-panel') === panelId);
+    }
+
+    initCarousel(panel) {
+      const track = panel.querySelector('[data-track]');
+      const dotsContainer = panel.querySelector('[data-dots]');
+      if (!track || !dotsContainer || track.dataset.carouselInit) return;
+
+      track.dataset.carouselInit = 'true';
+
+      track.addEventListener(
+        'scroll',
+        () => {
+          if (this._scrollingProgrammatically) return;
+          cancelAnimationFrame(this._scrollRaf);
+          this._scrollRaf = requestAnimationFrame(() => this.updateDots(panel));
+        },
+        { passive: true }
+      );
+
+      dotsContainer.addEventListener('click', (event) => {
+        const dot = event.target.closest('[data-dot-index]');
+        if (!dot) return;
+        this.scrollToIndex(panel, Number(dot.dataset.dotIndex));
+      });
+
+      this.updateDots(panel);
+    }
+
+    getCarouselMetrics(panel) {
+      const track = panel.querySelector('[data-track]');
+      if (!track) return null;
+
+      const cards = track.querySelectorAll('.bestseller-card');
+      if (!cards.length) return null;
+
+      const gap = parseFloat(getComputedStyle(track).gap || 0);
+      const cardWidth = cards[0].offsetWidth;
+      const scrollStep = cardWidth + gap;
+      const visibleCount = Math.max(1, Math.floor((track.clientWidth + gap) / scrollStep));
+      const dotCount = Math.max(1, cards.length - visibleCount + 1);
+
+      return { track, scrollStep, dotCount };
+    }
+
+    scrollToIndex(panel, index) {
+      const metrics = this.getCarouselMetrics(panel);
+      if (!metrics) return;
+
+      const { track, scrollStep, dotCount } = metrics;
+      const targetIndex = Math.min(dotCount - 1, Math.max(0, index));
+
+      this._scrollingProgrammatically = true;
+      track.scrollTo({
+        left: targetIndex * scrollStep,
+        behavior: 'smooth',
+      });
+
+      window.setTimeout(() => {
+        this._scrollingProgrammatically = false;
+        this.updateDots(panel);
+      }, 350);
+    }
+
+    selectTab(tab) {
+      const panelId = tab.getAttribute('data-tab');
+      const targetPanel = this.findPanel(panelId);
+      if (!targetPanel) return;
+
+      this.tabs.forEach((item) => {
+        const isActive = item === tab;
+        item.classList.toggle('is-active', isActive);
+        item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        item.tabIndex = isActive ? 0 : -1;
+      });
+
+      this.panels.forEach((panel) => {
+        const isActive = panel === targetPanel;
+        panel.classList.toggle('is-active', isActive);
+        panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+
+        if (isActive) {
+          const track = panel.querySelector('[data-track]');
+          if (track) track.scrollLeft = 0;
+          this.updateDots(panel);
+        }
+      });
+
+      this.syncViewAllLink(tab);
+
+      const viewport = this.querySelector('.bestsellers-row__tabs-viewport');
+      if (viewport) {
+        const tabLeft = tab.offsetLeft;
+        const tabWidth = tab.offsetWidth;
+        const viewportWidth = viewport.clientWidth;
+        const targetScroll = tabLeft - viewportWidth / 2 + tabWidth / 2;
+        viewport.scrollTo({
+          left: Math.max(0, targetScroll),
+          behavior: 'smooth',
+        });
+      }
+    }
+
+    syncViewAllLink(tab) {
+      if (this.viewAllLink && tab.dataset.collectionUrl) {
+        this.viewAllLink.href = tab.dataset.collectionUrl;
+      }
+    }
+
+    onTabKeydown(event) {
+      const supportedKeys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+      if (!supportedKeys.includes(event.key)) return;
+
+      const currentIndex = this.tabs.indexOf(document.activeElement);
+      if (currentIndex === -1) return;
+
+      event.preventDefault();
+
+      let nextIndex = currentIndex;
+      if (event.key === 'ArrowLeft') {
+        nextIndex = (currentIndex - 1 + this.tabs.length) % this.tabs.length;
+      } else if (event.key === 'ArrowRight') {
+        nextIndex = (currentIndex + 1) % this.tabs.length;
+      } else if (event.key === 'Home') {
+        nextIndex = 0;
+      } else if (event.key === 'End') {
+        nextIndex = this.tabs.length - 1;
+      }
+
+      const nextTab = this.tabs[nextIndex];
+      this.selectTab(nextTab);
+      nextTab.focus();
+    }
+
+    updateDots(panel) {
+      const dotsContainer = panel.querySelector('[data-dots]');
+      const metrics = this.getCarouselMetrics(panel);
+      if (!dotsContainer || !metrics) return;
+
+      const { track, scrollStep, dotCount } = metrics;
+      const activeIndex = Math.min(
+        dotCount - 1,
+        Math.max(0, Math.round(track.scrollLeft / scrollStep))
+      );
+
+      dotsContainer.hidden = dotCount <= 1;
+
+      if (dotsContainer.children.length !== dotCount) {
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < dotCount; i++) {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'bestsellers-row__dot';
+          dot.dataset.dotIndex = String(i);
+          dot.setAttribute('aria-label', `Show products ${i + 1} of ${dotCount}`);
+          dotsContainer.appendChild(dot);
+        }
+      }
+
+      Array.from(dotsContainer.children).forEach((dot, index) => {
+        const isActive = index === activeIndex;
+        dot.classList.toggle('is-active', isActive);
+        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+      });
+    }
+  }
+
+  if (!customElements.get('bestsellers-row-component')) {
+    customElements.define('bestsellers-row-component', BestsellersRowComponent);
+  }
+
+  document.addEventListener('shopify:section:load', (event) => {
+    if (!(event.target instanceof HTMLElement)) return;
+    event.target.querySelectorAll('bestsellers-row-component').forEach((component) => {
+      if (typeof component.setup === 'function') {
+        component.setup();
+      }
+    });
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Bestsellers Row",
+  "class": "ui-test-bestsellers-row",
+  "blocks": [
+    {
+      "type": "collection_tab",
+      "name": "Collection tab",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab label",
+          "default": "Tab"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection",
+          "info": "Products shown when this tab is selected"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Used for the All Products tab and when tabs are hidden"
+    },
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Our most popular products"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All text",
+      "default": "View All"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "heading_type_preset",
+      "label": "Heading preset",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h1",
+      "info": "Uses typography presets from Theme settings > Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading font size",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Heading font size (mobile)",
+      "min": 20,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "subheading_type_preset",
+      "label": "Subheading preset",
+      "options": [
+        { "value": "paragraph", "label": "Paragraph" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "paragraph"
+    },
+    {
+      "type": "select",
+      "id": "product_title_type_preset",
+      "label": "Product title preset",
+      "options": [
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "paragraph", "label": "Paragraph" }
+      ],
+      "default": "h5"
+    },
+    {
+      "type": "header",
+      "content": "Collection tabs"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tabs",
+      "label": "Show collection tabs",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_all_tab",
+      "label": "Show All Products tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "all_tab_label",
+      "label": "All products tab label",
+      "default": "All Products",
+      "visible_if": "{{ section.settings.show_all_tab }}"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add Collection tab blocks below. Each tab shows products from its assigned collection. Assign a different collection per tab for unique content."
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "label": "Max products",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show ranking badge",
+      "default": true,
+      "info": "Shows #1, #2, #3 badges on top products"
+    },
+    {
+      "type": "header",
+      "content": "Card Style"
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Card width",
+      "min": 180,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "default": 240
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between cards",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Border Radius"
+    },
+    {
+      "type": "select",
+      "id": "section_border_radius",
+      "label": "Corner style",
+      "info": "Applies to all cards within this section",
+      "options": [
+        {
+          "value": "0",
+          "label": "Sharp"
+        },
+        {
+          "value": "4",
+          "label": "Slightly rounded"
+        },
+        {
+          "value": "8",
+          "label": "Rounded"
+        },
+        {
+          "value": "12",
+          "label": "Very rounded"
+        },
+        {
+          "value": "16",
+          "label": "Extra rounded"
+        }
+      ],
+      "default": "8"
+    },
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page width" },
+        { "value": "full-width", "label": "Full width" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bestsellers Row",
+      "category": "Products",
+      "settings": {
+        "show_heading": true,
+        "heading": "Bestsellers",
+        "subheading": "Our most popular products",
+        "heading_alignment": "center",
+        "heading_type_preset": "h1",
+        "heading_font_size": 48,
+        "heading_font_size_mobile": 32,
+        "subheading_type_preset": "paragraph",
+        "product_title_type_preset": "h5",
+        "show_view_all": true,
+        "view_all_text": "View All",
+        "show_tabs": true,
+        "show_all_tab": true,
+        "all_tab_label": "All Products",
+        "max_products": 6,
+        "show_badge": true,
+        "card_width": 240,
+        "gap": 16,
+        "section_border_radius": "8",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      },
+      "blocks": [
+        { "type": "collection_tab", "settings": { "label": "6+ Months" } },
+        { "type": "collection_tab", "settings": { "label": "8+ Months" } },
+        { "type": "collection_tab", "settings": { "label": "1+ Years" } },
+        { "type": "collection_tab", "settings": { "label": "2+ Years" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

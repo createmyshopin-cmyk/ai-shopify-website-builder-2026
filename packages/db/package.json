@@ -1,0 +1,29 @@
+{
+  "name": "@theme-editor/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "generate": "prisma generate",
+    "migrate": "prisma migrate deploy",
+    "migrate:dev": "prisma migrate dev",
+    "resolve-supabase": "prisma migrate resolve --applied 20250621000000_init_session && prisma migrate resolve --applied 20250621120000_prd_tables && prisma migrate resolve --applied 20250621130000_add_project_blueprint && prisma migrate resolve --applied 20250621140000_add_agent_outputs && prisma migrate resolve --applied 20250621150000_project_events",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.16.3"
+  },
+  "devDependencies": {
+    "prisma": "^6.16.3",
+    "typescript": "^5.9.3"
+  }
+}

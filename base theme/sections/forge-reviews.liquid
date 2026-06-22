@@ -1,0 +1,51 @@
+{% assign product = product | default: closest.product %}
+{% assign api_base = shop.metafields.shopify-forge.api_base.value | default: 'https://forge-prod-11402474925.us-central1.run.app' %}
+{%- assign show_sample = false -%}
+{%- if section.settings.show_sample_data and request.design_mode -%}
+  {%- assign show_sample = true -%}
+{%- endif -%}
+
+<section class="forge-reviews-section color-{{ section.settings.color_scheme }}">
+  {% if section.settings.heading != blank %}
+    <h2>{{ section.settings.heading }}</h2>
+  {% else %}
+    <h2>{{ 'reviews.section_heading' | t }}</h2>
+  {% endif %}
+
+  <forge-reviews
+    data-mode="box"
+    data-api-base="{{ api_base }}"
+    data-shop="{{ shop.permanent_domain }}"
+    data-product="{{ product.id }}"
+    data-per-page="{{ section.settings.per_page }}"
+    data-stars-color="{{ section.settings.stars_color }}"
+    {% if show_sample %}data-sample="1"{% endif %}
+  ></forge-reviews>
+</section>
+
+<script src="{{ 'forge-reviews.js' | asset_url }}" defer></script>
+{{ 'forge-reviews.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "t:sections.forge_reviews.name",
+  "tag": "section",
+  "class": "forge-reviews-section-wrapper",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:sections.forge_reviews.settings.heading", "default": "Customer reviews" },
+    { "type": "range", "id": "per_page", "label": "Reviews per page", "min": 5, "max": 20, "step": 1, "default": 10 },
+    { "type": "color", "id": "stars_color", "label": "Stars color", "default": "#f5a623" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:settings.color_scheme", "default": "scheme-1" },
+    { "type": "header", "content": "Preview" },
+    {
+      "type": "checkbox",
+      "id": "show_sample_data",
+      "label": "Show sample data",
+      "info": "Displays example reviews in the theme editor only. Real shoppers never see this.",
+      "default": false
+    }
+  ],
+  "presets": [{ "name": "t:sections.forge_reviews.name" }]
+}
+{% endschema %}

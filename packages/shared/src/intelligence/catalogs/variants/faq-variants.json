@@ -1,0 +1,32 @@
+{
+  "family": "faq",
+  "sections": [
+    {
+      "section_type": "faq-v2",
+      "schema_name": "FAQ accordion v2",
+      "preset_scores": {
+        "high-converting": 85,
+        "fashion": 50,
+        "minimal-modern": 90
+      }
+    },
+    {
+      "section_type": "faq-v3",
+      "schema_name": "Premium FAQ section",
+      "preset_scores": {
+        "high-converting": 70,
+        "fashion": 70,
+        "minimal-modern": 75
+      }
+    },
+    {
+      "section_type": "faq-product",
+      "schema_name": "FAQ",
+      "preset_scores": {
+        "high-converting": 65,
+        "fashion": 55,
+        "minimal-modern": 60
+      }
+    }
+  ]
+}

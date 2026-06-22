@@ -1,0 +1,116 @@
+{
+  "id": "fashion",
+  "name": "Fashion",
+  "description": "Premium fashion aesthetic with editorial storytelling, rich imagery, and lifestyle content.",
+  "focus": [
+    "storytelling",
+    "premium feel",
+    "visual hierarchy"
+  ],
+  "section_count_rules": {
+    "min_sections": 6,
+    "max_sections": 8
+  },
+  "characteristics": {
+    "typography_style": "elegant",
+    "color_palette_guidance": "Soft neutrals, editorial black and white, brand accent",
+    "spacing_scale": "airy",
+    "animation_intensity": "expressive",
+    "image_treatment": "editorial, full-bleed, high-contrast",
+    "cro_emphasis": "Soft — brand desire over conversion pressure"
+  },
+  "copy_intelligence": {
+    "headline_style": "aspirational editorial with evocative language",
+    "description_style": "poetic, sensory, lifestyle-oriented",
+    "cta_style": "subtle discovery: Explore Collection, Discover More, Shop the Edit",
+    "social_proof_style": "visual user-generated content and styled imagery",
+    "urgency_style": null,
+    "emotion_style": "aspirational and luxurious"
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "background_secondary",
+      "foreground_heading"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_accent_font",
+      "type_size_h2"
+    ],
+    "spacing": [
+      "card_gap",
+      "page_width"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [
+      "button_shape",
+      "primary_button_background",
+      "primary_button_text"
+    ],
+    "animations": [
+      "card_hover_effect",
+      "page_transition_enabled"
+    ]
+  },
+  "section_flow": [
+    {
+      "slot": 1,
+      "section_family": "hero",
+      "preferred_section_type": "editorial-hero",
+      "required": true
+    },
+    {
+      "slot": 2,
+      "section_family": "storytelling",
+      "preferred_section_type": "editorial-promo-banner",
+      "required": true
+    },
+    {
+      "slot": 3,
+      "section_family": "products",
+      "preferred_section_type": "collection-showcase-v2",
+      "required": true
+    },
+    {
+      "slot": 4,
+      "section_family": "storytelling",
+      "preferred_section_type": "brand-story",
+      "required": true
+    },
+    {
+      "slot": 5,
+      "section_family": "social_proof",
+      "preferred_section_type": "editorial-ugc-strip",
+      "required": true
+    },
+    {
+      "slot": 6,
+      "section_family": "lead_capture",
+      "preferred_section_type": "editorial-newsletter",
+      "required": true
+    },
+    {
+      "slot": 7,
+      "section_family": "social_proof",
+      "preferred_section_type": "editorial-testimonials",
+      "required": false
+    },
+    {
+      "slot": 8,
+      "section_family": "content",
+      "preferred_section_type": "editorial-marquee",
+      "required": false
+    }
+  ],
+  "excluded_section_families": [
+    "navigation",
+    "urgency"
+  ]
+}

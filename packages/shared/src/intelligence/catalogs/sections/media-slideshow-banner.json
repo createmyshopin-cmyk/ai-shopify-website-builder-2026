@@ -1,0 +1,378 @@
+{
+  "section_id": "media-slideshow-banner",
+  "section_type": "media-slideshow-banner",
+  "section_path": "sections/media-slideshow-banner.liquid",
+  "section_schema_name": "Media slideshow banner",
+  "section_category": "hero",
+  "section_role": "hero",
+  "section_family": "hero",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Media slideshow banner"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "desktop_width_percent",
+      "type": "range",
+      "label": "Desktop width"
+    },
+    {
+      "id": "padding",
+      "type": "range",
+      "label": "Padding"
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "media_flex_ratio",
+      "type": "range",
+      "label": "Media width ratio"
+    },
+    {
+      "id": "content_flex_ratio",
+      "type": "range",
+      "label": "Content width ratio"
+    },
+    {
+      "id": "aspect_ratio",
+      "type": "select",
+      "label": "Aspect ratio"
+    },
+    {
+      "id": "slide_1_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "slide_1_video",
+      "type": "video",
+      "label": "Video"
+    },
+    {
+      "id": "slide_2_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "slide_2_video",
+      "type": "video",
+      "label": "Video"
+    },
+    {
+      "id": "slide_3_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "slide_3_video",
+      "type": "video",
+      "label": "Video"
+    },
+    {
+      "id": "slide_4_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "slide_4_video",
+      "type": "video",
+      "label": "Video"
+    },
+    {
+      "id": "slide_5_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "slide_5_video",
+      "type": "video",
+      "label": "Video"
+    },
+    {
+      "id": "slide_6_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "slide_6_video",
+      "type": "video",
+      "label": "Video"
+    },
+    {
+      "id": "slide_7_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "slide_7_video",
+      "type": "video",
+      "label": "Video"
+    },
+    {
+      "id": "slide_8_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "slide_8_video",
+      "type": "video",
+      "label": "Video"
+    },
+    {
+      "id": "heading",
+      "type": "richtext",
+      "label": "Heading"
+    },
+    {
+      "id": "heading_size",
+      "type": "range",
+      "label": "Heading size"
+    },
+    {
+      "id": "heading_color",
+      "type": "color",
+      "label": "Heading color"
+    },
+    {
+      "id": "text",
+      "type": "richtext",
+      "label": "Text"
+    },
+    {
+      "id": "text_size",
+      "type": "range",
+      "label": "Text size"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button text"
+    },
+    {
+      "id": "button_link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "button_text_size",
+      "type": "range",
+      "label": "Button text size"
+    },
+    {
+      "id": "button_background",
+      "type": "color",
+      "label": "Button background"
+    },
+    {
+      "id": "button_text_color",
+      "type": "color",
+      "label": "Button text color"
+    },
+    {
+      "id": "button_hover_background",
+      "type": "color",
+      "label": "Button hover background"
+    },
+    {
+      "id": "button_hover_text_color",
+      "type": "color",
+      "label": "Button hover text color"
+    },
+    {
+      "id": "autoplay",
+      "type": "checkbox",
+      "label": "Autoplay"
+    },
+    {
+      "id": "autoplay_interval",
+      "type": "range",
+      "label": "Autoplay interval"
+    },
+    {
+      "id": "control_background",
+      "type": "color",
+      "label": "Control background"
+    },
+    {
+      "id": "control_hover_background",
+      "type": "color",
+      "label": "Control hover background"
+    },
+    {
+      "id": "control_icon_color",
+      "type": "color",
+      "label": "Control icon color"
+    },
+    {
+      "id": "indicator_color",
+      "type": "color",
+      "label": "Indicator color"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 90,
+  "required": false,
+  "name": "Media slideshow banner",
+  "purpose": "Media slideshow banner section — hero",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Media slideshow banner",
+      "conversion_goal": "Awareness"
+    },
+    "layout": {
+      "desktop_layout": "full-width-image",
+      "tablet_layout": "full-width-stack",
+      "mobile_layout": "full-width-stack",
+      "alignment_rules": "heading-center, cta-center",
+      "content_hierarchy": "image-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h2",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "slide-up",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "4/3",
+      "image_shape": "rounded",
+      "image_treatment": "full-bleed"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "banner",
+      "heading_hierarchy": "h1",
+      "accessibility_rules": "landmark-banner, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 95,
+    "fashion": 90,
+    "minimal_modern": 85
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground_heading",
+      "primary_button_background"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font",
+      "type_size_h2"
+    ],
+    "spacing": [
+      "card_gap",
+      "page_width"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [
+      "primary_button_background",
+      "primary_button_text",
+      "button_shape"
+    ],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [],
+    "allowed_after": [
+      "products",
+      "trust",
+      "social_proof",
+      "urgency",
+      "storytelling",
+      "content",
+      "lead_capture",
+      "faq",
+      "footer",
+      "promotion"
+    ],
+    "recommended_before": [],
+    "recommended_after": [
+      "products",
+      "trust",
+      "content"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "critical",
+    "lcp_risk": "high",
+    "cls_risk": "low",
+    "lazy_load_strategy": "eager",
+    "preload_asset": true,
+    "core_web_vitals_target": "lcp"
+  }
+}

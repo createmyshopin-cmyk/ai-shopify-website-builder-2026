@@ -1,0 +1,878 @@
+{% liquid
+  assign category_blocks = section.blocks | where: 'type', 'category_card'
+  assign items_per_row = section.settings.items_per_row | default: 8
+  assign use_collection_list = false
+
+  if category_blocks.size == 0 and section.settings.collection_list != blank
+    assign use_collection_list = true
+  endif
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --sbc-gap: {{ section.settings.gap }}px;
+    --sbc-card-radius: {{ section.settings.card_border_radius }}px;
+    --sbc-card-aspect: {{ section.settings.card_aspect_ratio }};
+    --sbc-items-per-row: {{ items_per_row }};
+    --sbc-heading-size: {{ section.settings.heading_font_size }}px;
+    --sbc-label-size: {{ section.settings.label_font_size }}px;
+    --sbc-arrow-size: {{ section.settings.arrow_size }}px;
+    --sbc-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --sbc-btn-radius: {{ section.settings.button_border_radius }}px;
+    --sbc-btn-bg: {{ section.settings.button_background }};
+    --sbc-btn-text: {{ section.settings.button_text_color }};
+    --sbc-btn-hover: {{ section.settings.button_hover_background }};
+  }
+
+  #shopify-section-{{ section.id }} .shop-by-categories__card {
+    flex: 0 0 calc((100% - (var(--sbc-items-per-row) - 1) * var(--sbc-gap)) / var(--sbc-items-per-row));
+  }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} {
+      --sbc-items-per-row: {{ section.settings.tablet_items_per_row | default: 4 }};
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --sbc-gap: {{ section.settings.mobile_gap }}px;
+      --sbc-card-radius: {{ section.settings.mobile_card_border_radius }}px;
+      --sbc-heading-size: {{ section.settings.heading_font_size_mobile }}px;
+      --sbc-label-size: {{ section.settings.label_font_size_mobile }}px;
+      --sbc-arrow-size: {{ section.settings.mobile_arrow_size }}px;
+      --sbc-items-per-row: {{ section.settings.mobile_items_visible }};
+    }
+  }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="
+    section
+    section--{{ section.settings.section_width }}
+    color-{{ section.settings.color_scheme }}
+    shop-by-categories
+    spacing-style
+  "
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  {% if section.settings.show_heading and section.settings.heading != blank %}
+    <div class="shop-by-categories__header shop-by-categories__header--{{ section.settings.heading_alignment }}">
+      <h2 class="shop-by-categories__title {{ section.settings.heading_type_preset | default: 'h2' }}">
+        {{ section.settings.heading }}
+      </h2>
+    </div>
+  {% endif %}
+
+  <div class="shop-by-categories__viewport">
+    <div class="shop-by-categories__track" role="list">
+      {% if category_blocks.size > 0 %}
+        {% for block in category_blocks %}
+          {% liquid
+            assign card_url = block.settings.link
+            assign card_title = block.settings.title
+            assign card_image = block.settings.image
+
+            if block.settings.collection != blank
+              assign card_url = block.settings.collection.url
+              if card_title == blank
+                assign card_title = block.settings.collection.title
+              endif
+              if card_image == blank and block.settings.collection.image
+                assign card_image = block.settings.collection.image
+              elsif card_image == blank and block.settings.collection.products.first.featured_image
+                assign card_image = block.settings.collection.products.first.featured_image
+              endif
+            endif
+          %}
+
+          {% if card_url != blank %}
+            <a
+              href="{{ card_url }}"
+              class="shop-by-categories__card"
+              role="listitem"
+              {{ block.shopify_attributes }}
+            >
+          {% else %}
+            <div
+              class="shop-by-categories__card"
+              role="listitem"
+              {{ block.shopify_attributes }}
+            >
+          {% endif %}
+            <div class="shop-by-categories__card-media">
+              {% if card_image != blank %}
+                {{
+                  card_image
+                  | image_url: width: 600
+                  | image_tag:
+                    class: 'shop-by-categories__image',
+                    loading: 'lazy',
+                    widths: '200, 300, 400, 600',
+                    alt: card_image.alt | default: card_title
+                }}
+              {% else %}
+                {% assign placeholder_variant = forloop.index | modulo: 4 | plus: 1 %}
+                {% assign placeholder_name = 'collection-apparel-' | append: placeholder_variant %}
+                <div class="shop-by-categories__placeholder">
+                  {{ placeholder_name | placeholder_svg_tag: 'shop-by-categories__placeholder-svg' }}
+                </div>
+              {% endif %}
+              <div class="shop-by-categories__overlay" aria-hidden="true"></div>
+            </div>
+
+            <div class="shop-by-categories__card-footer">
+              {% if card_title != blank %}
+                <span class="shop-by-categories__label">{{ card_title }}</span>
+              {% endif %}
+              <span class="shop-by-categories__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          {% if card_url != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% elsif use_collection_list %}
+        {% for collection in section.settings.collection_list limit: section.settings.max_categories %}
+          <a href="{{ collection.url }}" class="shop-by-categories__card" role="listitem">
+            <div class="shop-by-categories__card-media">
+              {% if collection.image %}
+                {{
+                  collection.image
+                  | image_url: width: 600
+                  | image_tag:
+                    class: 'shop-by-categories__image',
+                    loading: 'lazy',
+                    widths: '200, 300, 400, 600',
+                    alt: collection.title
+                }}
+              {% elsif collection.products.first.featured_image %}
+                {{
+                  collection.products.first.featured_image
+                  | image_url: width: 600
+                  | image_tag:
+                    class: 'shop-by-categories__image',
+                    loading: 'lazy',
+                    widths: '200, 300, 400, 600',
+                    alt: collection.title
+                }}
+              {% else %}
+                {% assign placeholder_variant = forloop.index | modulo: 4 | plus: 1 %}
+                {% assign placeholder_name = 'collection-apparel-' | append: placeholder_variant %}
+                <div class="shop-by-categories__placeholder">
+                  {{ placeholder_name | placeholder_svg_tag: 'shop-by-categories__placeholder-svg' }}
+                </div>
+              {% endif %}
+              <div class="shop-by-categories__overlay" aria-hidden="true"></div>
+            </div>
+            <div class="shop-by-categories__card-footer">
+              <span class="shop-by-categories__label">{{ collection.title }}</span>
+              <span class="shop-by-categories__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        {% endfor %}
+      {% else %}
+        {% assign default_labels = 'Body Care,Face Care,Hair Care,Hair Removal,Body Support,New Launches,Fragrances,Summer Essentials' | split: ',' %}
+        {% for i in (1..8) %}
+          {% assign index = forloop.index0 %}
+          {% assign placeholder_variant = i | modulo: 4 | plus: 1 %}
+          {% assign placeholder_name = 'collection-apparel-' | append: placeholder_variant %}
+          <div class="shop-by-categories__card" role="listitem">
+            <div class="shop-by-categories__card-media">
+              <div class="shop-by-categories__placeholder">
+                {{ placeholder_name | placeholder_svg_tag: 'shop-by-categories__placeholder-svg' }}
+              </div>
+              <div class="shop-by-categories__overlay" aria-hidden="true"></div>
+            </div>
+            <div class="shop-by-categories__card-footer">
+              <span class="shop-by-categories__label">{{ default_labels[index] }}</span>
+              <span class="shop-by-categories__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+
+  {% if section.settings.show_button %}
+    {% liquid
+      assign button_url = section.settings.button_link
+      if button_url == blank
+        assign button_url = routes.all_products_collection_url
+      endif
+    %}
+    <div class="shop-by-categories__cta">
+      <a href="{{ button_url }}" class="shop-by-categories__button">
+        <span>{{ section.settings.button_text }}</span>
+        {% if section.settings.show_button_arrow %}
+          <span class="shop-by-categories__button-arrow" aria-hidden="true">→</span>
+        {% endif %}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .shop-by-categories {
+    width: 100%;
+  }
+
+  .shop-by-categories__header {
+    margin-bottom: 24px;
+  }
+
+  .shop-by-categories__header--left {
+    text-align: left;
+  }
+
+  .shop-by-categories__header--center {
+    text-align: center;
+  }
+
+  .shop-by-categories__title {
+    color: var(--color-foreground-heading);
+    font-family: var(--font-heading--family);
+    font-size: var(--sbc-heading-size);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .shop-by-categories__viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .shop-by-categories__track {
+    display: flex;
+    gap: var(--sbc-gap);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .shop-by-categories__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .shop-by-categories__card {
+    aspect-ratio: var(--sbc-card-aspect);
+    border-radius: var(--sbc-card-radius);
+    color: #fff;
+    display: block;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: start;
+    text-decoration: none;
+    transition: transform 0.25s ease;
+  }
+
+  a.shop-by-categories__card:hover {
+    transform: translateY(-2px);
+  }
+
+  .shop-by-categories__card-media {
+    inset: 0;
+    position: absolute;
+  }
+
+  .shop-by-categories__image {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    width: 100%;
+  }
+
+  a.shop-by-categories__card:hover .shop-by-categories__image {
+    transform: scale(1.04);
+  }
+
+  .shop-by-categories__placeholder {
+    align-items: center;
+    background: rgb(var(--color-foreground-rgb) / 0.08);
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .shop-by-categories__placeholder-svg {
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+    width: 100%;
+  }
+
+  .shop-by-categories__overlay {
+    background: linear-gradient(
+      to top,
+      rgb(0 0 0 / calc(var(--sbc-overlay-opacity) + 0.15)) 0%,
+      rgb(0 0 0 / calc(var(--sbc-overlay-opacity) * 0.4)) 35%,
+      transparent 65%
+    );
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  .shop-by-categories__card-footer {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    left: 0;
+    padding: 14px 12px;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+  }
+
+  .shop-by-categories__label {
+    flex: 1 1 auto;
+    font-family: var(--font-heading--family);
+    font-size: var(--sbc-label-size);
+    font-weight: 700;
+    line-height: 1.2;
+    min-width: 0;
+  }
+
+  .shop-by-categories__arrow {
+    align-items: center;
+    background: #fff;
+    border-radius: 50%;
+    color: #111;
+    display: inline-flex;
+    flex-shrink: 0;
+    height: var(--sbc-arrow-size);
+    justify-content: center;
+    transition: transform 0.2s ease;
+    width: var(--sbc-arrow-size);
+  }
+
+  .shop-by-categories__arrow svg {
+    height: 42%;
+    width: 42%;
+  }
+
+  a.shop-by-categories__card:hover .shop-by-categories__arrow {
+    transform: translateX(2px);
+  }
+
+  .shop-by-categories__cta {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .shop-by-categories__button {
+    align-items: center;
+    background: var(--sbc-btn-bg);
+    border-radius: var(--sbc-btn-radius);
+    color: var(--sbc-btn-text);
+    display: flex;
+    font-family: var(--font-body--family);
+    font-size: 1rem;
+    font-weight: 500;
+    gap: 8px;
+    justify-content: center;
+    line-height: 1;
+    min-height: 52px;
+    padding: 14px 24px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    width: 100%;
+  }
+
+  .shop-by-categories__button:hover {
+    background: var(--sbc-btn-hover);
+    color: var(--sbc-btn-text);
+  }
+
+  .shop-by-categories__button-arrow {
+    font-size: 1.1em;
+    line-height: 1;
+  }
+
+  @media screen and (max-width: 749px) {
+    .shop-by-categories__header {
+      margin-bottom: 16px;
+    }
+
+    .shop-by-categories__card-footer {
+      padding: 10px 8px;
+    }
+
+    .shop-by-categories__cta {
+      margin-top: 16px;
+    }
+
+    .shop-by-categories__button {
+      font-size: 0.9375rem;
+      min-height: 48px;
+    }
+
+    a.shop-by-categories__card:hover {
+      transform: none;
+    }
+
+    a.shop-by-categories__card:hover .shop-by-categories__image {
+      transform: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop By Categories",
+  "class": "ui-test-shop-by-categories",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop By Categories"
+    },
+    {
+      "type": "select",
+      "id": "heading_type_preset",
+      "label": "Heading style",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
+     },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading size",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 18,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "header",
+      "content": "Categories"
+    },
+    {
+      "type": "collection_list",
+      "id": "collection_list",
+      "label": "Collections",
+      "info": "Used when no category blocks are added"
+    },
+    {
+      "type": "range",
+      "id": "max_categories",
+      "label": "Max categories (collection list)",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Card layout"
+    },
+    {
+      "type": "range",
+      "id": "items_per_row",
+      "label": "Cards visible (desktop)",
+      "min": 4,
+      "max": 10,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "tablet_items_per_row",
+      "label": "Cards visible (tablet)",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile_items_visible",
+      "label": "Cards visible (mobile)",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between cards",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Gap (mobile)",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_border_radius",
+      "label": "Card corner radius (mobile)",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "card_aspect_ratio",
+      "label": "Card aspect ratio",
+      "default": "3 / 4.2",
+      "info": "CSS aspect-ratio value, e.g. 3 / 4"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Image overlay strength",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "label": "Label size",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "label_font_size_mobile",
+      "label": "Label size (mobile)",
+      "min": 9,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow button size",
+      "min": 20,
+      "max": 44,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mobile_arrow_size",
+      "label": "Arrow button size (mobile)",
+      "min": 18,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "View all button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "View all products"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "Defaults to all products collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button_arrow",
+      "label": "Show arrow on button",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page width" },
+        { "value": "full-width", "label": "Full width" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_card",
+      "name": "Category card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Category"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection link"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Custom link",
+          "info": "Overrides collection link when set"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Shop By Categories",
+      "category": "Collections",
+      "settings": {
+        "show_heading": true,
+        "heading": "Shop By Categories",
+        "heading_type_preset": "h2",
+        "heading_alignment": "left",
+        "heading_font_size": 28,
+        "heading_font_size_mobile": 22,
+        "max_categories": 8,
+        "items_per_row": 8,
+        "tablet_items_per_row": 4,
+        "mobile_items_visible": 2,
+        "gap": 12,
+        "mobile_gap": 10,
+        "card_border_radius": 16,
+        "mobile_card_border_radius": 12,
+        "card_aspect_ratio": "3 / 4.2",
+        "overlay_opacity": 55,
+        "label_font_size": 14,
+        "label_font_size_mobile": 12,
+        "arrow_size": 28,
+        "mobile_arrow_size": 24,
+        "show_button": true,
+        "button_text": "View all products",
+        "show_button_arrow": true,
+        "button_background": "#111111",
+        "button_text_color": "#ffffff",
+        "button_hover_background": "#333333",
+        "button_border_radius": 12,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      },
+      "blocks": [
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Body Care"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Face Care"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Hair Care"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Hair Removal"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Body Support"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "New Launches"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Fragrances"
+          }
+        },
+        {
+          "type": "category_card",
+          "settings": {
+            "title": "Summer Essentials"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

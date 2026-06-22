@@ -1,0 +1,31 @@
+{%- doc -%}
+  Product carousel track for the Bestsellers Row section.
+
+  @param {object} products - Products to render
+  @param {number} max_products - Maximum number of products
+  @param {string} section_id - Section ID for product forms
+  @param {string} product_title_type_preset - Typography preset class for titles
+{%- enddoc -%}
+
+<div class="bestsellers-row__track" data-track>
+  {% if products != blank and products.size > 0 %}
+    {% for product in products limit: max_products %}
+      {% render 'bestseller-card',
+        product: product,
+        section_id: section_id,
+        product_title_type_preset: product_title_type_preset,
+        fallback_index: forloop.index0
+      %}
+    {% endfor %}
+  {% else %}
+    {% for i in (1..max_products) %}
+      {% assign fallback_index = i | minus: 1 %}
+      {% render 'bestseller-card',
+        product: blank,
+        section_id: section_id,
+        product_title_type_preset: product_title_type_preset,
+        fallback_index: fallback_index
+      %}
+    {% endfor %}
+  {% endif %}
+</div>

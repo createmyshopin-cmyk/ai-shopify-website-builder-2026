@@ -1,0 +1,332 @@
+{
+  "section_id": "product-storytelling",
+  "section_type": "product-storytelling",
+  "section_path": "sections/product-storytelling.liquid",
+  "section_schema_name": "Product storytelling",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Product storytelling"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "desktop_width_percent",
+      "type": "range",
+      "label": "Desktop width"
+    },
+    {
+      "id": "section_padding",
+      "type": "range",
+      "label": "Section padding"
+    },
+    {
+      "id": "circle_image_1",
+      "type": "image_picker",
+      "label": "Circle image 1"
+    },
+    {
+      "id": "circle_image_2",
+      "type": "image_picker",
+      "label": "Circle image 2"
+    },
+    {
+      "id": "circle_image_3",
+      "type": "image_picker",
+      "label": "Circle image 3"
+    },
+    {
+      "id": "circle_gap",
+      "type": "range",
+      "label": "Gap between circles"
+    },
+    {
+      "id": "circle_background",
+      "type": "color",
+      "label": "Circle background"
+    },
+    {
+      "id": "content_spacing",
+      "type": "range",
+      "label": "Space below circles"
+    },
+    {
+      "id": "headline",
+      "type": "inline_richtext",
+      "label": "Headline"
+    },
+    {
+      "id": "headline_size",
+      "type": "range",
+      "label": "Headline size"
+    },
+    {
+      "id": "headline_spacing",
+      "type": "range",
+      "label": "Headline spacing"
+    },
+    {
+      "id": "intro_text",
+      "type": "richtext",
+      "label": "Introduction text"
+    },
+    {
+      "id": "intro_size",
+      "type": "range",
+      "label": "Introduction size"
+    },
+    {
+      "id": "intro_spacing",
+      "type": "range",
+      "label": "Introduction spacing"
+    },
+    {
+      "id": "blocks_columns",
+      "type": "select",
+      "label": "Columns"
+    },
+    {
+      "id": "blocks_gap",
+      "type": "range",
+      "label": "Gap between blocks"
+    },
+    {
+      "id": "blocks_spacing",
+      "type": "range",
+      "label": "Space below blocks"
+    },
+    {
+      "id": "block_padding",
+      "type": "range",
+      "label": "Block padding"
+    },
+    {
+      "id": "block_1_title",
+      "type": "inline_richtext",
+      "label": "Block 1 title"
+    },
+    {
+      "id": "block_1_text",
+      "type": "richtext",
+      "label": "Block 1 text"
+    },
+    {
+      "id": "block_2_title",
+      "type": "inline_richtext",
+      "label": "Block 2 title"
+    },
+    {
+      "id": "block_2_text",
+      "type": "richtext",
+      "label": "Block 2 text"
+    },
+    {
+      "id": "block_3_title",
+      "type": "inline_richtext",
+      "label": "Block 3 title"
+    },
+    {
+      "id": "block_3_text",
+      "type": "richtext",
+      "label": "Block 3 text"
+    },
+    {
+      "id": "block_title_size",
+      "type": "range",
+      "label": "Block title size"
+    },
+    {
+      "id": "block_title_spacing",
+      "type": "range",
+      "label": "Block title spacing"
+    },
+    {
+      "id": "block_text_size",
+      "type": "range",
+      "label": "Block text size"
+    },
+    {
+      "id": "divider_width",
+      "type": "range",
+      "label": "Divider width"
+    },
+    {
+      "id": "divider_color",
+      "type": "color",
+      "label": "Divider color"
+    },
+    {
+      "id": "closing_text",
+      "type": "inline_richtext",
+      "label": "Closing text"
+    },
+    {
+      "id": "closing_size",
+      "type": "range",
+      "label": "Closing size"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Background"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text"
+    },
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "t:settings.color_scheme"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 55,
+  "required": false,
+  "name": "Product storytelling",
+  "purpose": "Product storytelling section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Product storytelling",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "split-50-50",
+      "tablet_layout": "full-width-stack",
+      "mobile_layout": "full-width-stack",
+      "alignment_rules": "heading-left, cta-left",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

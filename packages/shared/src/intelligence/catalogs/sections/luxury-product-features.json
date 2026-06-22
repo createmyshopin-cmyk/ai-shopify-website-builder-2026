@@ -1,0 +1,667 @@
+{
+  "section_id": "luxury-product-features",
+  "section_type": "luxury-product-features",
+  "section_path": "sections/luxury-product-features.liquid",
+  "section_schema_name": "Luxury product features",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Luxury product features"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "section_background",
+      "type": "color",
+      "label": "Background"
+    },
+    {
+      "id": "section_padding_top",
+      "type": "range",
+      "label": "Top padding"
+    },
+    {
+      "id": "section_padding_bottom",
+      "type": "range",
+      "label": "Bottom padding"
+    },
+    {
+      "id": "mobile_gap",
+      "type": "range",
+      "label": "Mobile gap"
+    },
+    {
+      "id": "product_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "image_size",
+      "type": "range",
+      "label": "Image size"
+    },
+    {
+      "id": "image_max_width",
+      "type": "range",
+      "label": "Image max width"
+    },
+    {
+      "id": "image_alignment",
+      "type": "select",
+      "label": "Image alignment"
+    },
+    {
+      "id": "show_pill",
+      "type": "checkbox",
+      "label": "Show pill label"
+    },
+    {
+      "id": "pill_text",
+      "type": "text",
+      "label": "Pill text"
+    },
+    {
+      "id": "pill_font_size",
+      "type": "range",
+      "label": "Font size"
+    },
+    {
+      "id": "pill_font_weight",
+      "type": "select",
+      "label": "Font weight"
+    },
+    {
+      "id": "pill_padding_vertical",
+      "type": "range",
+      "label": "Vertical padding"
+    },
+    {
+      "id": "pill_padding_horizontal",
+      "type": "range",
+      "label": "Horizontal padding"
+    },
+    {
+      "id": "pill_border_radius",
+      "type": "range",
+      "label": "Border radius"
+    },
+    {
+      "id": "pill_border_width",
+      "type": "range",
+      "label": "Border width"
+    },
+    {
+      "id": "pill_position_x",
+      "type": "range",
+      "label": "Horizontal position"
+    },
+    {
+      "id": "pill_position_y",
+      "type": "range",
+      "label": "Vertical position"
+    },
+    {
+      "id": "pill_bg_color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "pill_text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "pill_border_color",
+      "type": "color",
+      "label": "Border color"
+    },
+    {
+      "id": "pill_shadow_opacity",
+      "type": "range",
+      "label": "Shadow opacity"
+    },
+    {
+      "id": "placeholder_background",
+      "type": "color",
+      "label": "Placeholder background"
+    },
+    {
+      "id": "hotspot_size",
+      "type": "range",
+      "label": "Size"
+    },
+    {
+      "id": "hotspot_background",
+      "type": "color",
+      "label": "Background"
+    },
+    {
+      "id": "hotspot_border_color",
+      "type": "color",
+      "label": "Border color"
+    },
+    {
+      "id": "hotspot_border_width",
+      "type": "range",
+      "label": "Border width"
+    },
+    {
+      "id": "hotspot_icon_color",
+      "type": "color",
+      "label": "Icon color"
+    },
+    {
+      "id": "hotspot_1_enabled",
+      "type": "checkbox",
+      "label": "Enable"
+    },
+    {
+      "id": "hotspot_1_x",
+      "type": "range",
+      "label": "Horizontal position"
+    },
+    {
+      "id": "hotspot_1_y",
+      "type": "range",
+      "label": "Vertical position"
+    },
+    {
+      "id": "hotspot_2_enabled",
+      "type": "checkbox",
+      "label": "Enable"
+    },
+    {
+      "id": "hotspot_2_x",
+      "type": "range",
+      "label": "Horizontal position"
+    },
+    {
+      "id": "hotspot_2_y",
+      "type": "range",
+      "label": "Vertical position"
+    },
+    {
+      "id": "hotspot_3_enabled",
+      "type": "checkbox",
+      "label": "Enable"
+    },
+    {
+      "id": "hotspot_3_x",
+      "type": "range",
+      "label": "Horizontal position"
+    },
+    {
+      "id": "hotspot_3_y",
+      "type": "range",
+      "label": "Vertical position"
+    },
+    {
+      "id": "hotspot_4_enabled",
+      "type": "checkbox",
+      "label": "Enable"
+    },
+    {
+      "id": "hotspot_4_x",
+      "type": "range",
+      "label": "Horizontal position"
+    },
+    {
+      "id": "hotspot_4_y",
+      "type": "range",
+      "label": "Vertical position"
+    },
+    {
+      "id": "content_padding",
+      "type": "range",
+      "label": "Horizontal padding"
+    },
+    {
+      "id": "heading",
+      "type": "richtext",
+      "label": "Heading"
+    },
+    {
+      "id": "heading_size",
+      "type": "range",
+      "label": "Heading size"
+    },
+    {
+      "id": "heading_color",
+      "type": "color",
+      "label": "Heading color"
+    },
+    {
+      "id": "heading_spacing",
+      "type": "range",
+      "label": "Heading spacing"
+    },
+    {
+      "id": "subheading",
+      "type": "richtext",
+      "label": "Subheading"
+    },
+    {
+      "id": "subheading_size",
+      "type": "range",
+      "label": "Subheading size"
+    },
+    {
+      "id": "subheading_color",
+      "type": "color",
+      "label": "Subheading color"
+    },
+    {
+      "id": "benefits_spacing",
+      "type": "range",
+      "label": "Benefits spacing"
+    },
+    {
+      "id": "benefits_columns",
+      "type": "select",
+      "label": "Columns"
+    },
+    {
+      "id": "benefits_gap",
+      "type": "range",
+      "label": "Gap"
+    },
+    {
+      "id": "benefit_alignment",
+      "type": "select",
+      "label": "Alignment"
+    },
+    {
+      "id": "icon_size",
+      "type": "range",
+      "label": "Icon size"
+    },
+    {
+      "id": "icon_color",
+      "type": "color",
+      "label": "Icon color"
+    },
+    {
+      "id": "icon_spacing",
+      "type": "range",
+      "label": "Icon spacing"
+    },
+    {
+      "id": "benefit_title_size",
+      "type": "range",
+      "label": "Title size"
+    },
+    {
+      "id": "benefit_title_color",
+      "type": "color",
+      "label": "Title color"
+    },
+    {
+      "id": "benefit_title_spacing",
+      "type": "range",
+      "label": "Title spacing"
+    },
+    {
+      "id": "benefit_text_size",
+      "type": "range",
+      "label": "Text size"
+    },
+    {
+      "id": "benefit_text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "product",
+      "type": "product",
+      "label": "Product"
+    },
+    {
+      "id": "button_url",
+      "type": "url",
+      "label": "Button URL"
+    },
+    {
+      "id": "button_label",
+      "type": "text",
+      "label": "Button label"
+    },
+    {
+      "id": "button_font_size",
+      "type": "range",
+      "label": "Font size"
+    },
+    {
+      "id": "button_font_weight",
+      "type": "select",
+      "label": "Font weight"
+    },
+    {
+      "id": "button_padding_vertical",
+      "type": "range",
+      "label": "Vertical padding"
+    },
+    {
+      "id": "button_padding_horizontal",
+      "type": "range",
+      "label": "Horizontal padding"
+    },
+    {
+      "id": "button_border_radius",
+      "type": "range",
+      "label": "Border radius"
+    },
+    {
+      "id": "button_border_width",
+      "type": "range",
+      "label": "Border width"
+    },
+    {
+      "id": "button_spacing",
+      "type": "range",
+      "label": "Spacing above"
+    },
+    {
+      "id": "button_alignment",
+      "type": "select",
+      "label": "Alignment"
+    },
+    {
+      "id": "button_bg_color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "button_text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "button_bg_color_hover",
+      "type": "color",
+      "label": "Background color (hover)"
+    },
+    {
+      "id": "button_text_color_hover",
+      "type": "color",
+      "label": "Text color (hover)"
+    },
+    {
+      "id": "button_border_color",
+      "type": "color",
+      "label": "Border color"
+    },
+    {
+      "id": "benefit_1_enabled",
+      "type": "checkbox",
+      "label": "Enable"
+    },
+    {
+      "id": "benefit_1_icon",
+      "type": "select",
+      "label": "Icon"
+    },
+    {
+      "id": "benefit_1_title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "benefit_1_text",
+      "type": "textarea",
+      "label": "Text"
+    },
+    {
+      "id": "benefit_2_enabled",
+      "type": "checkbox",
+      "label": "Enable"
+    },
+    {
+      "id": "benefit_2_icon",
+      "type": "select",
+      "label": "Icon"
+    },
+    {
+      "id": "benefit_2_title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "benefit_2_text",
+      "type": "textarea",
+      "label": "Text"
+    },
+    {
+      "id": "benefit_3_enabled",
+      "type": "checkbox",
+      "label": "Enable"
+    },
+    {
+      "id": "benefit_3_icon",
+      "type": "select",
+      "label": "Icon"
+    },
+    {
+      "id": "benefit_3_title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "benefit_3_text",
+      "type": "textarea",
+      "label": "Text"
+    },
+    {
+      "id": "benefit_4_enabled",
+      "type": "checkbox",
+      "label": "Enable"
+    },
+    {
+      "id": "benefit_4_icon",
+      "type": "select",
+      "label": "Icon"
+    },
+    {
+      "id": "benefit_4_title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "benefit_4_text",
+      "type": "textarea",
+      "label": "Text"
+    },
+    {
+      "id": "benefit_5_enabled",
+      "type": "checkbox",
+      "label": "Enable"
+    },
+    {
+      "id": "benefit_5_icon",
+      "type": "select",
+      "label": "Icon"
+    },
+    {
+      "id": "benefit_5_title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "benefit_5_text",
+      "type": "textarea",
+      "label": "Text"
+    },
+    {
+      "id": "benefit_6_enabled",
+      "type": "checkbox",
+      "label": "Enable"
+    },
+    {
+      "id": "benefit_6_icon",
+      "type": "select",
+      "label": "Icon"
+    },
+    {
+      "id": "benefit_6_title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "benefit_6_text",
+      "type": "textarea",
+      "label": "Text"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 55,
+  "required": false,
+  "name": "Luxury product features",
+  "purpose": "Luxury product features section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Luxury product features",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "content-centered",
+      "tablet_layout": "content-centered",
+      "mobile_layout": "content-stacked",
+      "alignment_rules": "heading-center",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

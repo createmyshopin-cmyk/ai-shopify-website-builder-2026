@@ -1,0 +1,257 @@
+{
+  "section_id": "whatsapp-float",
+  "section_type": "whatsapp-float",
+  "section_path": "sections/whatsapp-float.liquid",
+  "section_schema_name": "WhatsApp float",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "WhatsApp float"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "enabled",
+      "type": "checkbox",
+      "label": "Enable floating WhatsApp button"
+    },
+    {
+      "id": "number",
+      "type": "text",
+      "label": "WhatsApp number"
+    },
+    {
+      "id": "message",
+      "type": "textarea",
+      "label": "Pre-filled message"
+    },
+    {
+      "id": "button_label",
+      "type": "text",
+      "label": "Accessibility label"
+    },
+    {
+      "id": "label_text",
+      "type": "text",
+      "label": "Visible button text"
+    },
+    {
+      "id": "show_label_desktop",
+      "type": "checkbox",
+      "label": "Show text label on desktop"
+    },
+    {
+      "id": "show_label_mobile",
+      "type": "checkbox",
+      "label": "Show text label on mobile"
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Button color"
+    },
+    {
+      "id": "icon_color",
+      "type": "color",
+      "label": "Icon color"
+    },
+    {
+      "id": "hide_on_overlays",
+      "type": "checkbox",
+      "label": "Hide when popups or drawers are open"
+    },
+    {
+      "id": "avoid_sticky_atc",
+      "type": "checkbox",
+      "label": "Move up when sticky add to cart is visible"
+    },
+    {
+      "id": "sticky_atc_offset",
+      "type": "range",
+      "label": "Extra bottom space above sticky add to cart"
+    },
+    {
+      "id": "position_desktop",
+      "type": "select",
+      "label": "Position (desktop)"
+    },
+    {
+      "id": "size_desktop",
+      "type": "range",
+      "label": "Button size (desktop)"
+    },
+    {
+      "id": "offset_bottom_desktop",
+      "type": "range",
+      "label": "Bottom / top offset (desktop)"
+    },
+    {
+      "id": "offset_side_desktop",
+      "type": "range",
+      "label": "Side offset (desktop)"
+    },
+    {
+      "id": "position_mobile",
+      "type": "select",
+      "label": "Position (mobile)"
+    },
+    {
+      "id": "size_mobile",
+      "type": "range",
+      "label": "Button size (mobile)"
+    },
+    {
+      "id": "offset_bottom_mobile",
+      "type": "range",
+      "label": "Bottom / top offset (mobile)"
+    },
+    {
+      "id": "offset_side_mobile",
+      "type": "range",
+      "label": "Side offset (mobile)"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 55,
+  "required": false,
+  "name": "WhatsApp float",
+  "purpose": "WhatsApp float section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display WhatsApp float",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "content-centered",
+      "tablet_layout": "content-centered",
+      "mobile_layout": "content-stacked",
+      "alignment_rules": "heading-center",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

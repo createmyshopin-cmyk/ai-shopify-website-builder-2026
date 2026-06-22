@@ -1,0 +1,29 @@
+name: Phase Gate
+
+on:
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  phase-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Verify QA docs exist
+        run: |
+          test -f docs/qa/README.md
+          test -f docs/qa/prd-progress.md
+          test -f docs/phases/_template-phase-record.md
+
+      - name: Install and test
+        run: |
+          npm ci
+          npm run build --workspace=@theme-editor/shared
+          npm run test:unit
+          npm run test:integration

@@ -1,0 +1,41 @@
+{
+  "family": "social_proof",
+  "sections": [
+    {
+      "section_type": "editorial-testimonials",
+      "schema_name": "Editorial Testimonials",
+      "preset_scores": {
+        "high-converting": 88,
+        "fashion": 70,
+        "minimal-modern": 60
+      }
+    },
+    {
+      "section_type": "customer-reviews-v2",
+      "schema_name": "Customer reviews v2",
+      "preset_scores": {
+        "high-converting": 75,
+        "fashion": 55,
+        "minimal-modern": 65
+      }
+    },
+    {
+      "section_type": "testimonials-slider",
+      "schema_name": "Testimonials Slider",
+      "preset_scores": {
+        "high-converting": 70,
+        "fashion": 65,
+        "minimal-modern": 55
+      }
+    },
+    {
+      "section_type": "editorial-ugc-strip",
+      "schema_name": "Editorial UGC Strip",
+      "preset_scores": {
+        "high-converting": 65,
+        "fashion": 95,
+        "minimal-modern": 40
+      }
+    }
+  ]
+}

@@ -1,0 +1,477 @@
+{
+  "section_id": "product-tabs-v2",
+  "section_type": "product-tabs-v2",
+  "section_path": "sections/product-tabs-v2.liquid",
+  "section_schema_name": "Product tabs",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Product tabs v2"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "sticky_tabs",
+      "type": "checkbox",
+      "label": "Sticky tabs on scroll"
+    },
+    {
+      "id": "active_tab_bg",
+      "type": "color",
+      "label": "Active tab background"
+    },
+    {
+      "id": "active_tab_text",
+      "type": "color",
+      "label": "Active tab text"
+    },
+    {
+      "id": "inactive_tab_bg",
+      "type": "color",
+      "label": "Inactive tab background"
+    },
+    {
+      "id": "inactive_tab_text",
+      "type": "color",
+      "label": "Inactive tab text"
+    },
+    {
+      "id": "tab_font_size",
+      "type": "range",
+      "label": "Tab font size"
+    },
+    {
+      "id": "tab_font_weight",
+      "type": "range",
+      "label": "Tab font weight"
+    },
+    {
+      "id": "tab_text_uppercase",
+      "type": "checkbox",
+      "label": "Tab text uppercase"
+    },
+    {
+      "id": "tab_letter_spacing",
+      "type": "range",
+      "label": "Tab letter spacing"
+    },
+    {
+      "id": "body_text_size",
+      "type": "range",
+      "label": "Body text size"
+    },
+    {
+      "id": "rating_score_size",
+      "type": "range",
+      "label": "Rating score size"
+    },
+    {
+      "id": "rating_score_weight",
+      "type": "range",
+      "label": "Rating score weight"
+    },
+    {
+      "id": "review_count_size",
+      "type": "range",
+      "label": "Review count size"
+    },
+    {
+      "id": "summary_title_size",
+      "type": "range",
+      "label": "Summary title size"
+    },
+    {
+      "id": "summary_title_weight",
+      "type": "range",
+      "label": "Summary title weight"
+    },
+    {
+      "id": "reviewer_name_size",
+      "type": "range",
+      "label": "Reviewer name size"
+    },
+    {
+      "id": "reviewer_name_weight",
+      "type": "range",
+      "label": "Reviewer name weight"
+    },
+    {
+      "id": "review_text_size",
+      "type": "range",
+      "label": "Review text size"
+    },
+    {
+      "id": "button_text_size",
+      "type": "range",
+      "label": "Button text size"
+    },
+    {
+      "id": "button_font_weight",
+      "type": "range",
+      "label": "Button font weight"
+    },
+    {
+      "id": "enable_reviews_tab",
+      "type": "checkbox",
+      "label": "Enable reviews tab"
+    },
+    {
+      "id": "reviews_tab_label",
+      "type": "text",
+      "label": "Tab label"
+    },
+    {
+      "id": "show_review_count",
+      "type": "checkbox",
+      "label": "Show review count in tab"
+    },
+    {
+      "id": "total_reviews",
+      "type": "range",
+      "label": "Total reviews"
+    },
+    {
+      "id": "average_rating",
+      "type": "text",
+      "label": "Average rating"
+    },
+    {
+      "id": "enable_details_tab",
+      "type": "checkbox",
+      "label": "Enable details tab"
+    },
+    {
+      "id": "details_tab_label",
+      "type": "text",
+      "label": "Tab label"
+    },
+    {
+      "id": "details_content",
+      "type": "richtext",
+      "label": "Content"
+    },
+    {
+      "id": "show_login_notice",
+      "type": "checkbox",
+      "label": "Show login notice"
+    },
+    {
+      "id": "login_notice_text",
+      "type": "text",
+      "label": "Notice text"
+    },
+    {
+      "id": "notice_bg",
+      "type": "color",
+      "label": "Notice background"
+    },
+    {
+      "id": "notice_text",
+      "type": "color",
+      "label": "Notice text color"
+    },
+    {
+      "id": "notice_border_radius",
+      "type": "range",
+      "label": "Notice border radius"
+    },
+    {
+      "id": "enable_ai_summary",
+      "type": "checkbox",
+      "label": "Enable AI summary"
+    },
+    {
+      "id": "ai_summary_title",
+      "type": "text",
+      "label": "Summary title"
+    },
+    {
+      "id": "ai_summary_text",
+      "type": "textarea",
+      "label": "Summary text"
+    },
+    {
+      "id": "ai_summary_note",
+      "type": "text",
+      "label": "Summary note"
+    },
+    {
+      "id": "ai_summary_bg",
+      "type": "color",
+      "label": "Summary background"
+    },
+    {
+      "id": "ai_summary_border_radius",
+      "type": "range",
+      "label": "Summary border radius"
+    },
+    {
+      "id": "show_like_dislike",
+      "type": "checkbox",
+      "label": "Show like/dislike buttons"
+    },
+    {
+      "id": "show_store_tag",
+      "type": "checkbox",
+      "label": "Show store tag"
+    },
+    {
+      "id": "reviews_per_page",
+      "type": "range",
+      "label": "Reviews per page"
+    },
+    {
+      "id": "sample_reviewer_name",
+      "type": "text",
+      "label": "Sample reviewer name"
+    },
+    {
+      "id": "sample_reviewer_initial",
+      "type": "text",
+      "label": "Sample reviewer initial"
+    },
+    {
+      "id": "sample_reviewer_location",
+      "type": "text",
+      "label": "Sample location"
+    },
+    {
+      "id": "sample_review_date",
+      "type": "text",
+      "label": "Sample review date"
+    },
+    {
+      "id": "sample_review_text",
+      "type": "textarea",
+      "label": "Sample review text"
+    },
+    {
+      "id": "sample_like_count",
+      "type": "range",
+      "label": "Sample like count"
+    },
+    {
+      "id": "sample_dislike_count",
+      "type": "range",
+      "label": "Sample dislike count"
+    },
+    {
+      "id": "enable_payment_tab",
+      "type": "checkbox",
+      "label": "Enable payment tab"
+    },
+    {
+      "id": "payment_tab_label",
+      "type": "text",
+      "label": "Tab label"
+    },
+    {
+      "id": "payment_content",
+      "type": "richtext",
+      "label": "Content"
+    },
+    {
+      "id": "enable_return_tab",
+      "type": "checkbox",
+      "label": "Enable return tab"
+    },
+    {
+      "id": "return_tab_label",
+      "type": "text",
+      "label": "Tab label"
+    },
+    {
+      "id": "return_content",
+      "type": "richtext",
+      "label": "Content"
+    },
+    {
+      "id": "load_more_text",
+      "type": "text",
+      "label": "Button text"
+    },
+    {
+      "id": "content_bg",
+      "type": "color",
+      "label": "Content background"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "border_color",
+      "type": "color",
+      "label": "Border color"
+    },
+    {
+      "id": "star_color",
+      "type": "color",
+      "label": "Star color"
+    },
+    {
+      "id": "avatar_bg",
+      "type": "color",
+      "label": "Avatar background"
+    },
+    {
+      "id": "input_border_radius",
+      "type": "range",
+      "label": "Input border radius"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 55,
+  "required": false,
+  "name": "Product tabs",
+  "purpose": "Product tabs section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Product tabs",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "content-centered",
+      "tablet_layout": "content-centered",
+      "mobile_layout": "content-stacked",
+      "alignment_rules": "heading-center",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

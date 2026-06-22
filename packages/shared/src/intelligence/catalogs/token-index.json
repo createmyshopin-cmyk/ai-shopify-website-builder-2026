@@ -1,0 +1,186 @@
+{
+  "generated_at": "2026-06-22T07:48:42.515Z",
+  "count": 36,
+  "tokens": [
+    {
+      "token_id": "primary",
+      "token_category": "colors",
+      "value": "#2d1b4e"
+    },
+    {
+      "token_id": "background",
+      "token_category": "colors",
+      "value": "#fafaf8"
+    },
+    {
+      "token_id": "background_secondary",
+      "token_category": "colors",
+      "value": "#f0ede8"
+    },
+    {
+      "token_id": "foreground",
+      "token_category": "colors",
+      "value": "#1a1815"
+    },
+    {
+      "token_id": "foreground_heading",
+      "token_category": "colors",
+      "value": "#1a1815"
+    },
+    {
+      "token_id": "border",
+      "token_category": "colors",
+      "value": "rgba(26, 24, 21, 0.08)"
+    },
+    {
+      "token_id": "shadow",
+      "token_category": "colors",
+      "value": "rgba(45, 27, 78, 0.06)"
+    },
+    {
+      "token_id": "primary_button_background",
+      "token_category": "colors",
+      "value": "#2d1b4e"
+    },
+    {
+      "token_id": "primary_button_text",
+      "token_category": "colors",
+      "value": "#ffffff"
+    },
+    {
+      "token_id": "secondary_button_background",
+      "token_category": "colors",
+      "value": "#6b6460"
+    },
+    {
+      "token_id": "secondary_button_text",
+      "token_category": "colors",
+      "value": "#2d1b4e"
+    },
+    {
+      "token_id": "type_heading_font",
+      "token_category": "typography",
+      "value": "playfair_display_n7"
+    },
+    {
+      "token_id": "type_body_font",
+      "token_category": "typography",
+      "value": "lato_n4"
+    },
+    {
+      "token_id": "type_subheading_font",
+      "token_category": "typography",
+      "value": "poppins_n4"
+    },
+    {
+      "token_id": "type_accent_font",
+      "token_category": "typography",
+      "value": "playfair_display_n7"
+    },
+    {
+      "token_id": "type_size_h2",
+      "token_category": "typography",
+      "value": "36px"
+    },
+    {
+      "token_id": "type_size_h3",
+      "token_category": "typography",
+      "value": "24px"
+    },
+    {
+      "token_id": "type_size_h4",
+      "token_category": "typography",
+      "value": "18px"
+    },
+    {
+      "token_id": "type_size_h5",
+      "token_category": "typography",
+      "value": "16px"
+    },
+    {
+      "token_id": "type_size_paragraph",
+      "token_category": "typography",
+      "value": "14px"
+    },
+    {
+      "token_id": "card_gap",
+      "token_category": "spacing",
+      "value": "20"
+    },
+    {
+      "token_id": "page_width",
+      "token_category": "spacing",
+      "value": "1200px"
+    },
+    {
+      "token_id": "global_border_radius",
+      "token_category": "radius",
+      "value": "8"
+    },
+    {
+      "token_id": "inputs_border_radius",
+      "token_category": "radius",
+      "value": "8"
+    },
+    {
+      "token_id": "variant_button_radius",
+      "token_category": "radius",
+      "value": "8"
+    },
+    {
+      "token_id": "card_2_border_radius",
+      "token_category": "radius",
+      "value": "18"
+    },
+    {
+      "token_id": "card_shadow",
+      "token_category": "shadows",
+      "value": "0 2px 8px rgba(0,0,0,0.10)"
+    },
+    {
+      "token_id": "button_shape",
+      "token_category": "buttons",
+      "value": "soft"
+    },
+    {
+      "token_id": "global_border_radius",
+      "token_category": "buttons",
+      "value": "8"
+    },
+    {
+      "token_id": "primary_button_background",
+      "token_category": "buttons",
+      "value": "#2d1b4e"
+    },
+    {
+      "token_id": "primary_button_text",
+      "token_category": "buttons",
+      "value": "#ffffff"
+    },
+    {
+      "token_id": "secondary_button_background",
+      "token_category": "buttons",
+      "value": "#6b6460"
+    },
+    {
+      "token_id": "secondary_button_text",
+      "token_category": "buttons",
+      "value": "#2d1b4e"
+    },
+    {
+      "token_id": "page_transition_enabled",
+      "token_category": "animations",
+      "value": "false"
+    },
+    {
+      "token_id": "card_hover_effect",
+      "token_category": "animations",
+      "value": "zoom"
+    },
+    {
+      "token_id": "add_to_cart_animation",
+      "token_category": "animations",
+      "value": "pulse"
+    }
+  ]
+}

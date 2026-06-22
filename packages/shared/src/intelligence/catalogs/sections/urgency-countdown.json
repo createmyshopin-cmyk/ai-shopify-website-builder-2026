@@ -1,0 +1,432 @@
+{
+  "section_id": "urgency-countdown",
+  "section_type": "urgency-countdown",
+  "section_path": "sections/urgency-countdown.liquid",
+  "section_schema_name": "Urgency Countdown",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Urgency Countdown"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "countdown_type",
+      "type": "select",
+      "label": "Countdown type"
+    },
+    {
+      "id": "end_date",
+      "type": "text",
+      "label": "End date (for fixed)"
+    },
+    {
+      "id": "end_time",
+      "type": "text",
+      "label": "End time (for fixed)"
+    },
+    {
+      "id": "evergreen_duration",
+      "type": "range",
+      "label": "Duration in hours (for evergreen)"
+    },
+    {
+      "id": "hide_when_expired",
+      "type": "checkbox",
+      "label": "Hide when timer expires"
+    },
+    {
+      "id": "sticky",
+      "type": "checkbox",
+      "label": "Make sticky (follows on scroll)"
+    },
+    {
+      "id": "padding",
+      "type": "range",
+      "label": "Padding"
+    },
+    {
+      "id": "max_width",
+      "type": "range",
+      "label": "Maximum width"
+    },
+    {
+      "id": "gap",
+      "type": "range",
+      "label": "Gap between elements"
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "heading",
+      "type": "richtext",
+      "label": "Heading text"
+    },
+    {
+      "id": "text_size",
+      "type": "range",
+      "label": "Heading size"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Heading color"
+    },
+    {
+      "id": "text_weight",
+      "type": "range",
+      "label": "Heading weight"
+    },
+    {
+      "id": "subheading",
+      "type": "richtext",
+      "label": "Subheading text (under heading)"
+    },
+    {
+      "id": "subheading_size",
+      "type": "range",
+      "label": "Subheading size"
+    },
+    {
+      "id": "subheading_color",
+      "type": "color",
+      "label": "Subheading color"
+    },
+    {
+      "id": "subheading_weight",
+      "type": "range",
+      "label": "Subheading weight"
+    },
+    {
+      "id": "subheading_margin",
+      "type": "range",
+      "label": "Subheading margin top"
+    },
+    {
+      "id": "show_days",
+      "type": "checkbox",
+      "label": "Show days"
+    },
+    {
+      "id": "show_separator",
+      "type": "checkbox",
+      "label": "Show colon separator"
+    },
+    {
+      "id": "timer_gap",
+      "type": "range",
+      "label": "Gap between units"
+    },
+    {
+      "id": "unit_size",
+      "type": "range",
+      "label": "Minimum unit width"
+    },
+    {
+      "id": "number_size",
+      "type": "range",
+      "label": "Number size"
+    },
+    {
+      "id": "number_color",
+      "type": "color",
+      "label": "Number color"
+    },
+    {
+      "id": "number_bg_color",
+      "type": "color",
+      "label": "Number background"
+    },
+    {
+      "id": "number_padding",
+      "type": "range",
+      "label": "Number padding"
+    },
+    {
+      "id": "number_border_radius",
+      "type": "range",
+      "label": "Number border radius"
+    },
+    {
+      "id": "number_min_width",
+      "type": "range",
+      "label": "Number minimum width"
+    },
+    {
+      "id": "number_weight",
+      "type": "range",
+      "label": "Number weight"
+    },
+    {
+      "id": "number_shadow",
+      "type": "checkbox",
+      "label": "Add shadow to numbers"
+    },
+    {
+      "id": "pulse_animation",
+      "type": "checkbox",
+      "label": "Pulse animation"
+    },
+    {
+      "id": "days_label",
+      "type": "text",
+      "label": "Days label"
+    },
+    {
+      "id": "hours_label",
+      "type": "text",
+      "label": "Hours label"
+    },
+    {
+      "id": "minutes_label",
+      "type": "text",
+      "label": "Minutes label"
+    },
+    {
+      "id": "seconds_label",
+      "type": "text",
+      "label": "Seconds label"
+    },
+    {
+      "id": "label_size",
+      "type": "range",
+      "label": "Label size"
+    },
+    {
+      "id": "label_color",
+      "type": "color",
+      "label": "Label color"
+    },
+    {
+      "id": "label_transform",
+      "type": "select",
+      "label": "Label text transform"
+    },
+    {
+      "id": "label_weight",
+      "type": "range",
+      "label": "Label weight"
+    },
+    {
+      "id": "subtext",
+      "type": "text",
+      "label": "Subtext"
+    },
+    {
+      "id": "subtext_size",
+      "type": "range",
+      "label": "Subtext size"
+    },
+    {
+      "id": "subtext_color",
+      "type": "color",
+      "label": "Subtext color"
+    },
+    {
+      "id": "show_button",
+      "type": "checkbox",
+      "label": "Show CTA button"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button text"
+    },
+    {
+      "id": "button_link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "button_size",
+      "type": "range",
+      "label": "Button text size"
+    },
+    {
+      "id": "button_padding_y",
+      "type": "range",
+      "label": "Button vertical padding"
+    },
+    {
+      "id": "button_padding_x",
+      "type": "range",
+      "label": "Button horizontal padding"
+    },
+    {
+      "id": "button_bg_color",
+      "type": "color",
+      "label": "Button background"
+    },
+    {
+      "id": "button_hover_bg_color",
+      "type": "color",
+      "label": "Button hover background"
+    },
+    {
+      "id": "button_text_color",
+      "type": "color",
+      "label": "Button text color"
+    },
+    {
+      "id": "button_weight",
+      "type": "range",
+      "label": "Button font weight"
+    },
+    {
+      "id": "button_shadow",
+      "type": "checkbox",
+      "label": "Add shadow to button"
+    },
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "t:settings.color_scheme"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 55,
+  "required": false,
+  "name": "Urgency Countdown",
+  "purpose": "Urgency Countdown section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Urgency Countdown",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "content-centered",
+      "tablet_layout": "content-centered",
+      "mobile_layout": "content-stacked",
+      "alignment_rules": "heading-center",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "4/3",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

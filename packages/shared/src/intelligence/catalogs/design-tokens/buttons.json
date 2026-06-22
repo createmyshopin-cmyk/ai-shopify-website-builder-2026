@@ -1,0 +1,8 @@
+{
+  "button_shape": "soft",
+  "global_border_radius": 8,
+  "primary_button_background": "#2d1b4e",
+  "primary_button_text": "#ffffff",
+  "secondary_button_background": "#6b6460",
+  "secondary_button_text": "#2d1b4e"
+}

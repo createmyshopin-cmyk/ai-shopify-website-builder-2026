@@ -1,0 +1,50 @@
+{
+  "family": "hero",
+  "sections": [
+    {
+      "section_type": "editorial-hero",
+      "schema_name": "Editorial Hero",
+      "preset_scores": {
+        "high-converting": 95,
+        "fashion": 90,
+        "minimal-modern": 80
+      }
+    },
+    {
+      "section_type": "hero-split",
+      "schema_name": "Hero Split",
+      "preset_scores": {
+        "high-converting": 70,
+        "fashion": 75,
+        "minimal-modern": 85
+      }
+    },
+    {
+      "section_type": "hero-wave",
+      "schema_name": "Hero Wave",
+      "preset_scores": {
+        "high-converting": 60,
+        "fashion": 65,
+        "minimal-modern": 50
+      }
+    },
+    {
+      "section_type": "media-slideshow-banner",
+      "schema_name": "Media slideshow banner",
+      "preset_scores": {
+        "high-converting": 75,
+        "fashion": 70,
+        "minimal-modern": 60
+      }
+    },
+    {
+      "section_type": "premium-hero-banner",
+      "schema_name": "Premium hero banner",
+      "preset_scores": {
+        "high-converting": 65,
+        "fashion": 80,
+        "minimal-modern": 55
+      }
+    }
+  ]
+}

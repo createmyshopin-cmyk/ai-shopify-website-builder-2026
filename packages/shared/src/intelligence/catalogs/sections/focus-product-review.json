@@ -1,0 +1,287 @@
+{
+  "section_id": "focus-product-review",
+  "section_type": "focus-product-review",
+  "section_path": "sections/focus-product-review.liquid",
+  "section_schema_name": "Focus product review",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Focus product review"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "rating",
+      "type": "range",
+      "label": "Star rating"
+    },
+    {
+      "id": "star_size",
+      "type": "range",
+      "label": "Star size"
+    },
+    {
+      "id": "star_filled_color",
+      "type": "color",
+      "label": "Filled star color"
+    },
+    {
+      "id": "star_empty_color",
+      "type": "color",
+      "label": "Empty star color"
+    },
+    {
+      "id": "reviewer_name",
+      "type": "text",
+      "label": "Reviewer name"
+    },
+    {
+      "id": "review_text",
+      "type": "textarea",
+      "label": "Review text"
+    },
+    {
+      "id": "show_photo",
+      "type": "checkbox",
+      "label": "Show photo"
+    },
+    {
+      "id": "review_photo",
+      "type": "image_picker",
+      "label": "Review photo"
+    },
+    {
+      "id": "photo_width",
+      "type": "range",
+      "label": "Photo width"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button text"
+    },
+    {
+      "id": "button_link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "button_background",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "button_hover_background",
+      "type": "color",
+      "label": "Hover background color"
+    },
+    {
+      "id": "button_text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "button_text_size",
+      "type": "range",
+      "label": "Text size"
+    },
+    {
+      "id": "button_padding_vertical",
+      "type": "range",
+      "label": "Vertical padding"
+    },
+    {
+      "id": "button_padding_horizontal",
+      "type": "range",
+      "label": "Horizontal padding"
+    },
+    {
+      "id": "desktop_width_percent",
+      "type": "range",
+      "label": "Desktop width"
+    },
+    {
+      "id": "padding",
+      "type": "range",
+      "label": "Padding"
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "placeholder_color",
+      "type": "color",
+      "label": "Placeholder color"
+    },
+    {
+      "id": "reviewer_name_size",
+      "type": "range",
+      "label": "Reviewer name size"
+    },
+    {
+      "id": "review_text_size",
+      "type": "range",
+      "label": "Review text size"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 55,
+  "required": false,
+  "name": "Focus product review",
+  "purpose": "Focus product review section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Focus product review",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "content-centered",
+      "tablet_layout": "content-centered",
+      "mobile_layout": "content-stacked",
+      "alignment_rules": "heading-center",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

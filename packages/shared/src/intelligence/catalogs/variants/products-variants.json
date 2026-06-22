@@ -1,0 +1,50 @@
+{
+  "family": "products",
+  "sections": [
+    {
+      "section_type": "featured-product-grid-v2",
+      "schema_name": "Featured products grid v2",
+      "preset_scores": {
+        "high-converting": 90,
+        "fashion": 65,
+        "minimal-modern": 85
+      }
+    },
+    {
+      "section_type": "editorial-collection-grid",
+      "schema_name": "Editorial Collections",
+      "preset_scores": {
+        "high-converting": 85,
+        "fashion": 80,
+        "minimal-modern": 60
+      }
+    },
+    {
+      "section_type": "bestsellers-row",
+      "schema_name": "Bestsellers Row",
+      "preset_scores": {
+        "high-converting": 80,
+        "fashion": 70,
+        "minimal-modern": 55
+      }
+    },
+    {
+      "section_type": "ai-featured-products-grid",
+      "schema_name": "Featured products grid",
+      "preset_scores": {
+        "high-converting": 75,
+        "fashion": 60,
+        "minimal-modern": 50
+      }
+    },
+    {
+      "section_type": "collection-showcase-v2",
+      "schema_name": "Collection showcase",
+      "preset_scores": {
+        "high-converting": 65,
+        "fashion": 90,
+        "minimal-modern": 60
+      }
+    }
+  ]
+}

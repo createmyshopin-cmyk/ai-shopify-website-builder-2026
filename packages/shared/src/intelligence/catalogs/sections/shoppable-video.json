@@ -1,0 +1,1075 @@
+{
+  "section_id": "shoppable-video",
+  "section_type": "shoppable-video",
+  "section_path": "sections/shoppable-video.liquid",
+  "section_schema_name": "SS - Shoppable Video",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Shoppable Videos"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "use_theme_styles",
+      "type": "checkbox",
+      "label": "Use theme fonts and colors"
+    },
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "section_width",
+      "type": "select",
+      "label": "Section width"
+    },
+    {
+      "id": "heading_type_preset",
+      "type": "select",
+      "label": "Heading style"
+    },
+    {
+      "id": "product_title_type_preset",
+      "type": "select",
+      "label": "Product title style"
+    },
+    {
+      "id": "body_type_preset",
+      "type": "select",
+      "label": "Body text style"
+    },
+    {
+      "id": "padding-block-start",
+      "type": "range",
+      "label": "Top padding"
+    },
+    {
+      "id": "padding-block-end",
+      "type": "range",
+      "label": "Bottom padding"
+    },
+    {
+      "id": "heading",
+      "type": "richtext",
+      "label": "Heading"
+    },
+    {
+      "id": "heading_custom",
+      "type": "checkbox",
+      "label": "Use Custom Font"
+    },
+    {
+      "id": "heading_font",
+      "type": "font_picker",
+      "label": "Heading Font Family"
+    },
+    {
+      "id": "heading_size",
+      "type": "range",
+      "label": "Heading Size"
+    },
+    {
+      "id": "heading_size_mobile",
+      "type": "range",
+      "label": "Heading Size - Mobile"
+    },
+    {
+      "id": "heading_height",
+      "type": "range",
+      "label": "Heading Line Height"
+    },
+    {
+      "id": "heading_align",
+      "type": "select",
+      "label": "Heading Text Align"
+    },
+    {
+      "id": "heading_align_mobile",
+      "type": "select",
+      "label": "Heading Text Align - Mobile"
+    },
+    {
+      "id": "slider_view",
+      "type": "range",
+      "label": "Slider Per View"
+    },
+    {
+      "id": "slider_view_mobile",
+      "type": "range",
+      "label": "Slider Per View - Mobile"
+    },
+    {
+      "id": "slider_gap",
+      "type": "range",
+      "label": "Slider Gap"
+    },
+    {
+      "id": "slider_gap_mobile",
+      "type": "range",
+      "label": "Slider Gap - Mobile"
+    },
+    {
+      "id": "slider_mt",
+      "type": "range",
+      "label": "Slider Margin Top"
+    },
+    {
+      "id": "card_radius",
+      "type": "range",
+      "label": "Slide Border Radius"
+    },
+    {
+      "id": "card_border_thickness",
+      "type": "range",
+      "label": "Slide Border Thickness"
+    },
+    {
+      "id": "card_shadow",
+      "type": "checkbox",
+      "label": "Slide Shadow"
+    },
+    {
+      "id": "video_ratio",
+      "type": "select",
+      "label": "Video Aspect Ratio"
+    },
+    {
+      "id": "video_ratio_mobile",
+      "type": "select",
+      "label": "Video Aspect Ratio - Mobile"
+    },
+    {
+      "id": "video_overlay",
+      "type": "range",
+      "label": "Video Overlay Opacity"
+    },
+    {
+      "id": "image_width",
+      "type": "range",
+      "label": "Product Image Width"
+    },
+    {
+      "id": "image_width_mobile",
+      "type": "range",
+      "label": "Product Image Width - Mobile"
+    },
+    {
+      "id": "image_radius",
+      "type": "range",
+      "label": "Product Image Border Radius"
+    },
+    {
+      "id": "image_border_thickness",
+      "type": "range",
+      "label": "Product Image Border Thickness"
+    },
+    {
+      "id": "title_custom",
+      "type": "checkbox",
+      "label": "Use Custom Font"
+    },
+    {
+      "id": "title_font",
+      "type": "font_picker",
+      "label": "Product Title Font Family"
+    },
+    {
+      "id": "title_size",
+      "type": "range",
+      "label": "Product Title Size"
+    },
+    {
+      "id": "title_size_mobile",
+      "type": "range",
+      "label": "Product Title Size - Mobile"
+    },
+    {
+      "id": "title_height",
+      "type": "range",
+      "label": "Product Title Line Height"
+    },
+    {
+      "id": "title_uppercase",
+      "type": "checkbox",
+      "label": "Product Title Uppercase"
+    },
+    {
+      "id": "price_custom",
+      "type": "checkbox",
+      "label": "Use Custom Font"
+    },
+    {
+      "id": "price_font",
+      "type": "font_picker",
+      "label": "Product Price Font Family"
+    },
+    {
+      "id": "price_size",
+      "type": "range",
+      "label": "Product Price Size"
+    },
+    {
+      "id": "price_size_mobile",
+      "type": "range",
+      "label": "Product Price Size - Mobile"
+    },
+    {
+      "id": "price_height",
+      "type": "range",
+      "label": "Product Price Line Height"
+    },
+    {
+      "id": "button",
+      "type": "text",
+      "label": "Button Text"
+    },
+    {
+      "id": "button_soldout",
+      "type": "text",
+      "label": "Button Sold Out Text"
+    },
+    {
+      "id": "button_custom",
+      "type": "checkbox",
+      "label": "Use Custom Font"
+    },
+    {
+      "id": "button_font",
+      "type": "font_picker",
+      "label": "Button Font Family"
+    },
+    {
+      "id": "button_size",
+      "type": "range",
+      "label": "Button Size"
+    },
+    {
+      "id": "button_size_mobile",
+      "type": "range",
+      "label": "Button Size - Mobile"
+    },
+    {
+      "id": "button_padding_vertical",
+      "type": "range",
+      "label": "Button Padding Vertical"
+    },
+    {
+      "id": "button_padding_vertical_mobile",
+      "type": "range",
+      "label": "Button Padding Vertical - Mobile"
+    },
+    {
+      "id": "button_padding_horizontal",
+      "type": "range",
+      "label": "Button Padding Horizontal"
+    },
+    {
+      "id": "button_padding_horizontal_mobile",
+      "type": "range",
+      "label": "Button Padding Horizontal - Mobile"
+    },
+    {
+      "id": "reload_after_adding",
+      "type": "checkbox",
+      "label": "Reload page after add-to-cart"
+    },
+    {
+      "id": "option_custom",
+      "type": "checkbox",
+      "label": "Use Custom Font"
+    },
+    {
+      "id": "option_font",
+      "type": "font_picker",
+      "label": "Variants Option Font Family"
+    },
+    {
+      "id": "option_size",
+      "type": "range",
+      "label": "Variants Option Size"
+    },
+    {
+      "id": "option_size_mobile",
+      "type": "range",
+      "label": "Variants Option Size - Mobile"
+    },
+    {
+      "id": "option_height",
+      "type": "range",
+      "label": "Variants Option Line Height"
+    },
+    {
+      "id": "option_mt",
+      "type": "range",
+      "label": "Variants Space Between Option"
+    },
+    {
+      "id": "variants_price_custom",
+      "type": "checkbox",
+      "label": "Use Custom Font"
+    },
+    {
+      "id": "variants_price_font",
+      "type": "font_picker",
+      "label": "Variants Price Font Family"
+    },
+    {
+      "id": "variants_price_size",
+      "type": "range",
+      "label": "Variants Price Size"
+    },
+    {
+      "id": "variants_price_size_mobile",
+      "type": "range",
+      "label": "Variants Price Size - Mobile"
+    },
+    {
+      "id": "variants_price_height",
+      "type": "range",
+      "label": "Variants Price Line Height"
+    },
+    {
+      "id": "variants_price_mt",
+      "type": "range",
+      "label": "Variants Price Margin Top"
+    },
+    {
+      "id": "variants_price_align",
+      "type": "select",
+      "label": "Variants Price Align"
+    },
+    {
+      "id": "variants_price_align_mobile",
+      "type": "select",
+      "label": "Variants Price Align - Mobile"
+    },
+    {
+      "id": "modal_width",
+      "type": "range",
+      "label": "Modal Width"
+    },
+    {
+      "id": "modal_width_mobile",
+      "type": "range",
+      "label": "Modal Width - Mobile"
+    },
+    {
+      "id": "modal_radius",
+      "type": "range",
+      "label": "Modal Border Radius"
+    },
+    {
+      "id": "modal_border_thickness",
+      "type": "range",
+      "label": "Modal Border Thickness"
+    },
+    {
+      "id": "modal_overlay",
+      "type": "range",
+      "label": "Modal Overlay"
+    },
+    {
+      "id": "close_size",
+      "type": "range",
+      "label": "Modal Close Size"
+    },
+    {
+      "id": "close_size_mobile",
+      "type": "range",
+      "label": "Modal Close Size - Mobile"
+    },
+    {
+      "id": "close_radius",
+      "type": "range",
+      "label": "Modal Close Border Radius"
+    },
+    {
+      "id": "close_border_thickness",
+      "type": "range",
+      "label": "Modal Close Border Thickness"
+    },
+    {
+      "id": "buttons_size",
+      "type": "range",
+      "label": "Text Size"
+    },
+    {
+      "id": "buttons_size_mobile",
+      "type": "range",
+      "label": "Text Size - Mobile"
+    },
+    {
+      "id": "buttons_radius",
+      "type": "range",
+      "label": "Roundness"
+    },
+    {
+      "id": "buttons_border_thickness",
+      "type": "range",
+      "label": "Border Thickness"
+    },
+    {
+      "id": "modal_video_radius",
+      "type": "range",
+      "label": "Video Radius"
+    },
+    {
+      "id": "modal_video_border_thickness",
+      "type": "range",
+      "label": "Video Border Thickness"
+    },
+    {
+      "id": "modal_video_ratio",
+      "type": "select",
+      "label": "Video Aspect Ratio"
+    },
+    {
+      "id": "modal_video_ratio_mobile",
+      "type": "select",
+      "label": "Video Aspect Ratio - Mobile"
+    },
+    {
+      "id": "modal_heading_custom",
+      "type": "checkbox",
+      "label": "Use Custom Font"
+    },
+    {
+      "id": "modal_heading_font",
+      "type": "font_picker",
+      "label": "Modal Heading Font Family"
+    },
+    {
+      "id": "modal_heading_size",
+      "type": "range",
+      "label": "Modal Heading Size"
+    },
+    {
+      "id": "modal_heading_size_mobile",
+      "type": "range",
+      "label": "Modal Heading Size - Mobile"
+    },
+    {
+      "id": "modal_heading_height",
+      "type": "range",
+      "label": "Modal Heading Line Height"
+    },
+    {
+      "id": "modal_heading_align",
+      "type": "select",
+      "label": "Modal Heading Text Align"
+    },
+    {
+      "id": "modal_heading_align_mobile",
+      "type": "select",
+      "label": "Modal Heading Text Align - Mobile"
+    },
+    {
+      "id": "modal_text_custom",
+      "type": "checkbox",
+      "label": "Use Custom Font"
+    },
+    {
+      "id": "modal_text_font",
+      "type": "font_picker",
+      "label": "Modal Text Font Family"
+    },
+    {
+      "id": "modal_text_size",
+      "type": "range",
+      "label": "Modal Text Size"
+    },
+    {
+      "id": "modal_text_size_mobile",
+      "type": "range",
+      "label": "Modal Text Size - Mobile"
+    },
+    {
+      "id": "modal_text_height",
+      "type": "range",
+      "label": "Modal Text Line Height"
+    },
+    {
+      "id": "modal_text_align",
+      "type": "select",
+      "label": "Modal Text Align"
+    },
+    {
+      "id": "modal_text_align_mobile",
+      "type": "select",
+      "label": "Modal Text Align - Mobile"
+    },
+    {
+      "id": "modal_text_mt",
+      "type": "range",
+      "label": "Modal Text Margin Top"
+    },
+    {
+      "id": "use_modal_product",
+      "type": "checkbox",
+      "label": "Use Product in Modal"
+    },
+    {
+      "id": "modal_image_width",
+      "type": "range",
+      "label": "Modal Product Image Width"
+    },
+    {
+      "id": "modal_image_width_mobile",
+      "type": "range",
+      "label": "Modal Product Image Width - Mobile"
+    },
+    {
+      "id": "modal_image_radius",
+      "type": "range",
+      "label": "Modal Product Image Border Radius"
+    },
+    {
+      "id": "modal_title_custom",
+      "type": "checkbox",
+      "label": "Use Custom Font"
+    },
+    {
+      "id": "modal_title_font",
+      "type": "font_picker",
+      "label": "Modal Product Title Font Family"
+    },
+    {
+      "id": "modal_title_size",
+      "type": "range",
+      "label": "Modal Product Title Size"
+    },
+    {
+      "id": "modal_title_size_mobile",
+      "type": "range",
+      "label": "Modal Product Title Size - Mobile"
+    },
+    {
+      "id": "modal_title_height",
+      "type": "range",
+      "label": "Modal Product Title Line Height"
+    },
+    {
+      "id": "modal_title_uppercase",
+      "type": "checkbox",
+      "label": "Use Modal Product Title Uppercase"
+    },
+    {
+      "id": "modal_price_custom",
+      "type": "checkbox",
+      "label": "Use Custom Font"
+    },
+    {
+      "id": "modal_price_font",
+      "type": "font_picker",
+      "label": "Modal Product Price Font Family"
+    },
+    {
+      "id": "modal_price_size",
+      "type": "range",
+      "label": "Modal Product Price Size"
+    },
+    {
+      "id": "modal_price_size_mobile",
+      "type": "range",
+      "label": "Modal Product Price Size - Mobile"
+    },
+    {
+      "id": "modal_price_height",
+      "type": "range",
+      "label": "Modal Product Price Line Height"
+    },
+    {
+      "id": "modal_button",
+      "type": "text",
+      "label": "Modal Button Text"
+    },
+    {
+      "id": "modal_button_soldout",
+      "type": "text",
+      "label": "Modal Button Sold Out Text"
+    },
+    {
+      "id": "modal_button_custom",
+      "type": "checkbox",
+      "label": "Use Custom Font"
+    },
+    {
+      "id": "modal_button_font",
+      "type": "font_picker",
+      "label": "Modal Button Font Family"
+    },
+    {
+      "id": "modal_button_size",
+      "type": "range",
+      "label": "Modal Button Text Size"
+    },
+    {
+      "id": "modal_button_size_mobile",
+      "type": "range",
+      "label": "Modal Button Text Size - Mobile"
+    },
+    {
+      "id": "modal_button_radius",
+      "type": "range",
+      "label": "Modal Button Border Radius"
+    },
+    {
+      "id": "modal_button_border_thickness",
+      "type": "range",
+      "label": "Modal Button Border Thickness"
+    },
+    {
+      "id": "modal_button_mt",
+      "type": "range",
+      "label": "Modal Button Margin Top"
+    },
+    {
+      "id": "modal_button_align",
+      "type": "select",
+      "label": "Modal Button Align"
+    },
+    {
+      "id": "modal_button_align_mobile",
+      "type": "select",
+      "label": "Modal Button Align - Mobile"
+    },
+    {
+      "id": "card_bg_color",
+      "type": "color",
+      "label": "Slide Background Color"
+    },
+    {
+      "id": "card_border_color",
+      "type": "color",
+      "label": "Slide Border Color"
+    },
+    {
+      "id": "card_shadow_color",
+      "type": "color",
+      "label": "Slide Shadow Color"
+    },
+    {
+      "id": "video_border_color",
+      "type": "color",
+      "label": "Slide Video Border Color"
+    },
+    {
+      "id": "video_overlay_color",
+      "type": "color",
+      "label": "Slide Video Overlay Color"
+    },
+    {
+      "id": "image_border_color",
+      "type": "color",
+      "label": "Product Image Border Color"
+    },
+    {
+      "id": "title_color",
+      "type": "color",
+      "label": "Product Title Color"
+    },
+    {
+      "id": "price_color",
+      "type": "color",
+      "label": "Product Price Color"
+    },
+    {
+      "id": "button_color",
+      "type": "color",
+      "label": "Button Color"
+    },
+    {
+      "id": "button_hover_color",
+      "type": "color",
+      "label": "Button Hover Color"
+    },
+    {
+      "id": "button_bg_color",
+      "type": "color",
+      "label": "Button Background Color"
+    },
+    {
+      "id": "button_bg_hover_color",
+      "type": "color",
+      "label": "Button Background Hover Color"
+    },
+    {
+      "id": "arrow_bg_color",
+      "type": "color",
+      "label": "Arrow Button Background Color"
+    },
+    {
+      "id": "arrow_border_color",
+      "type": "color",
+      "label": "Arrow Button Border Color"
+    },
+    {
+      "id": "arrow_icon_color",
+      "type": "color",
+      "label": "Arrow Button Icon Color"
+    },
+    {
+      "id": "option_color",
+      "type": "color",
+      "label": "Variants Option Color"
+    },
+    {
+      "id": "variants_price_color",
+      "type": "color",
+      "label": "Variants Price Color"
+    },
+    {
+      "id": "modal_bg_color",
+      "type": "color",
+      "label": "Modal Background Color"
+    },
+    {
+      "id": "modal_border_color",
+      "type": "color",
+      "label": "Modal Border Color"
+    },
+    {
+      "id": "close_bg_color",
+      "type": "color",
+      "label": "Modal Close Background Color"
+    },
+    {
+      "id": "close_border_color",
+      "type": "color",
+      "label": "Modal Close Border Color"
+    },
+    {
+      "id": "close_icon_color",
+      "type": "color",
+      "label": "Modal Close Icon Color"
+    },
+    {
+      "id": "buttons_bg_color",
+      "type": "color",
+      "label": "Modal Buttons Background Color"
+    },
+    {
+      "id": "buttons_border_color",
+      "type": "color",
+      "label": "Modal Buttons Border Color"
+    },
+    {
+      "id": "buttons_icon_color",
+      "type": "color",
+      "label": "Modal Buttons Icon Color"
+    },
+    {
+      "id": "modal_video_border_color",
+      "type": "color",
+      "label": "Modal Video Border Color"
+    },
+    {
+      "id": "modal_content_bg_color",
+      "type": "color",
+      "label": "Modal Content Background Color"
+    },
+    {
+      "id": "modal_heading_color",
+      "type": "color",
+      "label": "Modal Heading Color"
+    },
+    {
+      "id": "modal_text_color",
+      "type": "color",
+      "label": "Modal Text Color"
+    },
+    {
+      "id": "modal_title_color",
+      "type": "color",
+      "label": "Modal Product Title Color"
+    },
+    {
+      "id": "modal_price_color",
+      "type": "color",
+      "label": "Modal Product Price Color"
+    },
+    {
+      "id": "modal_button_color",
+      "type": "color",
+      "label": "Modal Button Color"
+    },
+    {
+      "id": "modal_button_hover_color",
+      "type": "color",
+      "label": "Modal Button Hover Color"
+    },
+    {
+      "id": "modal_button_bg_color",
+      "type": "color",
+      "label": "Modal Button Background Color"
+    },
+    {
+      "id": "modal_button_bg_hover_color",
+      "type": "color",
+      "label": "Modal Button Background Hover Color"
+    },
+    {
+      "id": "modal_button_border_color",
+      "type": "color",
+      "label": "Modal Button Border Color"
+    },
+    {
+      "id": "modal_button_border_hover_color",
+      "type": "color",
+      "label": "Modal Button Border Hover Color"
+    },
+    {
+      "id": "heading_color",
+      "type": "color",
+      "label": "Heading Color"
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Section background"
+    },
+    {
+      "id": "background_gradient",
+      "type": "color_background",
+      "label": "Section background gradient"
+    },
+    {
+      "id": "border_color",
+      "type": "color",
+      "label": "Border"
+    },
+    {
+      "id": "margin_top",
+      "type": "range",
+      "label": "Margin top"
+    },
+    {
+      "id": "margin_bottom",
+      "type": "range",
+      "label": "Margin bottom"
+    },
+    {
+      "id": "padding_top",
+      "type": "range",
+      "label": "Padding top"
+    },
+    {
+      "id": "padding_bottom",
+      "type": "range",
+      "label": "Padding bottom"
+    },
+    {
+      "id": "padding_horizontal",
+      "type": "range",
+      "label": "Padding sides"
+    },
+    {
+      "id": "padding_horizontal_mobile",
+      "type": "range",
+      "label": "Padding sides mobile"
+    },
+    {
+      "id": "full_width",
+      "type": "checkbox",
+      "label": "Full Width"
+    },
+    {
+      "id": "content_width",
+      "type": "range",
+      "label": "Section content width"
+    },
+    {
+      "id": "border_thickness",
+      "type": "range",
+      "label": "Border thickness"
+    },
+    {
+      "id": "lazy",
+      "type": "checkbox",
+      "label": "Lazy load"
+    }
+  ],
+  "section_blocks_raw": [
+    {
+      "type": "item",
+      "settings": [
+        {
+          "id": "video",
+          "type": "video"
+        },
+        {
+          "id": "video_url",
+          "type": "video_url"
+        },
+        {
+          "id": "poster",
+          "type": "image_picker"
+        },
+        {
+          "id": "autoplay",
+          "type": "checkbox"
+        },
+        {
+          "id": "product",
+          "type": "product"
+        },
+        {
+          "id": "use_variants",
+          "type": "checkbox"
+        },
+        {
+          "id": "modal_heading",
+          "type": "richtext"
+        },
+        {
+          "id": "modal_text",
+          "type": "richtext"
+        }
+      ]
+    }
+  ],
+  "priority_score": 55,
+  "required": false,
+  "name": "SS - Shoppable Video",
+  "purpose": "SS - Shoppable Video section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display SS - Shoppable Video",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "content-centered",
+      "tablet_layout": "content-centered",
+      "mobile_layout": "content-stacked",
+      "alignment_rules": "heading-center",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "4/3",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

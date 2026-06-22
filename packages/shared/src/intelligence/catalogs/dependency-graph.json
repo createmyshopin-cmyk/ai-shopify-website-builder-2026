@@ -1,0 +1,1175 @@
+{
+  "generated_at": "2026-06-22T07:48:42.511Z",
+  "section_to_blocks": {
+    "as-seen-in": [
+      "logo"
+    ],
+    "benefits-swap": [
+      "benefit"
+    ],
+    "benefits": [
+      "benefit"
+    ],
+    "bestsellers-row": [
+      "collection_tab"
+    ],
+    "collection-fancy": [
+      "@theme",
+      "@app",
+      "_divider"
+    ],
+    "collection-list": [
+      "@theme",
+      "@app",
+      "text",
+      "icon",
+      "image",
+      "button",
+      "video",
+      "group",
+      "spacer",
+      "_divider"
+    ],
+    "comparison-waves": [
+      "feature"
+    ],
+    "editorial-accordion": [
+      "accordion_item"
+    ],
+    "editorial-collection-grid": [
+      "collection_item"
+    ],
+    "editorial-hero": [
+      "slide"
+    ],
+    "editorial-testimonials": [
+      "review"
+    ],
+    "editorial-trust-bar": [
+      "trust_item"
+    ],
+    "editorial-ugc-strip": [
+      "photo"
+    ],
+    "editorial-used-by": [
+      "influencer"
+    ],
+    "faq-product": [
+      "faq_item"
+    ],
+    "faq-waves": [
+      "faq"
+    ],
+    "featured-blog-posts": [
+      "_featured-blog-posts-title",
+      "_featured-blog-posts-card",
+      "_featured-blog-posts-image"
+    ],
+    "featured-products-grid": [
+      "_product-list-content"
+    ],
+    "footer-utilities": [
+      "footer-copyright",
+      "footer-policy-list",
+      "social-links"
+    ],
+    "footer": [
+      "_divider",
+      "@app",
+      "button",
+      "follow-on-shop",
+      "group",
+      "icon",
+      "image",
+      "menu",
+      "payment-icons",
+      "text",
+      "logo",
+      "jumbo-text",
+      "luxury-footer",
+      "pastel-footer",
+      "social-links",
+      "email-signup"
+    ],
+    "guarantee": [
+      "guarantee_item"
+    ],
+    "header-announcements": [
+      "_announcement"
+    ],
+    "hero-collection-grid": [
+      "collection_card"
+    ],
+    "hero-product-features": [
+      "benefit",
+      "media_slide"
+    ],
+    "homepage-product": [
+      "@app",
+      "@theme"
+    ],
+    "how-to-use": [
+      "how_to_step"
+    ],
+    "image-feature-split": [
+      "feature"
+    ],
+    "main-404": [
+      "@theme",
+      "@app",
+      "_divider"
+    ],
+    "main-blog-post": [
+      "@theme",
+      "@app"
+    ],
+    "main-blog": [
+      "@theme",
+      "@app",
+      "text",
+      "icon",
+      "image",
+      "button",
+      "video",
+      "group",
+      "spacer",
+      "_divider"
+    ],
+    "main-cart": [
+      "@theme",
+      "@app",
+      "text",
+      "icon",
+      "image",
+      "button",
+      "video",
+      "group",
+      "spacer"
+    ],
+    "main-collection-list": [
+      "@theme",
+      "@app",
+      "text",
+      "icon",
+      "image",
+      "button",
+      "video",
+      "group",
+      "spacer",
+      "_divider"
+    ],
+    "main-page": [
+      "@theme",
+      "@app",
+      "_divider"
+    ],
+    "marquee": [
+      "text",
+      "icon",
+      "logo",
+      "_divider"
+    ],
+    "neeloos-ingredients": [
+      "ingredient"
+    ],
+    "neeloos-reviews": [
+      "review"
+    ],
+    "neeloos-strip": [
+      "strip_item"
+    ],
+    "neeloos-video": [
+      "video"
+    ],
+    "neeloos": [
+      "feature"
+    ],
+    "neeloss-help": [
+      "contact_item"
+    ],
+    "password": [
+      "@theme",
+      "@app",
+      "_divider"
+    ],
+    "pastel-hero-2": [
+      "benefit"
+    ],
+    "pastel-hero": [
+      "benefit"
+    ],
+    "pastel-ingredients": [
+      "ingredient"
+    ],
+    "pastel-is-this-for-you": [
+      "item"
+    ],
+    "pastel-product-faq": [
+      "faq"
+    ],
+    "pastel-product-social-ugc": [
+      "ugc_item"
+    ],
+    "pastel-pure-ingredients": [
+      "benefit"
+    ],
+    "pastel-rest-and-recover": [
+      "icon_item"
+    ],
+    "pastel-testimonials": [
+      "testimonial",
+      "testimonial_image"
+    ],
+    "pastel-trust-strip": [
+      "item"
+    ],
+    "pastel-ugc": [
+      "ugc_item"
+    ],
+    "predictive-search": [
+      "@theme"
+    ],
+    "product-benefits-center": [
+      "feature"
+    ],
+    "product-bubbles": [
+      "product"
+    ],
+    "product-comparison": [
+      "feature"
+    ],
+    "product-information": [
+      "@app",
+      "@theme"
+    ],
+    "product-list": [
+      "@theme",
+      "@app",
+      "_divider"
+    ],
+    "product-recommendations": [
+      "@theme",
+      "@app",
+      "text",
+      "icon",
+      "image",
+      "button",
+      "video",
+      "group",
+      "spacer",
+      "_divider"
+    ],
+    "product-stats": [
+      "stat"
+    ],
+    "recent-purchases": [
+      "purchase"
+    ],
+    "shipping-info": [
+      "shipping_option",
+      "tracking_info"
+    ],
+    "shop-by-age": [
+      "age_card"
+    ],
+    "shop-by-categories": [
+      "category_card"
+    ],
+    "shoppable-video": [
+      "item"
+    ],
+    "slideshow-image-only": [
+      "_slide-with-image-only"
+    ],
+    "slideshow-with-card": [
+      "_slide-with-card"
+    ],
+    "slideshow": [
+      "_slide"
+    ],
+    "testimonials-slider": [
+      "testimonial"
+    ],
+    "ugc-gallery": [
+      "ugc_item"
+    ],
+    "wave-gradient": [
+      "feature"
+    ],
+    "wave-product-features": [
+      "benefit"
+    ],
+    "_blocks": [
+      "@theme",
+      "@app",
+      "_divider"
+    ]
+  },
+  "section_to_snippets": {
+    "as-seen-in": [
+      "image"
+    ],
+    "bestsellers-row": [
+      "spacing-style",
+      "bestsellers-row-track"
+    ],
+    "category-navigation": [
+      "spacing-style",
+      "icon"
+    ],
+    "collection-cards": [
+      "spacing-style"
+    ],
+    "collection-fancy": [
+      "spacing-style",
+      "resource-list"
+    ],
+    "collection-links": [
+      "spacing-style",
+      "slideshow-slide",
+      "slideshow"
+    ],
+    "collection-list": [
+      "spacing-style",
+      "gap-style",
+      "resource-list"
+    ],
+    "collections-carousel": [
+      "spacing-style"
+    ],
+    "custom-liquid": [
+      "spacing-padding"
+    ],
+    "divider": [
+      "divider"
+    ],
+    "editorial-accordion": [
+      "spacing-style"
+    ],
+    "editorial-brand-story": [
+      "spacing-style"
+    ],
+    "editorial-collection-grid": [
+      "spacing-style"
+    ],
+    "editorial-hero": [
+      "spacing-style"
+    ],
+    "editorial-marquee": [
+      "spacing-style"
+    ],
+    "editorial-newsletter": [
+      "spacing-style"
+    ],
+    "editorial-product-grid": [
+      "spacing-style"
+    ],
+    "editorial-product-row": [
+      "spacing-style"
+    ],
+    "editorial-promo-banner": [
+      "spacing-style"
+    ],
+    "editorial-testimonials": [
+      "spacing-style"
+    ],
+    "editorial-trust-bar": [
+      "spacing-style"
+    ],
+    "editorial-ugc-strip": [
+      "spacing-style"
+    ],
+    "editorial-used-by": [
+      "spacing-style"
+    ],
+    "editorial-video": [
+      "spacing-style"
+    ],
+    "featured-blog-posts": [
+      "spacing-style",
+      "gap-style",
+      "resource-list"
+    ],
+    "featured-product": [
+      "spacing-style"
+    ],
+    "featured-products-grid": [
+      "spacing-style"
+    ],
+    "footer-utilities": [
+      "spacing-style"
+    ],
+    "footer": [
+      "spacing-style"
+    ],
+    "guarantee": [
+      "image"
+    ],
+    "header-announcements": [
+      "spacing-padding",
+      "slideshow-arrows"
+    ],
+    "header": [
+      "header-row"
+    ],
+    "hero": [
+      "spacing-style",
+      "layout-panel-style"
+    ],
+    "how-to-use": [
+      "image"
+    ],
+    "logo": [
+      "spacing-style",
+      "jumbo-text"
+    ],
+    "main-404": [
+      "layout-panel-style",
+      "spacing-style"
+    ],
+    "main-blog-post": [
+      "layout-panel-style",
+      "spacing-style",
+      "blog-comment-form"
+    ],
+    "main-blog": [
+      "spacing-style"
+    ],
+    "main-cart": [
+      "spacing-style"
+    ],
+    "main-collection-list": [
+      "spacing-style",
+      "gap-style",
+      "resource-list"
+    ],
+    "main-collection": [
+      "skip-to-content-link",
+      "product-grid"
+    ],
+    "main-page": [
+      "layout-panel-style",
+      "spacing-style"
+    ],
+    "marquee": [
+      "spacing-style",
+      "gap-style"
+    ],
+    "media-with-content": [
+      "spacing-style",
+      "border-override"
+    ],
+    "neeloos-family": [
+      "spacing-style"
+    ],
+    "neeloos-ingredients": [
+      "spacing-style"
+    ],
+    "neeloos-reviews": [
+      "spacing-style"
+    ],
+    "neeloos-strip": [
+      "spacing-style",
+      "neeloos-strip-icon"
+    ],
+    "neeloos-video": [
+      "spacing-style"
+    ],
+    "neeloos-you-may-also-like": [
+      "spacing-style",
+      "bestseller-card"
+    ],
+    "neeloos": [
+      "spacing-style"
+    ],
+    "neeloss-help": [
+      "spacing-style"
+    ],
+    "password": [
+      "border-override",
+      "background-media",
+      "layout-panel-style",
+      "spacing-style"
+    ],
+    "pastel-brand-story": [
+      "pastel-scalloped"
+    ],
+    "pastel-editorial": [
+      "pastel-scalloped"
+    ],
+    "pastel-hero-2": [
+      "pastel-scalloped"
+    ],
+    "pastel-hero": [
+      "pastel-scalloped"
+    ],
+    "pastel-ingredients": [
+      "pastel-scalloped"
+    ],
+    "pastel-mission": [
+      "pastel-scalloped"
+    ],
+    "pastel-product-faq": [
+      "pastel-scalloped"
+    ],
+    "pastel-product-grid": [
+      "pastel-scalloped"
+    ],
+    "pastel-product-social-ugc": [
+      "pastel-scalloped"
+    ],
+    "pastel-pure-ingredients": [
+      "pastel-scalloped"
+    ],
+    "pastel-related-products": [
+      "pastel-scalloped"
+    ],
+    "pastel-rest-and-recover": [
+      "pastel-scalloped"
+    ],
+    "pastel-testimonials": [
+      "pastel-scalloped"
+    ],
+    "pastel-trust-strip": [
+      "pastel-scalloped"
+    ],
+    "predictive-search-empty": [
+      "predictive-search-empty-state"
+    ],
+    "predictive-search": [
+      "predictive-search-resource-carousel"
+    ],
+    "product-benefits-center": [
+      "icon-or-image"
+    ],
+    "product-bubbles": [
+      "spacing-style"
+    ],
+    "product-information": [
+      "spacing-style",
+      "skip-to-content-link"
+    ],
+    "product-list": [
+      "spacing-style",
+      "gap-style",
+      "resource-list"
+    ],
+    "product-recommendations": [
+      "spacing-style",
+      "gap-style",
+      "resource-list-carousel"
+    ],
+    "reviews-carousel": [
+      "spacing-padding",
+      "image"
+    ],
+    "search-header": [
+      "spacing-style"
+    ],
+    "search-results": [
+      "skip-to-content-link",
+      "product-grid"
+    ],
+    "section-rendering-product-card": [
+      "variant-quick-add",
+      "variant-swatches",
+      "price"
+    ],
+    "section": [
+      "section"
+    ],
+    "shipping-info": [
+      "image"
+    ],
+    "shop-by-age": [
+      "spacing-style"
+    ],
+    "shop-by-categories": [
+      "spacing-style"
+    ],
+    "shoppable-video": [
+      "spacing-style",
+      "add-to-cart-button"
+    ],
+    "slideshow-image-only": [
+      "slideshow-controls",
+      "spacing-padding",
+      "slideshow"
+    ],
+    "slideshow-with-card": [
+      "slideshow-controls",
+      "spacing-padding",
+      "slideshow"
+    ],
+    "slideshow": [
+      "slideshow-controls",
+      "spacing-padding",
+      "slideshow"
+    ],
+    "ugc-gallery": [
+      "image"
+    ],
+    "_blocks": [
+      "section"
+    ]
+  },
+  "template_to_sections": {
+    "404": [
+      "main-404",
+      "product-list"
+    ],
+    "article": [
+      "main-blog-post"
+    ],
+    "blog": [
+      "main-blog"
+    ],
+    "cart": [
+      "main-cart",
+      "product-list"
+    ],
+    "collection": [
+      "section",
+      "main-collection"
+    ],
+    "index": [
+      "editorial-hero",
+      "editorial-marquee",
+      "brand-story",
+      "editorial-collection-grid",
+      "product-storytelling-v2",
+      "editorial-ugc-strip",
+      "editorial-testimonials",
+      "editorial-trust-bar",
+      "editorial-newsletter",
+      "bestsellers-row",
+      "editorial-promo-banner",
+      "lifestyle-with-waves",
+      "urgency-countdown"
+    ],
+    "list-collections": [
+      "main-collection-list"
+    ],
+    "page.about-us": [
+      "main-page",
+      "section",
+      "hero"
+    ],
+    "page.contact": [
+      "main-page"
+    ],
+    "page.example": [
+      "main-page",
+      "section"
+    ],
+    "page": [
+      "main-page"
+    ],
+    "password": [
+      "password"
+    ],
+    "product.anu": [
+      "product-information",
+      "editorial-used-by",
+      "editorial-testimonials",
+      "editorial-trust-bar",
+      "editorial-accordion",
+      "featured-product-grid-v2"
+    ],
+    "product": [
+      "product-information",
+      "editorial-used-by",
+      "editorial-testimonials",
+      "editorial-trust-bar",
+      "editorial-accordion",
+      "featured-product-grid-v2"
+    ],
+    "search": [
+      "search-header",
+      "search-results"
+    ]
+  },
+  "snippet_to_sections": {
+    "image": [
+      "as-seen-in",
+      "guarantee",
+      "how-to-use",
+      "reviews-carousel",
+      "shipping-info",
+      "ugc-gallery"
+    ],
+    "spacing-style": [
+      "bestsellers-row",
+      "category-navigation",
+      "collection-cards",
+      "collection-fancy",
+      "collection-links",
+      "collection-list",
+      "collections-carousel",
+      "editorial-accordion",
+      "editorial-brand-story",
+      "editorial-collection-grid",
+      "editorial-hero",
+      "editorial-marquee",
+      "editorial-newsletter",
+      "editorial-product-grid",
+      "editorial-product-row",
+      "editorial-promo-banner",
+      "editorial-testimonials",
+      "editorial-trust-bar",
+      "editorial-ugc-strip",
+      "editorial-used-by",
+      "editorial-video",
+      "featured-blog-posts",
+      "featured-product",
+      "featured-products-grid",
+      "footer-utilities",
+      "footer",
+      "hero",
+      "logo",
+      "main-404",
+      "main-blog-post",
+      "main-blog",
+      "main-cart",
+      "main-collection-list",
+      "main-page",
+      "marquee",
+      "media-with-content",
+      "neeloos-family",
+      "neeloos-ingredients",
+      "neeloos-reviews",
+      "neeloos-strip",
+      "neeloos-video",
+      "neeloos-you-may-also-like",
+      "neeloos",
+      "neeloss-help",
+      "password",
+      "product-bubbles",
+      "product-information",
+      "product-list",
+      "product-recommendations",
+      "search-header",
+      "shop-by-age",
+      "shop-by-categories",
+      "shoppable-video"
+    ],
+    "bestsellers-row-track": [
+      "bestsellers-row"
+    ],
+    "icon": [
+      "category-navigation"
+    ],
+    "resource-list": [
+      "collection-fancy",
+      "collection-list",
+      "featured-blog-posts",
+      "main-collection-list",
+      "product-list"
+    ],
+    "slideshow-slide": [
+      "collection-links"
+    ],
+    "slideshow": [
+      "collection-links",
+      "slideshow-image-only",
+      "slideshow-with-card",
+      "slideshow"
+    ],
+    "gap-style": [
+      "collection-list",
+      "featured-blog-posts",
+      "main-collection-list",
+      "marquee",
+      "product-list",
+      "product-recommendations"
+    ],
+    "spacing-padding": [
+      "custom-liquid",
+      "header-announcements",
+      "reviews-carousel",
+      "slideshow-image-only",
+      "slideshow-with-card",
+      "slideshow"
+    ],
+    "divider": [
+      "divider"
+    ],
+    "slideshow-arrows": [
+      "header-announcements"
+    ],
+    "header-row": [
+      "header"
+    ],
+    "layout-panel-style": [
+      "hero",
+      "main-404",
+      "main-blog-post",
+      "main-page",
+      "password"
+    ],
+    "jumbo-text": [
+      "logo"
+    ],
+    "blog-comment-form": [
+      "main-blog-post"
+    ],
+    "skip-to-content-link": [
+      "main-collection",
+      "product-information",
+      "search-results"
+    ],
+    "product-grid": [
+      "main-collection",
+      "search-results"
+    ],
+    "border-override": [
+      "media-with-content",
+      "password"
+    ],
+    "neeloos-strip-icon": [
+      "neeloos-strip"
+    ],
+    "bestseller-card": [
+      "neeloos-you-may-also-like"
+    ],
+    "background-media": [
+      "password"
+    ],
+    "pastel-scalloped": [
+      "pastel-brand-story",
+      "pastel-editorial",
+      "pastel-hero-2",
+      "pastel-hero",
+      "pastel-ingredients",
+      "pastel-mission",
+      "pastel-product-faq",
+      "pastel-product-grid",
+      "pastel-product-social-ugc",
+      "pastel-pure-ingredients",
+      "pastel-related-products",
+      "pastel-rest-and-recover",
+      "pastel-testimonials",
+      "pastel-trust-strip"
+    ],
+    "predictive-search-empty-state": [
+      "predictive-search-empty"
+    ],
+    "predictive-search-resource-carousel": [
+      "predictive-search"
+    ],
+    "icon-or-image": [
+      "product-benefits-center"
+    ],
+    "resource-list-carousel": [
+      "product-recommendations"
+    ],
+    "variant-quick-add": [
+      "section-rendering-product-card"
+    ],
+    "variant-swatches": [
+      "section-rendering-product-card"
+    ],
+    "price": [
+      "section-rendering-product-card"
+    ],
+    "section": [
+      "section",
+      "_blocks"
+    ],
+    "add-to-cart-button": [
+      "shoppable-video"
+    ],
+    "slideshow-controls": [
+      "slideshow-image-only",
+      "slideshow-with-card",
+      "slideshow"
+    ]
+  },
+  "block_type_to_sections": {
+    "logo": [
+      "as-seen-in",
+      "footer",
+      "marquee"
+    ],
+    "benefit": [
+      "benefits-swap",
+      "benefits",
+      "hero-product-features",
+      "pastel-hero-2",
+      "pastel-hero",
+      "pastel-pure-ingredients",
+      "wave-product-features"
+    ],
+    "collection_tab": [
+      "bestsellers-row"
+    ],
+    "@theme": [
+      "collection-fancy",
+      "collection-list",
+      "homepage-product",
+      "main-404",
+      "main-blog-post",
+      "main-blog",
+      "main-cart",
+      "main-collection-list",
+      "main-page",
+      "password",
+      "predictive-search",
+      "product-information",
+      "product-list",
+      "product-recommendations",
+      "_blocks"
+    ],
+    "@app": [
+      "collection-fancy",
+      "collection-list",
+      "footer",
+      "homepage-product",
+      "main-404",
+      "main-blog-post",
+      "main-blog",
+      "main-cart",
+      "main-collection-list",
+      "main-page",
+      "password",
+      "product-information",
+      "product-list",
+      "product-recommendations",
+      "_blocks"
+    ],
+    "_divider": [
+      "collection-fancy",
+      "collection-list",
+      "footer",
+      "main-404",
+      "main-blog",
+      "main-collection-list",
+      "main-page",
+      "marquee",
+      "password",
+      "product-list",
+      "product-recommendations",
+      "_blocks"
+    ],
+    "text": [
+      "collection-list",
+      "footer",
+      "main-blog",
+      "main-cart",
+      "main-collection-list",
+      "marquee",
+      "product-recommendations"
+    ],
+    "icon": [
+      "collection-list",
+      "footer",
+      "main-blog",
+      "main-cart",
+      "main-collection-list",
+      "marquee",
+      "product-recommendations"
+    ],
+    "image": [
+      "collection-list",
+      "footer",
+      "main-blog",
+      "main-cart",
+      "main-collection-list",
+      "product-recommendations"
+    ],
+    "button": [
+      "collection-list",
+      "footer",
+      "main-blog",
+      "main-cart",
+      "main-collection-list",
+      "product-recommendations"
+    ],
+    "video": [
+      "collection-list",
+      "main-blog",
+      "main-cart",
+      "main-collection-list",
+      "neeloos-video",
+      "product-recommendations"
+    ],
+    "group": [
+      "collection-list",
+      "footer",
+      "main-blog",
+      "main-cart",
+      "main-collection-list",
+      "product-recommendations"
+    ],
+    "spacer": [
+      "collection-list",
+      "main-blog",
+      "main-cart",
+      "main-collection-list",
+      "product-recommendations"
+    ],
+    "feature": [
+      "comparison-waves",
+      "image-feature-split",
+      "neeloos",
+      "product-benefits-center",
+      "product-comparison",
+      "wave-gradient"
+    ],
+    "accordion_item": [
+      "editorial-accordion"
+    ],
+    "collection_item": [
+      "editorial-collection-grid"
+    ],
+    "slide": [
+      "editorial-hero"
+    ],
+    "review": [
+      "editorial-testimonials",
+      "neeloos-reviews"
+    ],
+    "trust_item": [
+      "editorial-trust-bar"
+    ],
+    "photo": [
+      "editorial-ugc-strip"
+    ],
+    "influencer": [
+      "editorial-used-by"
+    ],
+    "faq_item": [
+      "faq-product"
+    ],
+    "faq": [
+      "faq-waves",
+      "pastel-product-faq"
+    ],
+    "_featured-blog-posts-title": [
+      "featured-blog-posts"
+    ],
+    "_featured-blog-posts-card": [
+      "featured-blog-posts"
+    ],
+    "_featured-blog-posts-image": [
+      "featured-blog-posts"
+    ],
+    "_product-list-content": [
+      "featured-products-grid"
+    ],
+    "footer-copyright": [
+      "footer-utilities"
+    ],
+    "footer-policy-list": [
+      "footer-utilities"
+    ],
+    "social-links": [
+      "footer-utilities",
+      "footer"
+    ],
+    "follow-on-shop": [
+      "footer"
+    ],
+    "menu": [
+      "footer"
+    ],
+    "payment-icons": [
+      "footer"
+    ],
+    "jumbo-text": [
+      "footer"
+    ],
+    "luxury-footer": [
+      "footer"
+    ],
+    "pastel-footer": [
+      "footer"
+    ],
+    "email-signup": [
+      "footer"
+    ],
+    "guarantee_item": [
+      "guarantee"
+    ],
+    "_announcement": [
+      "header-announcements"
+    ],
+    "collection_card": [
+      "hero-collection-grid"
+    ],
+    "media_slide": [
+      "hero-product-features"
+    ],
+    "how_to_step": [
+      "how-to-use"
+    ],
+    "ingredient": [
+      "neeloos-ingredients",
+      "pastel-ingredients"
+    ],
+    "strip_item": [
+      "neeloos-strip"
+    ],
+    "contact_item": [
+      "neeloss-help"
+    ],
+    "item": [
+      "pastel-is-this-for-you",
+      "pastel-trust-strip",
+      "shoppable-video"
+    ],
+    "ugc_item": [
+      "pastel-product-social-ugc",
+      "pastel-ugc",
+      "ugc-gallery"
+    ],
+    "icon_item": [
+      "pastel-rest-and-recover"
+    ],
+    "testimonial": [
+      "pastel-testimonials",
+      "testimonials-slider"
+    ],
+    "testimonial_image": [
+      "pastel-testimonials"
+    ],
+    "product": [
+      "product-bubbles"
+    ],
+    "stat": [
+      "product-stats"
+    ],
+    "purchase": [
+      "recent-purchases"
+    ],
+    "shipping_option": [
+      "shipping-info"
+    ],
+    "tracking_info": [
+      "shipping-info"
+    ],
+    "age_card": [
+      "shop-by-age"
+    ],
+    "category_card": [
+      "shop-by-categories"
+    ],
+    "_slide-with-image-only": [
+      "slideshow-image-only"
+    ],
+    "_slide-with-card": [
+      "slideshow-with-card"
+    ],
+    "_slide": [
+      "slideshow"
+    ]
+  },
+  "summary": {
+    "total_sections": 172,
+    "total_snippets": 121,
+    "total_block_types": 60,
+    "total_templates": 15,
+    "sections_with_blocks": 73,
+    "sections_with_snippets": 88
+  }
+}

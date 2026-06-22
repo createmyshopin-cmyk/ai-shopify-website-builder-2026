@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-06-22T07:48:42.514Z",
+  "presets": [
+    {
+      "preset_id": "high-converting",
+      "name": "High Converting",
+      "description": "Maximizes conversion through trust signals, social proof, urgency, and clear CTAs.",
+      "min_sections": 8,
+      "max_sections": 10,
+      "focus": [
+        "conversion",
+        "trust",
+        "urgency",
+        "social proof"
+      ]
+    },
+    {
+      "preset_id": "fashion",
+      "name": "Fashion",
+      "description": "Premium fashion aesthetic with editorial storytelling, rich imagery, and lifestyle content.",
+      "min_sections": 6,
+      "max_sections": 8,
+      "focus": [
+        "storytelling",
+        "premium feel",
+        "visual hierarchy"
+      ]
+    },
+    {
+      "preset_id": "minimal-modern",
+      "name": "Minimal Modern",
+      "description": "Clean, modern design focused on product clarity, elegant typography, and optimized UX.",
+      "min_sections": 5,
+      "max_sections": 6,
+      "focus": [
+        "clarity",
+        "modern aesthetics",
+        "performance",
+        "UX"
+      ]
+    }
+  ]
+}

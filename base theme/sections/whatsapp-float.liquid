@@ -1,0 +1,496 @@
+{%- liquid
+  assign raw_number = section.settings.number | default: '' | strip
+  assign phone_digits = raw_number | replace: ' ', '' | replace: '-', '' | replace: '(', '' | replace: ')', '' | replace: '.', ''
+
+  if phone_digits contains '+'
+    assign phone_digits = phone_digits | remove: '+'
+  endif
+-%}
+
+{%- if section.settings.enabled and phone_digits != blank -%}
+  {%- liquid
+    assign wa_message = section.settings.message | default: '' | strip
+    assign wa_url = 'https://wa.me/' | append: phone_digits
+
+    if wa_message != blank
+      assign encoded_message = wa_message | url_encode
+      assign wa_url = wa_url | append: '?text=' | append: encoded_message
+    endif
+
+    assign desktop_position = section.settings.position_desktop | default: 'bottom-right'
+    assign mobile_position = section.settings.position_mobile | default: 'bottom-right'
+    assign desktop_size = section.settings.size_desktop | default: 56
+    assign mobile_size = section.settings.size_mobile | default: 52
+    assign desktop_bottom = section.settings.offset_bottom_desktop | default: 24
+    assign desktop_side = section.settings.offset_side_desktop | default: 24
+    assign mobile_bottom = section.settings.offset_bottom_mobile | default: 20
+    assign mobile_side = section.settings.offset_side_mobile | default: 16
+    assign sticky_offset = section.settings.sticky_atc_offset | default: 88
+    assign button_label = section.settings.button_label | default: 'Chat on WhatsApp'
+    assign show_label_desktop = section.settings.show_label_desktop
+    assign show_label_mobile = section.settings.show_label_mobile
+    assign bg_color = section.settings.background_color | default: '#25D366'
+    assign icon_color = section.settings.icon_color | default: '#FFFFFF'
+  -%}
+
+  <div class="whatsapp-float-section" {{ section.shopify_attributes }}>
+    <whatsapp-float
+      class="whatsapp-float whatsapp-float--desktop-only whatsapp-float--{{ desktop_position }}{% if show_label_desktop %} whatsapp-float--with-label{% endif %}"
+      data-section-id="{{ section.id }}"
+      data-hide-on-overlays="{% if section.settings.hide_on_overlays %}true{% else %}false{% endif %}"
+      data-avoid-sticky-atc="{% if section.settings.avoid_sticky_atc %}true{% else %}false{% endif %}"
+      data-sticky-offset="{{ sticky_offset }}"
+      style="
+        --whatsapp-size: {{ desktop_size }}px;
+        --whatsapp-offset-bottom: {{ desktop_bottom }}px;
+        --whatsapp-offset-side: {{ desktop_side }}px;
+        --whatsapp-bg: {{ bg_color }};
+        --whatsapp-icon-color: {{ icon_color }};
+      "
+    >
+      <a
+        class="whatsapp-float__link"
+        href="{{ wa_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="{{ button_label | escape }}"
+      >
+        <svg class="whatsapp-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        {%- if show_label_desktop and section.settings.label_text != blank -%}
+          <span class="whatsapp-float__label">{{ section.settings.label_text }}</span>
+        {%- endif -%}
+      </a>
+    </whatsapp-float>
+
+    <whatsapp-float
+      class="whatsapp-float whatsapp-float--mobile-only whatsapp-float--{{ mobile_position }}{% if show_label_mobile %} whatsapp-float--with-label{% endif %}"
+      data-section-id="{{ section.id }}"
+      data-hide-on-overlays="{% if section.settings.hide_on_overlays %}true{% else %}false{% endif %}"
+      data-avoid-sticky-atc="{% if section.settings.avoid_sticky_atc %}true{% else %}false{% endif %}"
+      data-sticky-offset="{{ sticky_offset }}"
+      style="
+        --whatsapp-size: {{ mobile_size }}px;
+        --whatsapp-offset-bottom: {{ mobile_bottom }}px;
+        --whatsapp-offset-side: {{ mobile_side }}px;
+        --whatsapp-bg: {{ bg_color }};
+        --whatsapp-icon-color: {{ icon_color }};
+      "
+    >
+      <a
+        class="whatsapp-float__link"
+        href="{{ wa_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="{{ button_label | escape }}"
+      >
+        <svg class="whatsapp-float__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        {%- if show_label_mobile and section.settings.label_text != blank -%}
+          <span class="whatsapp-float__label">{{ section.settings.label_text }}</span>
+        {%- endif -%}
+      </a>
+    </whatsapp-float>
+  </div>
+{%- endif -%}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    margin: 0;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .whatsapp-float-section {
+    margin: 0;
+    padding: 0;
+  }
+{% endstyle %}
+
+{% stylesheet %}
+  .whatsapp-float {
+    --whatsapp-size: 56px;
+    --whatsapp-offset-bottom: 24px;
+    --whatsapp-offset-side: 24px;
+    --whatsapp-lift: 0px;
+    bottom: calc(var(--whatsapp-offset-bottom) + var(--whatsapp-lift));
+    box-sizing: border-box;
+    opacity: 1;
+    pointer-events: auto;
+    position: fixed;
+    transform: scale(1);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s ease,
+      bottom 0.25s ease;
+    visibility: visible;
+    z-index: 900;
+  }
+
+  .whatsapp-float.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.88);
+    visibility: hidden;
+  }
+
+  .whatsapp-float--bottom-right {
+    left: auto;
+    right: var(--whatsapp-offset-side);
+  }
+
+  .whatsapp-float--bottom-left {
+    left: var(--whatsapp-offset-side);
+    right: auto;
+  }
+
+  .whatsapp-float--top-right {
+    bottom: auto;
+    left: auto;
+    right: var(--whatsapp-offset-side);
+    top: calc(var(--whatsapp-offset-bottom) + var(--whatsapp-lift));
+  }
+
+  .whatsapp-float--top-left {
+    bottom: auto;
+    left: var(--whatsapp-offset-side);
+    right: auto;
+    top: calc(var(--whatsapp-offset-bottom) + var(--whatsapp-lift));
+  }
+
+  .whatsapp-float__link {
+    align-items: center;
+    background: var(--whatsapp-bg, #25d366);
+    border-radius: 999px;
+    box-shadow: 0 4px 18px rgb(0 0 0 / 0.18);
+    color: var(--whatsapp-icon-color, #ffffff);
+    display: inline-flex;
+    gap: 10px;
+    justify-content: center;
+    min-height: var(--whatsapp-size);
+    min-width: var(--whatsapp-size);
+    padding: 0;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .whatsapp-float__link:hover {
+    box-shadow: 0 6px 22px rgb(0 0 0 / 0.22);
+    color: var(--whatsapp-icon-color, #ffffff);
+    transform: translateY(-2px);
+  }
+
+  .whatsapp-float__link:focus-visible {
+    outline: 2px solid var(--whatsapp-bg, #25d366);
+    outline-offset: 3px;
+  }
+
+  .whatsapp-float__icon {
+    display: block;
+    flex-shrink: 0;
+    height: calc(var(--whatsapp-size) * 0.52);
+    width: calc(var(--whatsapp-size) * 0.52);
+  }
+
+  .whatsapp-float--with-label .whatsapp-float__link {
+    border-radius: 999px;
+    padding-inline: calc(var(--whatsapp-size) * 0.28) calc(var(--whatsapp-size) * 0.34);
+  }
+
+  .whatsapp-float__label {
+    font-family: var(--font-body--family, system-ui, sans-serif);
+    font-size: clamp(0.8125rem, 2.8vw, 0.9375rem);
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 749px) {
+    .whatsapp-float--desktop-only {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .whatsapp-float--mobile-only {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  class WhatsAppFloat extends HTMLElement {
+    connectedCallback() {
+      this.avoidStickyAtc = this.dataset.avoidStickyAtc === 'true';
+      this.stickyOffset = parseInt(this.dataset.stickyOffset, 10) || 0;
+      this.hideOnOverlays = this.dataset.hideOnOverlays !== 'false';
+
+      this.updateVisibility = this.updateVisibility.bind(this);
+      this.updateStickyLift = this.updateStickyLift.bind(this);
+
+      document.addEventListener('dialog:open', this.updateVisibility);
+      document.addEventListener('dialog:close', this.updateVisibility);
+      window.addEventListener('resize', this.updateStickyLift);
+
+      this.observer = new MutationObserver(() => {
+        this.updateVisibility();
+        this.updateStickyLift();
+      });
+
+      this.observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['scroll-lock'],
+      });
+
+      this.dialogObserver = new MutationObserver(this.updateVisibility);
+      this.dialogObserver.observe(document.body, {
+        attributes: true,
+        subtree: true,
+        attributeFilter: ['open'],
+      });
+
+      this.stickyObserver = new MutationObserver(this.updateStickyLift);
+      this.stickyObserver.observe(document.body, {
+        attributes: true,
+        subtree: true,
+        attributeFilter: ['class'],
+      });
+
+      this.updateVisibility();
+      this.updateStickyLift();
+    }
+
+    disconnectedCallback() {
+      document.removeEventListener('dialog:open', this.updateVisibility);
+      document.removeEventListener('dialog:close', this.updateVisibility);
+      window.removeEventListener('resize', this.updateStickyLift);
+      this.observer?.disconnect();
+      this.dialogObserver?.disconnect();
+      this.stickyObserver?.disconnect();
+    }
+
+    isOverlayOpen() {
+      if (!this.hideOnOverlays) return false;
+
+      if (document.documentElement.hasAttribute('scroll-lock')) {
+        return true;
+      }
+
+      return Boolean(document.querySelector('dialog[open]'));
+    }
+
+    updateVisibility() {
+      this.classList.toggle('is-hidden', this.isOverlayOpen());
+    }
+
+    updateStickyLift() {
+      if (!this.avoidStickyAtc || this.stickyOffset <= 0) {
+        this.style.setProperty('--whatsapp-lift', '0px');
+        return;
+      }
+
+      const stickyAtc = document.querySelector('.sticky-atc.sticky-atc--active');
+      const lift = stickyAtc ? `${this.stickyOffset}px` : '0px';
+      this.style.setProperty('--whatsapp-lift', lift);
+    }
+  }
+
+  if (!customElements.get('whatsapp-float')) {
+    customElements.define('whatsapp-float', WhatsAppFloat);
+  }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "WhatsApp float",
+  "tag": "div",
+  "class": "whatsapp-float-section-wrapper",
+  "enabled_on": {
+    "groups": ["aside"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Floating chat button on all pages. Opens WhatsApp with your number and pre-filled message."
+    },
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable floating WhatsApp button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "number",
+      "label": "WhatsApp number",
+      "info": "Country code + number, no spaces. Example: 919876543210",
+      "default": "919876543210"
+    },
+    {
+      "type": "textarea",
+      "id": "message",
+      "label": "Pre-filled message",
+      "default": "Hi! I have a question about your products."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Accessibility label",
+      "default": "Chat on WhatsApp"
+    },
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Visible button text",
+      "info": "Optional text shown beside the icon when enabled below."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_label_desktop",
+      "label": "Show text label on desktop",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_label_mobile",
+      "label": "Show text label on mobile",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Button color",
+      "default": "#25D366"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_on_overlays",
+      "label": "Hide when popups or drawers are open",
+      "default": true,
+      "info": "Hides the button while cart, search, quick add, or other dialogs are open."
+    },
+    {
+      "type": "checkbox",
+      "id": "avoid_sticky_atc",
+      "label": "Move up when sticky add to cart is visible",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "sticky_atc_offset",
+      "label": "Extra bottom space above sticky add to cart",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "header",
+      "content": "Desktop"
+    },
+    {
+      "type": "select",
+      "id": "position_desktop",
+      "label": "Position (desktop)",
+      "default": "bottom-right",
+      "options": [
+        { "value": "bottom-right", "label": "Bottom right" },
+        { "value": "bottom-left", "label": "Bottom left" },
+        { "value": "top-right", "label": "Top right" },
+        { "value": "top-left", "label": "Top left" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "size_desktop",
+      "label": "Button size (desktop)",
+      "min": 44,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "offset_bottom_desktop",
+      "label": "Bottom / top offset (desktop)",
+      "min": 8,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "offset_side_desktop",
+      "label": "Side offset (desktop)",
+      "min": 8,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "select",
+      "id": "position_mobile",
+      "label": "Position (mobile)",
+      "default": "bottom-right",
+      "options": [
+        { "value": "bottom-right", "label": "Bottom right" },
+        { "value": "bottom-left", "label": "Bottom left" },
+        { "value": "top-right", "label": "Top right" },
+        { "value": "top-left", "label": "Top left" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "size_mobile",
+      "label": "Button size (mobile)",
+      "min": 40,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "offset_bottom_mobile",
+      "label": "Bottom / top offset (mobile)",
+      "min": 8,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "offset_side_mobile",
+      "label": "Side offset (mobile)",
+      "min": 8,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "WhatsApp float",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

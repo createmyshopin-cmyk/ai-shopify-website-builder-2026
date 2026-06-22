@@ -1,0 +1,934 @@
+{% liquid
+  assign age_blocks = section.blocks | where: 'type', 'age_card'
+  assign columns = section.settings.columns | default: 4
+  assign mobile_layout = section.settings.mobile_layout | default: 'grid-2x2'
+  assign mobile_card_ratio = section.settings.mobile_card_ratio | default: '1-1'
+
+  assign mobile_columns = 4
+  if mobile_layout == 'grid-2x2'
+    assign mobile_columns = 2
+  elsif mobile_layout == 'column-1'
+    assign mobile_columns = 1
+  endif
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --sba-columns: {{ columns }};
+    --sba-gap: {{ section.settings.gap }}px;
+    --sba-card-radius: {{ section.settings.card_border_radius }}px;
+    --sba-image-size: {{ section.settings.image_size }}px;
+    --sba-arrow-size: {{ section.settings.arrow_size }}px;
+    --sba-heading-size: {{ section.settings.heading_font_size }}px;
+    --sba-leaf-color: {{ section.settings.leaf_color }};
+    --sba-age-size: {{ section.settings.age_number_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .shop-by-age__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--sba-columns), minmax(0, 1fr));
+    gap: var(--sba-gap);
+  }
+
+  #shopify-section-{{ section.id }} .shop-by-age__title {
+    font-size: var(--sba-heading-size) !important;
+  }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} {
+      --sba-columns: 2;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --sba-columns: {{ mobile_columns }};
+      --sba-gap: {{ section.settings.mobile_gap }}px;
+      --sba-card-radius: {{ section.settings.mobile_card_border_radius }}px;
+      --sba-heading-size: {{ section.settings.heading_font_size_mobile }}px;
+      --sba-age-size: {{ section.settings.age_number_size_mobile }}px;
+      --sba-image-size: {{ section.settings.image_size_mobile }}px;
+      --sba-arrow-size: {{ section.settings.mobile_arrow_size }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="
+    section
+    section--{{ section.settings.section_width }}
+    color-{{ section.settings.color_scheme }}
+    shop-by-age
+    shop-by-age--mobile-{{ mobile_layout }}
+    shop-by-age--mobile-ratio-{{ mobile_card_ratio }}
+    spacing-style
+  "
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  {% if section.settings.show_heading and section.settings.heading != blank %}
+    <div class="shop-by-age__header">
+      <h2 class="shop-by-age__title {{ section.settings.heading_type_preset | default: 'h2' }} {{ section.settings.heading_type_preset | default: 'h2' }}">
+        {% if section.settings.show_leaf_icons %}
+          <span class="shop-by-age__leaf shop-by-age__leaf--left" aria-hidden="true">
+            <svg viewBox="0 0 42 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 19C10 19 5 13 3 5c8 0 15 3 18 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M24 16C25 8 31 3 39 2c-1 8-6 14-15 16" fill="currentColor" opacity=".75"/>
+              <path d="M7 12c9 2 18 7 27 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+        {% endif %}
+        <span>{{ section.settings.heading }}</span>
+        {% if section.settings.show_leaf_icons %}
+          <span class="shop-by-age__leaf shop-by-age__leaf--right" aria-hidden="true">
+            <svg viewBox="0 0 42 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 19C10 19 5 13 3 5c8 0 15 3 18 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M24 16C25 8 31 3 39 2c-1 8-6 14-15 16" fill="currentColor" opacity=".75"/>
+              <path d="M7 12c9 2 18 7 27 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+        {% endif %}
+      </h2>
+    </div>
+  {% endif %}
+
+  <div class="shop-by-age__viewport">
+    <div class="shop-by-age__grid">
+    {% if age_blocks.size > 0 %}
+      {% for block in age_blocks %}
+        {% liquid
+          assign card_url = block.settings.link
+          if block.settings.collection != blank
+            assign card_url = block.settings.collection.url
+          endif
+        %}
+        {% if card_url != blank %}
+          <a
+            href="{{ card_url }}"
+            class="shop-by-age__card"
+            style="--sba-card-bg: {{ block.settings.background_color }};"
+            {{ block.shopify_attributes }}
+          >
+        {% else %}
+          <div
+            class="shop-by-age__card"
+            style="--sba-card-bg: {{ block.settings.background_color }};"
+            {{ block.shopify_attributes }}
+          >
+        {% endif %}
+          <div class="shop-by-age__card-content">
+            <div class="shop-by-age__age">
+              <span class="shop-by-age__age-number">{{ block.settings.age_number }}</span>
+              {% if block.settings.age_unit != blank %}
+                <span class="shop-by-age__age-unit">{{ block.settings.age_unit }}</span>
+              {% endif %}
+            </div>
+            {% if block.settings.description != blank %}
+              <p class="shop-by-age__description">{{ block.settings.description }}</p>
+            {% endif %}
+          </div>
+
+          <div class="shop-by-age__image-wrap">
+            {% if block.settings.image != blank %}
+              {{
+                block.settings.image
+                | image_url: width: 600
+                | image_tag:
+                  class: 'shop-by-age__image',
+                  loading: 'lazy',
+                  widths: '200, 300, 400, 600',
+                  alt: block.settings.image.alt | default: block.settings.age_number
+              }}
+            {% else %}
+              <div class="shop-by-age__image-placeholder">
+                {{ 'image' | placeholder_svg_tag: 'shop-by-age__placeholder-svg' }}
+              </div>
+            {% endif %}
+          </div>
+
+          <span class="shop-by-age__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        {% if card_url != blank %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {% assign default_ages = '6+|8+|1+|2+' | split: '|' %}
+      {% assign default_units = 'Months|Months|Years|Years' | split: '|' %}
+      {% assign default_descriptions = 'First Foods for Happy Tummies|Nourishment for Growing Explorers|Balanced Nutrition for Active Toddlers|Wholesome Food for Little Champions' | split: '|' %}
+      {% assign default_colors = '#f0f4e8|#fdf0e6|#fef8e1|#fcece9' | split: '|' %}
+      {% for i in (1..4) %}
+        {% assign index = forloop.index0 %}
+        <div class="shop-by-age__card" style="--sba-card-bg: {{ default_colors[index] }};">
+          <div class="shop-by-age__card-content">
+            <div class="shop-by-age__age">
+              <span class="shop-by-age__age-number">{{ default_ages[index] }}</span>
+              <span class="shop-by-age__age-unit">{{ default_units[index] }}</span>
+            </div>
+            <p class="shop-by-age__description">{{ default_descriptions[index] }}</p>
+          </div>
+          <div class="shop-by-age__image-wrap">
+            <div class="shop-by-age__image-placeholder">
+              {{ 'image' | placeholder_svg_tag: 'shop-by-age__placeholder-svg' }}
+            </div>
+          </div>
+          <span class="shop-by-age__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      {% endfor %}
+    {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .shop-by-age {
+    width: 100%;
+  }
+
+  .shop-by-age__header {
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .shop-by-age__title {
+    align-items: center;
+    color: var(--color-foreground-heading);
+    display: inline-flex;
+    font-family: var(--font-heading--family);
+    font-weight: 400;
+    gap: 12px;
+    justify-content: center;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .shop-by-age__leaf {
+    color: var(--sba-leaf-color);
+    display: inline-flex;
+    flex-shrink: 0;
+    height: 0.55em;
+    width: 0.75em;
+  }
+
+  .shop-by-age__leaf--left {
+    transform: scaleX(-1);
+  }
+
+  .shop-by-age__leaf svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  .shop-by-age__card {
+    background: var(--sba-card-bg, #f0f4e8);
+    border-radius: var(--sba-card-radius);
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    min-height: 360px;
+    padding: 28px 18px 18px;
+    position: relative;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  a.shop-by-age__card:hover {
+    box-shadow: 0 8px 24px rgba(43, 33, 27, 0.08);
+    transform: translateY(-3px);
+  }
+
+  .shop-by-age__card-content {
+    flex: 0 0 auto;
+    text-align: center;
+  }
+
+  .shop-by-age__age {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 10px;
+  }
+
+  .shop-by-age__age-number {
+    color: var(--color-foreground-heading);
+    font-family: var(--font-heading--family);
+    font-size: var(--sba-age-size);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .shop-by-age__age-unit {
+    color: rgb(var(--color-foreground-rgb) / 0.85);
+    font-family: var(--font-body--family);
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .shop-by-age__description {
+    color: rgb(var(--color-foreground-rgb) / 0.8);
+    font-family: var(--font-body--family);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin: 0 auto;
+    max-width: 18ch;
+    text-align: center;
+  }
+
+  .shop-by-age__image-wrap {
+    align-items: flex-end;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    margin-top: 12px;
+    min-height: calc(var(--sba-image-size) + 16px);
+    width: 100%;
+  }
+
+  .shop-by-age__image {
+    display: block;
+    height: auto;
+    max-height: var(--sba-image-size);
+    max-width: 100%;
+    object-fit: contain;
+    width: auto;
+  }
+
+  .shop-by-age__image-placeholder {
+    align-items: center;
+    display: flex;
+    height: var(--sba-image-size);
+    justify-content: center;
+    width: 100%;
+  }
+
+  .shop-by-age__placeholder-svg {
+    height: 50%;
+    max-width: 120px;
+    opacity: 0.3;
+    width: 50%;
+  }
+
+  .shop-by-age__arrow {
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.18);
+    border-radius: 50%;
+    bottom: 16px;
+    color: var(--color-foreground-heading);
+    display: inline-flex;
+    height: var(--sba-arrow-size);
+    justify-content: center;
+    position: absolute;
+    right: 16px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    width: var(--sba-arrow-size);
+  }
+
+  .shop-by-age__arrow svg {
+    height: 42%;
+    width: 42%;
+  }
+
+  a.shop-by-age__card:hover .shop-by-age__arrow {
+    border-color: rgb(var(--color-foreground-rgb) / 0.35);
+    transform: translateX(2px);
+  }
+
+  @media screen and (max-width: 989px) {
+    .shop-by-age__card {
+      min-height: 340px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .shop-by-age {
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    .shop-by-age__header {
+      margin-bottom: 16px;
+    }
+
+    .shop-by-age__title {
+      gap: 8px;
+    }
+
+    .shop-by-age__leaf {
+      height: 0.5em;
+      width: 0.68em;
+    }
+
+    .shop-by-age__viewport {
+      margin: 0;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      padding: 0;
+      width: 100%;
+    }
+
+    .shop-by-age__grid {
+      box-sizing: border-box;
+      gap: var(--sba-gap);
+      margin: 0;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      padding: 0;
+      width: 100%;
+    }
+
+    .shop-by-age--mobile-row-4 .shop-by-age__viewport {
+      -webkit-overflow-scrolling: touch;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+      touch-action: pan-x;
+    }
+
+    .shop-by-age--mobile-row-4 .shop-by-age__viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .shop-by-age--mobile-row-4 .shop-by-age__grid {
+      display: flex;
+      flex-wrap: nowrap;
+      grid-template-columns: none;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .shop-by-age--mobile-row-4 .shop-by-age__grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .shop-by-age--mobile-row-4 .shop-by-age__card {
+      flex: 0 0 calc((100% - (var(--sba-gap) * 3)) / 4);
+      min-width: calc((100% - (var(--sba-gap) * 3)) / 4);
+      scroll-snap-align: start;
+    }
+
+    .shop-by-age--mobile-grid-2x2 .shop-by-age__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .shop-by-age--mobile-column-1 .shop-by-age__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .shop-by-age__card {
+      min-height: 0;
+      overflow: hidden;
+      padding: 10px 6px 8px;
+    }
+
+    .shop-by-age--mobile-ratio-1-1 .shop-by-age__card {
+      aspect-ratio: 1 / 1;
+    }
+
+    .shop-by-age--mobile-ratio-auto .shop-by-age__card {
+      aspect-ratio: auto;
+      min-height: 220px;
+    }
+
+    .shop-by-age--mobile-grid-2x2 .shop-by-age__card {
+      padding: 14px 10px 10px;
+    }
+
+    .shop-by-age--mobile-grid-2x2 .shop-by-age__age-unit {
+      font-size: 0.65rem;
+    }
+
+    .shop-by-age--mobile-grid-2x2 .shop-by-age__description {
+      font-size: 0.62rem;
+      line-clamp: 3;
+      -webkit-line-clamp: 3;
+    }
+
+    .shop-by-age--mobile-grid-2x2 .shop-by-age__arrow {
+      bottom: 10px;
+      right: 10px;
+    }
+
+    .shop-by-age--mobile-ratio-auto .shop-by-age__card {
+      min-height: 240px;
+    }
+
+    .shop-by-age--mobile-column-1 .shop-by-age__card {
+      min-height: 260px;
+      padding: 18px 14px 14px;
+    }
+
+    .shop-by-age--mobile-column-1 .shop-by-age__age-unit {
+      font-size: 0.75rem;
+    }
+
+    .shop-by-age--mobile-column-1 .shop-by-age__description {
+      font-size: 0.75rem;
+      line-clamp: 2;
+      -webkit-line-clamp: 2;
+    }
+
+    .shop-by-age--mobile-column-1.shop-by-age--mobile-ratio-auto .shop-by-age__card {
+      min-height: 280px;
+    }
+
+    .shop-by-age__age {
+      gap: 0;
+      margin-bottom: 4px;
+    }
+
+    .shop-by-age__age-number {
+      font-size: var(--sba-age-size);
+    }
+
+    .shop-by-age__age-unit {
+      font-size: 0.55rem;
+      line-height: 1.1;
+    }
+
+    .shop-by-age__description {
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      display: -webkit-box;
+      font-size: 0.5rem;
+      line-clamp: 2;
+      line-height: 1.25;
+      margin: 0 auto;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .shop-by-age__image-wrap {
+      margin-top: auto;
+      min-height: 0;
+      padding-bottom: 2px;
+    }
+
+    .shop-by-age__image {
+      max-height: 100%;
+      max-width: 88%;
+    }
+
+    .shop-by-age__image-placeholder {
+      height: auto;
+      max-height: 52%;
+    }
+
+    .shop-by-age__placeholder-svg {
+      max-width: 70%;
+    }
+
+    .shop-by-age__arrow {
+      bottom: 6px;
+      height: var(--sba-arrow-size);
+      right: 6px;
+      width: var(--sba-arrow-size);
+    }
+
+    .shop-by-age__arrow svg {
+      height: 46%;
+      width: 46%;
+    }
+
+    a.shop-by-age__card:hover {
+      box-shadow: none;
+      transform: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop by Age",
+  "class": "ui-test-shop-by-age",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Age"
+    },
+    {
+      "type": "select",
+      "id": "heading_type_preset",
+      "label": "Heading style",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading size",
+      "min": 24,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "checkbox",
+      "id": "show_leaf_icons",
+      "label": "Show leaf icons",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "leaf_color",
+      "label": "Leaf icon color",
+      "default": "#7e9364"
+    },
+    {
+      "type": "header",
+      "content": "Grid"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between cards",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "age_number_size",
+      "label": "Age number size",
+      "min": 28,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "age_number_size_mobile",
+      "label": "Age number size (mobile)",
+      "min": 14,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "label": "Image circle size",
+      "min": 100,
+      "max": 220,
+      "step": 10,
+      "unit": "px",
+      "default": 160
+    },
+    {
+      "type": "range",
+      "id": "image_size_mobile",
+      "label": "Illustration size (mobile)",
+      "min": 40,
+      "max": 120,
+      "step": 10,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "Mobile grid"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile layout",
+      "options": [
+        { "value": "row-4", "label": "4 in a row" },
+        { "value": "grid-2x2", "label": "2 × 2 grid" },
+        { "value": "column-1", "label": "1 column stack" }
+      ],
+      "default": "grid-2x2"
+    },
+    {
+      "type": "select",
+      "id": "mobile_card_ratio",
+      "label": "Mobile card shape",
+      "options": [
+        { "value": "1-1", "label": "Square (1:1)" },
+        { "value": "auto", "label": "Auto height" }
+      ],
+      "default": "1-1"
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Gap (mobile)",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_border_radius",
+      "label": "Card corner radius (mobile)",
+      "min": 0,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "default": 6,
+      "info": "Slight rounded corners for square mobile cards"
+    },
+    {
+      "type": "range",
+      "id": "mobile_arrow_size",
+      "label": "Arrow button size (mobile)",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow button size",
+      "min": 32,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page width" },
+        { "value": "full-width", "label": "Full width" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "age_card",
+      "name": "Age card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "age_number",
+          "label": "Age number",
+          "default": "6+",
+          "info": "e.g. 6+, 8+, 1+, 2+"
+        },
+        {
+          "type": "text",
+          "id": "age_unit",
+          "label": "Age unit",
+          "default": "Months"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "First Foods for Happy Tummies"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Illustration"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Card background",
+          "default": "#f0f4e8"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection link"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Custom link",
+          "info": "Overrides collection link when set"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Shop by Age",
+      "category": "Collections",
+      "settings": {
+        "show_heading": true,
+        "heading": "Shop by Age",
+        "heading_type_preset": "h2",
+        "heading_font_size": 40,
+        "heading_font_size_mobile": 32,
+        "show_leaf_icons": true,
+        "leaf_color": "#7e9364",
+        "columns": 4,
+        "gap": 16,
+        "card_border_radius": 16,
+        "age_number_size": 48,
+        "age_number_size_mobile": 22,
+        "image_size": 160,
+        "image_size_mobile": 70,
+        "mobile_layout": "grid-2x2",
+        "mobile_card_ratio": "1-1",
+        "mobile_gap": 8,
+        "mobile_card_border_radius": 6,
+        "mobile_arrow_size": 24,
+        "arrow_size": 40,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      },
+      "blocks": [
+        {
+          "type": "age_card",
+          "settings": {
+            "age_number": "6+",
+            "age_unit": "Months",
+            "description": "First Foods for Happy Tummies",
+            "background_color": "#f0f4e8"
+          }
+        },
+        {
+          "type": "age_card",
+          "settings": {
+            "age_number": "8+",
+            "age_unit": "Months",
+            "description": "Nourishment for Growing Explorers",
+            "background_color": "#fdf0e6"
+          }
+        },
+        {
+          "type": "age_card",
+          "settings": {
+            "age_number": "1+",
+            "age_unit": "Years",
+            "description": "Balanced Nutrition for Active Toddlers",
+            "background_color": "#fef8e1"
+          }
+        },
+        {
+          "type": "age_card",
+          "settings": {
+            "age_number": "2+",
+            "age_unit": "Years",
+            "description": "Wholesome Food for Little Champions",
+            "background_color": "#fcece9"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

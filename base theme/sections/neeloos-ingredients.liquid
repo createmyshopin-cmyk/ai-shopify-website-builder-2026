@@ -1,0 +1,882 @@
+{% liquid
+  assign ingredient_blocks = section.blocks | where: 'type', 'ingredient'
+  assign columns = section.settings.columns | default: 5
+  assign mobile_layout = section.settings.mobile_layout | default: 'row-4'
+  assign mobile_card_ratio = section.settings.mobile_card_ratio | default: '1-1'
+
+  assign mobile_columns = 4
+  if mobile_layout == 'grid-2x2'
+    assign mobile_columns = 2
+  elsif mobile_layout == 'column-1'
+    assign mobile_columns = 1
+  endif
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --neeloos-columns: {{ columns }};
+    --neeloos-gap: {{ section.settings.gap }}px;
+    --neeloos-ingredients-heading-size: {{ section.settings.heading_font_size | default: 48 }}px;
+    --neeloos-ingredients-subheading-size: {{ section.settings.subheading_font_size | default: 16 }}px;
+    --neeloos-leaf-color: {{ section.settings.leaf_color }};
+    --neeloos-deco-opacity: {{ section.settings.deco_opacity }};
+    --neeloos-image-size: {{ section.settings.image_size }}px;
+    --neeloos-title-color: {{ section.settings.title_color }};
+    --neeloos-subtitle-color: {{ section.settings.subtitle_color }};
+    --neeloos-card-radius: {{ section.settings.mobile_card_border_radius }}px;
+    --neeloos-card-bg: {{ section.settings.mobile_card_bg }};
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --neeloos-gap: {{ section.settings.mobile_gap }}px;
+      --neeloos-ingredients-heading-size: {{ section.settings.heading_font_size_mobile | default: 32 }}px;
+      --neeloos-ingredients-subheading-size: {{ section.settings.subheading_font_size_mobile | default: 14 }}px;
+      --neeloos-image-size: {{ section.settings.image_size_mobile }}px;
+      --neeloos-mobile-columns: {{ mobile_columns }};
+    }
+  }
+
+  #shopify-section-{{ section.id }} .neeloos-ingredients__title,
+  #shopify-section-{{ section.id }} h2.neeloos-ingredients__title {
+    font-size: var(--neeloos-ingredients-heading-size) !important;
+  }
+
+  #shopify-section-{{ section.id }} .neeloos-ingredients__subtitle,
+  #shopify-section-{{ section.id }} p.neeloos-ingredients__subtitle {
+    font-size: var(--neeloos-ingredients-subheading-size) !important;
+  }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="
+    section
+    section--{{ section.settings.section_width }}
+    color-{{ section.settings.color_scheme }}
+    neeloos
+    neeloos-ingredients
+    neeloos--mobile-{{ mobile_layout }}
+    neeloos--mobile-ratio-{{ mobile_card_ratio }}
+    spacing-style
+  "
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  {% if section.settings.show_corner_deco %}
+    <div class="neeloos__deco neeloos__deco--top-right" aria-hidden="true">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M180 20C150 40 120 80 110 120C100 160 130 180 160 170C190 160 200 120 195 80C190 40 180 20 180 20Z" fill="currentColor" opacity="0.35"/>
+        <path d="M160 50C140 65 125 95 118 125C111 155 130 170 150 165C170 160 178 135 175 105C172 75 160 50 160 50Z" fill="currentColor" opacity="0.55"/>
+        <path d="M145 80C132 90 122 110 118 130C114 150 128 162 142 158C156 154 162 135 160 115C158 95 145 80 145 80Z" fill="currentColor" opacity="0.75"/>
+        <path d="M40 30C55 45 70 70 75 95" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+        <path d="M55 25C70 50 85 85 88 115" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+      </svg>
+    </div>
+    <div class="neeloos__deco neeloos__deco--bottom-left" aria-hidden="true">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 180C50 160 80 120 90 80C100 40 70 20 40 30C10 40 0 80 5 120C10 160 20 180 20 180Z" fill="currentColor" opacity="0.35"/>
+        <path d="M40 150C60 135 75 105 82 75C89 45 70 30 50 35C30 40 22 65 25 95C28 125 40 150 40 150Z" fill="currentColor" opacity="0.55"/>
+        <path d="M55 120C68 110 78 90 82 70C86 50 72 38 58 42C44 46 38 65 40 85C42 105 55 120 55 120Z" fill="currentColor" opacity="0.75"/>
+        <path d="M160 170C145 155 130 130 125 105" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+        <path d="M145 175C130 150 115 115 112 85" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+      </svg>
+    </div>
+  {% endif %}
+
+  <div class="neeloos__inner">
+    {% if section.settings.show_heading %}
+      <div class="neeloos__header">
+        {% assign heading_type_preset = section.settings.heading_type_preset | default: 'h2' %}
+        <h2 class="neeloos-ingredients__title {{ heading_type_preset }} {{ heading_type_preset }}">
+          {% if section.settings.show_leaf_icons %}
+            <span class="neeloos__leaf neeloos__leaf--left" aria-hidden="true">
+              <svg viewBox="0 0 42 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 19C10 19 5 13 3 5c8 0 15 3 18 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M24 16C25 8 31 3 39 2c-1 8-6 14-15 16" fill="currentColor" opacity=".75"/>
+                <path d="M7 12c9 2 18 7 27 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          {% endif %}
+          <span>{{ section.settings.heading }}</span>
+          {% if section.settings.show_leaf_icons %}
+            <span class="neeloos__leaf neeloos__leaf--right" aria-hidden="true">
+              <svg viewBox="0 0 42 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 19C10 19 5 13 3 5c8 0 15 3 18 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M24 16C25 8 31 3 39 2c-1 8-6 14-15 16" fill="currentColor" opacity=".75"/>
+                <path d="M7 12c9 2 18 7 27 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          {% endif %}
+        </h2>
+        {% if section.settings.subheading != blank %}
+          <p class="neeloos-ingredients__subtitle">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if ingredient_blocks.size > 0 %}
+      <div class="neeloos__grid">
+        {% for block in ingredient_blocks %}
+          <div
+            class="neeloos__item"
+            style="{% if block.settings.background_color != blank %}--neeloos-item-bg: {{ block.settings.background_color }};{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="neeloos__image-wrap" data-forge-slot-id="image"{% if block.settings.image == blank %} data-forge-slot-blank="true"{% endif %}>
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: 400
+                  | image_tag:
+                    class: 'neeloos__image',
+                    loading: 'lazy',
+                    widths: '120, 160, 200, 240, 320, 400',
+                    alt: block.settings.image.alt | default: block.settings.title
+                }}
+              {% else %}
+                <div class="neeloos__image-placeholder">
+                  {{ 'product-1' | placeholder_svg_tag: 'neeloos__placeholder-svg' }}
+                </div>
+              {% endif %}
+            </div>
+            {% if block.settings.title != blank %}
+              <h3 class="neeloos__item-title">{{ block.settings.title }}</h3>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <p class="neeloos__item-desc">{{ block.settings.description }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      {% assign default_titles = 'Ragi|Nendrakaya (Raw Kerala Banana)|Sprouted Green Gram|Red Rice|Navara Rice' | split: '|' %}
+      {% assign default_descs = 'Strengthens bones & supports growth|Natural energy & easy digestion|Rich in plant protein & nutrients|Rich in iron & fiber, gentle on tummy|Traditional Kerala rice, light & nourishing' | split: '|' %}
+      <div class="neeloos__grid">
+        {% for i in (0..4) %}
+          <div class="neeloos__item">
+            <div class="neeloos__image-wrap" data-forge-slot-blank="true">
+              <div class="neeloos__image-placeholder">
+                {{ 'product-1' | placeholder_svg_tag: 'neeloos__placeholder-svg' }}
+              </div>
+            </div>
+            <h3 class="neeloos__item-title">{{ default_titles[i] }}</h3>
+            <p class="neeloos__item-desc">{{ default_descs[i] }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .neeloos {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .neeloos__deco {
+    color: var(--neeloos-leaf-color);
+    opacity: calc(var(--neeloos-deco-opacity) / 100);
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+  }
+
+  .neeloos__deco svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .neeloos__deco--top-right {
+    height: clamp(120px, 18vw, 220px);
+    right: 0;
+    top: -10px;
+    width: clamp(120px, 18vw, 220px);
+  }
+
+  .neeloos__deco--bottom-left {
+    bottom: -10px;
+    height: clamp(120px, 18vw, 220px);
+    left: 0;
+    width: clamp(120px, 18vw, 220px);
+  }
+
+  .neeloos__inner {
+    margin: 0 auto;
+    max-width: 1280px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .neeloos__header {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .neeloos-ingredients__title {
+    align-items: center;
+    color: var(--neeloos-title-color, var(--color-foreground-heading));
+    display: inline-flex;
+    font-family: var(--font-heading--family);
+    font-weight: 400;
+    gap: 14px;
+    justify-content: center;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .neeloos__leaf {
+    color: var(--neeloos-leaf-color);
+    display: inline-flex;
+    flex-shrink: 0;
+    height: 0.55em;
+    width: 0.75em;
+  }
+
+  .neeloos__leaf--left {
+    transform: scaleX(-1);
+  }
+
+  .neeloos__leaf svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  .neeloos-ingredients__subtitle {
+    color: var(--neeloos-subtitle-color, rgb(var(--color-foreground-rgb) / 0.65));
+    font-family: var(--font-body--family);
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 12px auto 0;
+    max-width: 42ch;
+  }
+
+  .neeloos-ingredients .neeloos__grid {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--neeloos-gap);
+    justify-content: center;
+  }
+
+  .neeloos-ingredients .neeloos__item {
+    align-items: center;
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .neeloos-ingredients .neeloos__image-wrap {
+    align-items: center;
+    display: flex;
+    height: var(--neeloos-image-size);
+    justify-content: center;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  .neeloos__image {
+    display: block;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    width: auto;
+  }
+
+  .neeloos__image-placeholder {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .neeloos__placeholder-svg {
+    height: 70%;
+    max-width: 120px;
+    opacity: 0.25;
+    width: 70%;
+  }
+
+  .neeloos__item-title {
+    color: var(--color-foreground-heading);
+    font-family: var(--font-body--family);
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 8px;
+  }
+
+  .neeloos__item-desc {
+    color: rgb(var(--color-foreground-rgb) / 0.72);
+    font-family: var(--font-body--family);
+    font-size: clamp(0.75rem, 1vw, 0.875rem);
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .neeloos-ingredients {
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow-x: clip;
+      width: 100%;
+    }
+
+    .neeloos-ingredients .neeloos__inner {
+      max-width: 100%;
+      min-width: 0;
+      overflow-x: hidden;
+      padding-inline: var(--page-margin, 16px);
+      width: 100%;
+    }
+
+    .neeloos__deco--top-right {
+      right: 0;
+    }
+
+    .neeloos__deco--bottom-left {
+      left: 0;
+    }
+
+    .neeloos__grid {
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--neeloos-gap);
+      max-width: 100%;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .neeloos__item {
+      background: var(--neeloos-item-bg, var(--neeloos-card-bg));
+      border-radius: var(--neeloos-card-radius);
+      flex: 0 0 auto;
+      justify-content: flex-start;
+      min-height: 0;
+      overflow: hidden;
+      padding: 12px 8px 10px;
+    }
+
+    .neeloos--mobile-ratio-1-1 .neeloos__item {
+      aspect-ratio: 1 / 1;
+    }
+
+    .neeloos--mobile-ratio-auto .neeloos__item {
+      aspect-ratio: auto;
+      min-height: 200px;
+    }
+
+    .neeloos__image-wrap {
+      flex: 1 1 auto;
+      height: auto;
+      margin-bottom: 6px;
+      min-height: 0;
+    }
+
+    .neeloos__image {
+      max-height: 100%;
+      max-width: 88%;
+    }
+
+    .neeloos__image-placeholder {
+      max-height: 100%;
+    }
+
+    .neeloos__placeholder-svg {
+      max-height: 70%;
+      max-width: 70%;
+    }
+
+    .neeloos__item-title {
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      flex-shrink: 0;
+      font-size: 0.65rem;
+      line-clamp: 2;
+      -webkit-line-clamp: 2;
+      margin-bottom: 3px;
+      overflow: hidden;
+    }
+
+    .neeloos__item-desc {
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      flex-shrink: 0;
+      font-size: 0.58rem;
+      line-clamp: 2;
+      -webkit-line-clamp: 2;
+      line-height: 1.3;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .neeloos--mobile-grid-2x2 .neeloos__item {
+      padding: 14px 10px 10px;
+    }
+
+    .neeloos__header {
+      margin-bottom: 28px;
+    }
+
+    .neeloos-ingredients__title {
+      gap: 10px;
+    }
+
+    .neeloos__leaf {
+      height: 0.5em;
+      width: 0.68em;
+    }
+
+    .neeloos--mobile-row-4 .neeloos__grid {
+      display: flex;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+      min-width: 0;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      padding-bottom: 8px;
+      scroll-padding-inline: 4px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      touch-action: pan-x;
+      width: 100%;
+    }
+
+    .neeloos--mobile-row-4 .neeloos__grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .neeloos--mobile-row-4 .neeloos__item {
+      flex: 0 0 calc((100% - (var(--neeloos-gap) * 3)) / 4);
+      min-width: calc((100% - (var(--neeloos-gap) * 3)) / 4);
+      padding: 10px 6px 8px;
+      scroll-snap-align: start;
+    }
+
+    .neeloos--mobile-row-4 .neeloos__item-title {
+      font-size: 0.625rem;
+      line-clamp: 2;
+      -webkit-line-clamp: 2;
+      margin-bottom: 2px;
+    }
+
+    .neeloos--mobile-row-4 .neeloos__item-desc {
+      font-size: 0.5625rem;
+      line-clamp: 2;
+      -webkit-line-clamp: 2;
+      line-height: 1.3;
+    }
+
+    .neeloos--mobile-row-4 .neeloos__image-wrap {
+      margin-bottom: 4px;
+    }
+
+    .neeloos--mobile-grid-2x2 .neeloos__grid {
+      display: grid;
+      flex-wrap: wrap;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      overflow: hidden;
+    }
+
+    .neeloos--mobile-grid-2x2 .neeloos__item {
+      flex: none;
+      width: auto;
+    }
+
+    .neeloos--mobile-column-1 .neeloos__grid {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      overflow: hidden;
+    }
+
+    .neeloos--mobile-column-1 .neeloos__item {
+      flex: 0 0 auto;
+      padding: 16px 12px 12px;
+      width: 100%;
+    }
+
+    .neeloos--mobile-column-1 .neeloos__item-title {
+      font-size: 0.75rem;
+    }
+
+    .neeloos--mobile-column-1 .neeloos__item-desc {
+      font-size: 0.68rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Neeloos Ingredients",
+  "class": "ui-test-neeloos-ingredients",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Goodness in Every Bowl"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Traditional Kerala ingredients. Modern nutrition."
+    },
+    {
+      "type": "select",
+      "id": "heading_type_preset",
+      "label": "Heading style",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 20,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size",
+      "label": "Subheading size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size_mobile",
+      "label": "Subheading size (mobile)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "checkbox",
+      "id": "show_leaf_icons",
+      "label": "Show leaf icons on heading",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_corner_deco",
+      "label": "Show corner leaf decorations",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "leaf_color",
+      "label": "Leaf color",
+      "default": "#7e9364"
+    },
+    {
+      "type": "range",
+      "id": "deco_opacity",
+      "label": "Corner decoration opacity",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Heading color",
+      "default": "#2b211b"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subheading color",
+      "default": "#6b6560"
+    },
+    {
+      "type": "header",
+      "content": "Grid"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between items",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Gap (mobile)",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Mobile grid"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile layout",
+      "options": [
+        { "value": "row-4", "label": "4 in a row (horizontal)" },
+        { "value": "grid-2x2", "label": "2 × 2 grid" },
+        { "value": "column-1", "label": "1 column stack" }
+      ],
+      "default": "row-4"
+    },
+    {
+      "type": "select",
+      "id": "mobile_card_ratio",
+      "label": "Mobile card shape",
+      "options": [
+        { "value": "1-1", "label": "Square (1:1)" },
+        { "value": "auto", "label": "Auto height" }
+      ],
+      "default": "1-1"
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_border_radius",
+      "label": "Mobile card corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "mobile_card_bg",
+      "label": "Mobile card background",
+      "default": "#f5f2eb"
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "label": "Image height",
+      "min": 80,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "image_size_mobile",
+      "label": "Image height (mobile)",
+      "min": 60,
+      "max": 160,
+      "step": 10,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page width" },
+        { "value": "full-width", "label": "Full width" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Ingredient image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Ingredient"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Short benefit description"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Card background (mobile)",
+          "info": "Optional. Overrides the section mobile card background."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Neeloos Ingredients",
+      "category": "Content",
+      "settings": {
+        "show_heading": true,
+        "heading": "Goodness in Every Bowl",
+        "subheading": "Traditional Kerala ingredients. Modern nutrition.",
+        "heading_type_preset": "h2",
+        "heading_font_size": 48,
+        "heading_font_size_mobile": 32,
+        "subheading_font_size": 16,
+        "subheading_font_size_mobile": 14,
+        "show_leaf_icons": true,
+        "show_corner_deco": true,
+        "leaf_color": "#7e9364",
+        "deco_opacity": 20,
+        "title_color": "#2b211b",
+        "subtitle_color": "#6b6560",
+        "columns": 5,
+        "gap": 24,
+        "mobile_gap": 8,
+        "mobile_layout": "row-4",
+        "mobile_card_ratio": "1-1",
+        "mobile_card_border_radius": 8,
+        "mobile_card_bg": "#f5f2eb",
+        "image_size": 120,
+        "image_size_mobile": 70,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Ragi",
+            "description": "Strengthens bones & supports growth"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Nendrakaya (Raw Kerala Banana)",
+            "description": "Natural energy & easy digestion"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Sprouted Green Gram",
+            "description": "Rich in plant protein & nutrients"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Red Rice",
+            "description": "Rich in iron & fiber, gentle on tummy"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Navara Rice",
+            "description": "Traditional Kerala rice, light & nourishing"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,25 @@
+{%- doc -%}
+  Product details layout for Product Card style Card 2.
+  Renders title, rating row, and single price line.
+{%- enddoc -%}
+
+{%- liquid
+  assign rating = product.metafields.forge_reviews.aggregate_rating.value | default: 0 | plus: 0
+  assign review_count = product.metafields.forge_reviews.review_count.value | default: 0 | plus: 0
+  assign price = product.selected_or_first_available_variant.price | money
+-%}
+
+<div class="product-card-card-2-details">
+  <a class="contents" href="{% render 'product-card-variant-url', product: product %}">
+    <h3 class="product-card-card-2-details__title">{{ product.title }}</h3>
+  </a>
+
+  {%- if rating > 0 -%}
+    <div class="product-card-card-2-details__rating">
+      <span class="product-card-card-2-details__rating-star">★</span>
+      <span>{{ rating }} ({{ review_count }})</span>
+    </div>
+  {%- endif -%}
+
+  <p class="product-card-card-2-details__price">{{ price }}</p>
+</div>

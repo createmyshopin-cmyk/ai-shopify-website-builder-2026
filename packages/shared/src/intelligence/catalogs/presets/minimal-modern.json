@@ -1,0 +1,105 @@
+{
+  "id": "minimal-modern",
+  "name": "Minimal Modern",
+  "description": "Clean, modern design focused on product clarity, elegant typography, and optimized UX.",
+  "focus": [
+    "clarity",
+    "modern aesthetics",
+    "performance",
+    "UX"
+  ],
+  "section_count_rules": {
+    "min_sections": 5,
+    "max_sections": 6
+  },
+  "characteristics": {
+    "typography_style": "clean",
+    "color_palette_guidance": "Minimal palette — white, near-black, single accent",
+    "spacing_scale": "airy",
+    "animation_intensity": "none",
+    "image_treatment": "clean product photography, minimal backgrounds",
+    "cro_emphasis": "Moderate — clarity and confidence over pressure"
+  },
+  "copy_intelligence": {
+    "headline_style": "clean, confident, product-centric",
+    "description_style": "minimal, feature-focused, scannable",
+    "cta_style": "clear and confident: Shop, View Collection, Learn More",
+    "social_proof_style": "clean star ratings and brief testimonials",
+    "urgency_style": null,
+    "emotion_style": "calm confidence and sophisticated clarity"
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground",
+      "border"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font",
+      "type_size_h2",
+      "type_size_paragraph"
+    ],
+    "spacing": [
+      "card_gap",
+      "page_width"
+    ],
+    "radius": [
+      "global_border_radius",
+      "inputs_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [
+      "button_shape",
+      "primary_button_background"
+    ],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "section_flow": [
+    {
+      "slot": 1,
+      "section_family": "hero",
+      "preferred_section_type": "editorial-hero",
+      "required": true
+    },
+    {
+      "slot": 2,
+      "section_family": "products",
+      "preferred_section_type": "featured-product-grid-v2",
+      "required": true
+    },
+    {
+      "slot": 3,
+      "section_family": "content",
+      "preferred_section_type": "benefits",
+      "required": true
+    },
+    {
+      "slot": 4,
+      "section_family": "faq",
+      "preferred_section_type": "faq-v2",
+      "required": true
+    },
+    {
+      "slot": 5,
+      "section_family": "lead_capture",
+      "preferred_section_type": "editorial-newsletter",
+      "required": true
+    },
+    {
+      "slot": 6,
+      "section_family": "social_proof",
+      "preferred_section_type": "editorial-testimonials",
+      "required": false
+    }
+  ],
+  "excluded_section_families": [
+    "navigation",
+    "urgency"
+  ]
+}

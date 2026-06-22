@@ -1,0 +1,170 @@
+{
+  "generated_at": "2026-06-22T07:48:42.511Z",
+  "count": 15,
+  "templates": [
+    {
+      "filename": "404.json",
+      "key": "404",
+      "layout": "theme",
+      "sections": [
+        "main-404",
+        "product-list"
+      ],
+      "is_alternate": false
+    },
+    {
+      "filename": "article.json",
+      "key": "article",
+      "layout": "theme",
+      "sections": [
+        "main-blog-post"
+      ],
+      "is_alternate": false
+    },
+    {
+      "filename": "blog.json",
+      "key": "blog",
+      "layout": "theme",
+      "sections": [
+        "main-blog"
+      ],
+      "is_alternate": false
+    },
+    {
+      "filename": "cart.json",
+      "key": "cart",
+      "layout": "theme",
+      "sections": [
+        "main-cart",
+        "product-list"
+      ],
+      "is_alternate": false
+    },
+    {
+      "filename": "collection.json",
+      "key": "collection",
+      "layout": "theme",
+      "sections": [
+        "section",
+        "main-collection"
+      ],
+      "is_alternate": false
+    },
+    {
+      "filename": "index.json",
+      "key": "index",
+      "layout": "theme",
+      "sections": [
+        "editorial-hero",
+        "editorial-marquee",
+        "brand-story",
+        "editorial-collection-grid",
+        "product-storytelling-v2",
+        "editorial-ugc-strip",
+        "editorial-testimonials",
+        "editorial-trust-bar",
+        "editorial-newsletter",
+        "bestsellers-row",
+        "editorial-promo-banner",
+        "lifestyle-with-waves",
+        "urgency-countdown"
+      ],
+      "is_alternate": false
+    },
+    {
+      "filename": "list-collections.json",
+      "key": "list-collections",
+      "layout": "theme",
+      "sections": [
+        "main-collection-list"
+      ],
+      "is_alternate": false
+    },
+    {
+      "filename": "page.about-us.json",
+      "key": "page.about-us",
+      "layout": "theme",
+      "sections": [
+        "main-page",
+        "section",
+        "hero"
+      ],
+      "is_alternate": true
+    },
+    {
+      "filename": "page.contact.json",
+      "key": "page.contact",
+      "layout": "theme",
+      "sections": [
+        "main-page"
+      ],
+      "is_alternate": true
+    },
+    {
+      "filename": "page.example.json",
+      "key": "page.example",
+      "layout": "theme",
+      "sections": [
+        "main-page",
+        "section"
+      ],
+      "is_alternate": true
+    },
+    {
+      "filename": "page.json",
+      "key": "page",
+      "layout": "theme",
+      "sections": [
+        "main-page"
+      ],
+      "is_alternate": false
+    },
+    {
+      "filename": "password.json",
+      "key": "password",
+      "layout": "password",
+      "sections": [
+        "password"
+      ],
+      "is_alternate": false
+    },
+    {
+      "filename": "product.anu.json",
+      "key": "product.anu",
+      "layout": "theme",
+      "sections": [
+        "product-information",
+        "editorial-used-by",
+        "editorial-testimonials",
+        "editorial-trust-bar",
+        "editorial-accordion",
+        "featured-product-grid-v2"
+      ],
+      "is_alternate": true
+    },
+    {
+      "filename": "product.json",
+      "key": "product",
+      "layout": "theme",
+      "sections": [
+        "product-information",
+        "editorial-used-by",
+        "editorial-testimonials",
+        "editorial-trust-bar",
+        "editorial-accordion",
+        "featured-product-grid-v2"
+      ],
+      "is_alternate": false
+    },
+    {
+      "filename": "search.json",
+      "key": "search",
+      "layout": "theme",
+      "sections": [
+        "search-header",
+        "search-results"
+      ],
+      "is_alternate": false
+    }
+  ]
+}

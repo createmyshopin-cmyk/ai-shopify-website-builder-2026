@@ -1,0 +1,230 @@
+{
+  "section_id": "editorial-promo-banner",
+  "section_type": "editorial-promo-banner",
+  "section_path": "sections/editorial-promo-banner.liquid",
+  "section_schema_name": "Editorial Promo Banner",
+  "section_category": "storytelling",
+  "section_role": "content",
+  "section_family": "storytelling",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Editorial Promo Banner"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Background image"
+    },
+    {
+      "id": "eyebrow",
+      "type": "text",
+      "label": "Eyebrow text"
+    },
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "subheading",
+      "type": "text",
+      "label": "Subheading"
+    },
+    {
+      "id": "button_label",
+      "type": "text",
+      "label": "Button label"
+    },
+    {
+      "id": "button_link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "button_bg",
+      "type": "color",
+      "label": "Button background"
+    },
+    {
+      "id": "button_text_color",
+      "type": "color",
+      "label": "Button text color"
+    },
+    {
+      "id": "overlay_opacity",
+      "type": "range",
+      "label": "Overlay opacity"
+    },
+    {
+      "id": "min_height",
+      "type": "range",
+      "label": "Min height"
+    },
+    {
+      "id": "padding-block-start",
+      "type": "range",
+      "label": "Top padding"
+    },
+    {
+      "id": "padding-block-end",
+      "type": "range",
+      "label": "Bottom padding"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 72,
+  "required": false,
+  "name": "Editorial Promo Banner",
+  "purpose": "Editorial Promo Banner section — storytelling",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Editorial Promo Banner",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "full-width-image",
+      "tablet_layout": "full-width-stack",
+      "mobile_layout": "full-width-stack",
+      "alignment_rules": "heading-center, cta-center",
+      "content_hierarchy": "image-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 40,
+    "fashion": 100,
+    "minimal_modern": 50
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "content",
+      "promotion"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "lead_capture",
+      "faq",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

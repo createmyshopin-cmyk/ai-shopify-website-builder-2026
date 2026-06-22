@@ -1,0 +1,2195 @@
+{% liquid
+  assign video_blocks = section.blocks | where: 'type', 'video'
+  assign columns = section.settings.columns | default: 4
+  assign mobile_layout = section.settings.mobile_layout | default: 'row-scroll'
+  assign mobile_aspect_ratio = section.settings.mobile_aspect_ratio | default: 'auto'
+  assign video_autoplay = section.settings.video_autoplay
+  assign video_muted = section.settings.video_muted
+  assign video_loop = section.settings.video_loop
+  assign show_mute_button = section.settings.show_mute_button
+  assign desktop_video_playback = section.settings.desktop_video_playback | default: 'popup'
+  assign heading_font_size = section.settings.heading_font_size | default: 40
+  assign heading_font_size_mobile = section.settings.heading_font_size_mobile | default: 28
+%}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    --neeloos-video-columns: {{ columns }};
+    --neeloos-video-gap: {{ section.settings.gap }}px;
+    --neeloos-video-heading-size: {{ heading_font_size }}px;
+    --neeloos-video-leaf-color: {{ section.settings.leaf_color }};
+    --neeloos-video-title-color: {{ section.settings.title_color }};
+    --neeloos-video-link-color: {{ section.settings.link_color }};
+    --neeloos-video-caption-color: {{ section.settings.caption_color }};
+    --neeloos-video-thumb-radius: {{ section.settings.thumbnail_radius }}px;
+    --neeloos-video-duration-bg: {{ section.settings.duration_bg }};
+    --neeloos-video-duration-color: {{ section.settings.duration_color }};
+    --neeloos-video-dot-active: {{ section.settings.dot_active_color }};
+    --neeloos-video-dot-inactive: {{ section.settings.dot_inactive_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      --neeloos-video-gap: {{ section.settings.mobile_gap }}px;
+      --neeloos-video-heading-size: {{ heading_font_size_mobile }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .neeloos-video__title,
+  #shopify-section-{{ section.id }} h2.neeloos-video__title,
+  #shopify-section-{{ section.id }} .neeloos-video__title:is(.h1.h1, .h2.h2, .h3.h3) {
+    font-size: {{ heading_font_size }}px !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .neeloos-video__title,
+    #shopify-section-{{ section.id }} h2.neeloos-video__title,
+    #shopify-section-{{ section.id }} .neeloos-video__title:is(.h1.h1, .h2.h2, .h3.h3) {
+      font-size: {{ heading_font_size_mobile }}px !important;
+    }
+  }
+{% endstyle %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="
+    section
+    section--{{ section.settings.section_width }}
+    color-{{ section.settings.color_scheme }}
+    neeloos-video
+    neeloos-video--mobile-{{ mobile_layout }}
+    spacing-style
+  "
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  <div class="neeloos-video__inner">
+    {% if section.settings.show_heading %}
+      <div class="neeloos-video__header">
+        {% assign heading_type_preset = section.settings.heading_type_preset | default: 'h2' %}
+        <h2 class="neeloos-video__title {{ heading_type_preset }} {{ heading_type_preset }}">
+          <span>{{ section.settings.heading }}</span>
+          {% if section.settings.show_leaf_icon %}
+            <span class="neeloos-video__leaf" aria-hidden="true">
+              <svg viewBox="0 0 42 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 19C10 19 5 13 3 5c8 0 15 3 18 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M24 16C25 8 31 3 39 2c-1 8-6 14-15 16" fill="currentColor" opacity=".75"/>
+                <path d="M7 12c9 2 18 7 27 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          {% endif %}
+        </h2>
+
+        {% if section.settings.link_label != blank %}
+          <a
+            href="{{ section.settings.link_url | default: '#' }}"
+            class="neeloos-video__link"
+          >
+            <span>{{ section.settings.link_label }}</span>
+            <span class="neeloos-video__link-arrow" aria-hidden="true">→</span>
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if video_blocks.size > 0 %}
+      <neeloos-video-carousel
+        class="neeloos-video__carousel"
+        data-mobile-layout="{{ mobile_layout }}"
+        data-autoplay="{% if section.settings.mobile_autoplay %}true{% else %}false{% endif %}"
+        data-autoplay-speed="{{ section.settings.mobile_autoplay_speed }}"
+        data-slide-duration="{{ section.settings.mobile_slide_duration }}"
+        data-mobile-aspect="{{ mobile_aspect_ratio }}"
+        data-video-autoplay="{% if video_autoplay %}true{% else %}false{% endif %}"
+        data-video-muted="{% if video_muted %}true{% else %}false{% endif %}"
+        data-show-mute-button="{% if show_mute_button %}true{% else %}false{% endif %}"
+        data-video-loop="{% if video_loop %}true{% else %}false{% endif %}"
+        data-desktop-popup="{% if desktop_video_playback == 'popup' %}true{% else %}false{% endif %}"
+      >
+        <div class="neeloos-video__grid" data-track>
+        {% for block in video_blocks %}
+          {% liquid
+            assign has_shopify_video = false
+            assign has_external_video = false
+            if block.settings.video != blank
+              assign has_shopify_video = true
+            elsif block.settings.video_url != blank
+              assign has_external_video = true
+            endif
+
+            assign youtube_id = ''
+            if block.settings.video_url != blank
+              assign video_url = block.settings.video_url
+              if video_url contains 'youtube.com/watch?v='
+                assign youtube_id = video_url | split: 'v=' | last | split: '&' | first
+              elsif video_url contains 'youtu.be/'
+                assign youtube_id = video_url | split: 'youtu.be/' | last | split: '?' | first
+              elsif video_url contains 'youtube.com/embed/'
+                assign youtube_id = video_url | split: 'embed/' | last | split: '?' | first
+              elsif video_url contains 'youtube.com/shorts/'
+                assign youtube_id = video_url | split: 'shorts/' | last | split: '?' | first
+              endif
+            endif
+
+            assign poster_image = block.settings.thumbnail
+            if poster_image == blank and block.settings.video != blank
+              assign poster_image = block.settings.video.preview_image
+            endif
+
+            assign shopify_youtube_id = ''
+            assign shopify_vimeo_id = ''
+            if block.settings.video != blank
+              if block.settings.video.host == 'youtube'
+                assign shopify_youtube_id = block.settings.video.external_id
+              elsif block.settings.video.host == 'vimeo'
+                assign shopify_vimeo_id = block.settings.video.external_id
+              endif
+            endif
+
+            if shopify_youtube_id != blank
+              assign youtube_id = shopify_youtube_id
+            endif
+
+            assign has_native_video = false
+            if has_shopify_video and shopify_youtube_id == blank and shopify_vimeo_id == blank
+              assign has_native_video = true
+            elsif has_external_video and youtube_id == blank and shopify_vimeo_id == blank
+              assign has_native_video = true
+            endif
+
+            assign has_embed_video = false
+            if youtube_id != blank or shopify_vimeo_id != blank
+              assign has_embed_video = true
+            endif
+
+            assign video_poster_url = blank
+            if poster_image != blank
+              assign video_poster_url = poster_image | image_url: width: 800
+            endif
+
+            assign embed_poster_url = blank
+            if has_embed_video
+              if poster_image != blank
+                assign embed_poster_url = poster_image | image_url: width: 800
+              elsif youtube_id != blank
+                assign embed_poster_url = 'https://img.youtube.com/vi/' | append: youtube_id | append: '/hqdefault.jpg'
+              endif
+            endif
+
+            assign thumb_ratio = 'auto'
+            if block.settings.aspect_ratio != 'default'
+              assign thumb_ratio = block.settings.aspect_ratio
+            elsif mobile_aspect_ratio == '9-16'
+              assign thumb_ratio = '9-16'
+            elsif mobile_aspect_ratio == '4-3'
+              assign thumb_ratio = '4-3'
+            elsif video_url contains 'shorts/'
+              assign thumb_ratio = '9-16'
+            elsif block.settings.video != blank and block.settings.video.aspect_ratio != blank
+              if block.settings.video.aspect_ratio < 0.85
+                assign thumb_ratio = '9-16'
+              else
+                assign thumb_ratio = '4-3'
+              endif
+            endif
+          %}
+
+          <article class="neeloos-video__card neeloos-video__card--ratio-{{ thumb_ratio }}" {{ block.shopify_attributes }}>
+            <div class="neeloos-video__thumb-wrap">
+              {% if block.settings.link != blank and has_shopify_video == false and has_external_video == false %}
+                <a
+                  href="{{ block.settings.link }}"
+                  class="neeloos-video__media neeloos-video__media--link"
+                  aria-label="{{ block.settings.caption | escape }}"
+                >
+              {% else %}
+                <div
+                  class="neeloos-video__media{% if has_shopify_video or has_external_video %} neeloos-video__media--has-video{% endif %}"
+                  {% if has_shopify_video or has_external_video %}
+                    data-neeloos-video-media
+                    data-video-kind="{% if has_shopify_video %}{% if shopify_youtube_id != blank %}youtube{% elsif shopify_vimeo_id != blank %}vimeo{% else %}shopify{% endif %}{% elsif youtube_id != blank %}youtube{% else %}file{% endif %}"
+                    {% if youtube_id != blank %}
+                      data-youtube-id="{{ youtube_id }}"
+                    {% endif %}
+                    {% if shopify_vimeo_id != blank %}
+                      data-vimeo-id="{{ shopify_vimeo_id }}"
+                    {% endif %}
+                    {% if video_poster_url != blank and has_native_video %}
+                      data-poster-url="{{ video_poster_url }}"
+                    {% endif %}
+                    {% if has_external_video and youtube_id == blank and shopify_vimeo_id == blank %}
+                      data-video-url="{{ block.settings.video_url | escape }}"
+                    {% endif %}
+                  {% endif %}
+                >
+              {% endif %}
+
+                <div class="neeloos-video__thumb neeloos-video__thumb--ratio-{{ thumb_ratio }}" data-forge-slot-id="thumbnail"{% if poster_image == blank and has_native_video == false and has_embed_video == false and has_shopify_video == false and has_external_video == false %} data-forge-slot-blank="true"{% endif %}>
+                  {% if has_native_video and has_shopify_video %}
+                    {{
+                      block.settings.video
+                      | video_tag:
+                        class: 'neeloos-video__player',
+                        image_size: '1200x',
+                        autoplay: false,
+                        loop: video_loop,
+                        muted: video_muted,
+                        controls: false,
+                        playsinline: true,
+                        preload: 'metadata'
+                    }}
+                  {% elsif has_native_video and has_external_video %}
+                    <video
+                      class="neeloos-video__player"
+                      playsinline
+                      preload="metadata"
+                      {% if video_loop %}loop{% endif %}
+                      {% if video_muted %}muted{% endif %}
+                      {% if video_poster_url != blank %}
+                        poster="{{ video_poster_url }}"
+                      {% endif %}
+                    >
+                      <source src="{{ block.settings.video_url }}" type="video/mp4">
+                    </video>
+                  {% elsif has_embed_video %}
+                    <div class="neeloos-video__embed" data-embed-wrap hidden>
+                      <iframe
+                        class="neeloos-video__player neeloos-video__player--embed"
+                        title="{{ block.settings.caption | default: 'Video' | escape }}"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  {% endif %}
+
+                  {% if has_embed_video and embed_poster_url != blank %}
+                    {% if poster_image != blank %}
+                      {{
+                        poster_image
+                        | image_url: width: 800
+                        | image_tag:
+                          class: 'neeloos-video__poster',
+                          loading: 'lazy',
+                          widths: '320, 400, 500, 600, 800',
+                          sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 75vw',
+                          alt: poster_image.alt | default: block.settings.caption
+                      }}
+                    {% else %}
+                      {% # theme-check-disable RemoteAsset %}
+                      <img
+                        class="neeloos-video__poster"
+                        src="{{ embed_poster_url }}"
+                        alt="{{ block.settings.caption | default: 'Video thumbnail' | escape }}"
+                        loading="lazy"
+                        width="800"
+                        height="450"
+                      >
+                      {% # theme-check-enable RemoteAsset %}
+                    {% endif %}
+                  {% elsif has_native_video == false and has_embed_video == false and has_shopify_video == false and has_external_video == false %}
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'neeloos-video__poster neeloos-video__poster--placeholder' }}
+                  {% endif %}
+
+                  {% if has_shopify_video or has_external_video %}
+                    <button
+                      type="button"
+                      class="neeloos-video__play"
+                      data-play-button
+                      aria-label="{{ 'accessibility.play_video' | t | default: 'Play video' }}: {{ block.settings.caption | escape }}"
+                    >
+                      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.95"/>
+                        <path d="M20 16.5v15l12-7.5-12-7.5z" fill="#2b211b"/>
+                      </svg>
+                    </button>
+                    <span class="neeloos-video__duration" data-duration hidden>0:00</span>
+                    {% if show_mute_button and has_native_video %}
+                      <button
+                        type="button"
+                        class="neeloos-video__mute"
+                        data-mute-button
+                        hidden
+                        aria-pressed="{% if video_muted %}true{% else %}false{% endif %}"
+                        aria-label="{% if video_muted %}Unmute video{% else %}Mute video{% endif %}"
+                      >
+                        <span class="neeloos-video__mute-icon neeloos-video__mute-icon--muted" aria-hidden="true"{% unless video_muted %} hidden{% endunless %}>
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 5L6 9H3v6h3l5 4V5z" fill="currentColor"/>
+                            <path d="M16 10l6 6M22 10l-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                          </svg>
+                        </span>
+                        <span class="neeloos-video__mute-icon neeloos-video__mute-icon--unmuted" aria-hidden="true"{% if video_muted %} hidden{% endif %}>
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 5L6 9H3v6h3l5 4V5z" fill="currentColor"/>
+                            <path d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a9 9 0 010 14.14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                          </svg>
+                        </span>
+                      </button>
+                    {% endif %}
+                  {% elsif block.settings.link == blank %}
+                    <span class="neeloos-video__play neeloos-video__play--static" aria-hidden="true">
+                      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.95"/>
+                        <path d="M20 16.5v15l12-7.5-12-7.5z" fill="#2b211b"/>
+                      </svg>
+                    </span>
+                  {% endif %}
+                </div>
+
+              {% if block.settings.link != blank and has_shopify_video == false and has_external_video == false %}
+                </a>
+              {% else %}
+                </div>
+              {% endif %}
+            </div>
+
+            {% if block.settings.caption != blank %}
+              <h3 class="neeloos-video__caption">{{ block.settings.caption }}</h3>
+            {% endif %}
+
+            {% if has_shopify_video and shopify_youtube_id == blank and shopify_vimeo_id == blank %}
+              <template data-neeloos-video-template>
+                {{
+                  block.settings.video
+                  | video_tag:
+                    class: 'neeloos-video__modal-player',
+                    image_size: '1200x',
+                    autoplay: true,
+                    loop: video_loop,
+                    muted: video_muted,
+                    controls: true,
+                    playsinline: true
+                }}
+              </template>
+            {% endif %}
+          </article>
+        {% endfor %}
+        </div>
+        <div class="neeloos-video__dots" data-dots role="tablist" aria-label="Video slides"></div>
+
+        <dialog class="neeloos-video__modal" data-neeloos-video-modal aria-label="Video player">
+          <button type="button" class="neeloos-video__modal-close" data-neeloos-video-close aria-label="Close video">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <div class="neeloos-video__modal-body" data-neeloos-video-modal-body></div>
+        </dialog>
+      </neeloos-video-carousel>
+    {% else %}
+      {% assign default_captions = 'Ragi Banana Porridge in 3 Easy Steps|Sathu Maavu Mix Quick Recipe|How My Baby Loves Neeloos Every Day|Travel-Friendly Nutritious Meals' | split: '|' %}
+      <neeloos-video-carousel
+        class="neeloos-video__carousel"
+        data-mobile-layout="{{ mobile_layout }}"
+        data-autoplay="{% if section.settings.mobile_autoplay %}true{% else %}false{% endif %}"
+        data-autoplay-speed="{{ section.settings.mobile_autoplay_speed }}"
+        data-slide-duration="{{ section.settings.mobile_slide_duration }}"
+        data-mobile-aspect="{{ mobile_aspect_ratio }}"
+        data-video-autoplay="{% if video_autoplay %}true{% else %}false{% endif %}"
+        data-video-muted="{% if video_muted %}true{% else %}false{% endif %}"
+        data-show-mute-button="{% if show_mute_button %}true{% else %}false{% endif %}"
+        data-video-loop="{% if video_loop %}true{% else %}false{% endif %}"
+        data-desktop-popup="{% if desktop_video_playback == 'popup' %}true{% else %}false{% endif %}"
+      >
+        <div class="neeloos-video__grid" data-track>
+        {% for i in (0..3) %}
+          <article class="neeloos-video__card">
+            <div class="neeloos-video__thumb-wrap">
+              <div class="neeloos-video__media">
+                <div class="neeloos-video__thumb" data-forge-slot-blank="true">
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'neeloos-video__poster neeloos-video__poster--placeholder' }}
+                  <span class="neeloos-video__play neeloos-video__play--static" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.95"/>
+                      <path d="M20 16.5v15l12-7.5-12-7.5z" fill="#2b211b"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <h3 class="neeloos-video__caption">{{ default_captions[i] }}</h3>
+          </article>
+        {% endfor %}
+        </div>
+        <div class="neeloos-video__dots" data-dots role="tablist" aria-label="Video slides"></div>
+
+        <dialog class="neeloos-video__modal" data-neeloos-video-modal aria-label="Video player">
+          <button type="button" class="neeloos-video__modal-close" data-neeloos-video-close aria-label="Close video">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <div class="neeloos-video__modal-body" data-neeloos-video-modal-body></div>
+        </dialog>
+      </neeloos-video-carousel>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .neeloos-video {
+    position: relative;
+    width: 100%;
+  }
+
+  .neeloos-video__inner {
+    margin: 0 auto;
+    max-width: 1280px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .neeloos-video__header {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    justify-content: space-between;
+    margin-bottom: 36px;
+  }
+
+  .neeloos-video__title {
+    align-items: center;
+    color: var(--neeloos-video-title-color, var(--color-foreground-heading));
+    display: inline-flex;
+    flex: 1 1 auto;
+    font-family: var(--font-heading--family);
+    font-size: var(--neeloos-video-heading-size);
+    font-weight: 400;
+    gap: 10px;
+    line-height: 1.2;
+    margin: 0;
+    min-width: 0;
+  }
+
+  .neeloos-video__leaf {
+    color: var(--neeloos-video-leaf-color);
+    display: inline-flex;
+    flex-shrink: 0;
+    height: 0.5em;
+    width: 0.72em;
+  }
+
+  .neeloos-video__leaf svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  .neeloos-video__link {
+    align-items: center;
+    color: var(--neeloos-video-link-color);
+    display: inline-flex;
+    flex-shrink: 0;
+    font-family: var(--font-body--family);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    gap: 6px;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .neeloos-video__link:hover {
+    opacity: 0.8;
+  }
+
+  .neeloos-video__link-arrow {
+    font-size: 1.1em;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .neeloos-video__link:hover .neeloos-video__link-arrow {
+    transform: translateX(3px);
+  }
+
+  .neeloos-video__grid {
+    display: grid;
+    gap: var(--neeloos-video-gap);
+    grid-template-columns: repeat(var(--neeloos-video-columns), minmax(0, 1fr));
+  }
+
+  .neeloos-video__card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .neeloos-video__thumb-wrap {
+    width: 100%;
+  }
+
+  .neeloos-video__media {
+    display: block;
+    width: 100%;
+  }
+
+  .neeloos-video__media--link {
+    text-decoration: none;
+  }
+
+  .neeloos-video__thumb {
+    aspect-ratio: 4 / 3;
+    background: rgb(43 33 27 / 0.06);
+    border-radius: var(--neeloos-video-thumb-radius);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .neeloos-video__poster,
+  .neeloos-video__poster--placeholder {
+    display: block;
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    position: absolute;
+    transition: opacity 0.25s ease;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .neeloos-video__poster--placeholder {
+    background: rgb(43 33 27 / 0.06);
+  }
+
+  .neeloos-video__player {
+    display: block;
+    height: 100%;
+    inset: 0;
+    left: 0;
+    object-fit: cover;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .neeloos-video__player--embed {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 2;
+  }
+
+  .neeloos-video__embed {
+    border: 0;
+    height: 100%;
+    inset: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .neeloos-video__embed[hidden] {
+    display: none;
+  }
+
+  .neeloos-video__thumb.is-playing .neeloos-video__poster {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .neeloos-video__thumb.is-playing .neeloos-video__player--embed,
+  .neeloos-video__thumb.is-playing .neeloos-video__embed {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .neeloos-video__thumb.is-playing .neeloos-video__player:not(.neeloos-video__player--embed) {
+    pointer-events: auto;
+    z-index: 2;
+  }
+
+  .neeloos-video__play {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    left: 50%;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    width: clamp(44px, 12%, 56px);
+    z-index: 2;
+  }
+
+  .neeloos-video__play--static {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .neeloos-video__play svg {
+    display: block;
+    filter: drop-shadow(0 2px 8px rgb(0 0 0 / 0.15));
+    height: auto;
+    width: 100%;
+  }
+
+  .neeloos-video__thumb.is-playing .neeloos-video__play {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+
+  .neeloos-video__duration {
+    background: var(--neeloos-video-duration-bg);
+    border-radius: 6px;
+    bottom: 10px;
+    color: var(--neeloos-video-duration-color);
+    font-family: var(--font-body--family);
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    line-height: 1;
+    padding: 5px 8px;
+    position: absolute;
+    right: 10px;
+    z-index: 2;
+  }
+
+  .neeloos-video__duration[hidden] {
+    display: none;
+  }
+
+  .neeloos-video__mute {
+    align-items: center;
+    background: var(--neeloos-video-duration-bg);
+    border: 0;
+    border-radius: 999px;
+    bottom: 10px;
+    color: var(--neeloos-video-duration-color);
+    cursor: pointer;
+    display: inline-flex;
+    height: 30px;
+    justify-content: center;
+    left: 10px;
+    padding: 0;
+    position: absolute;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    width: 30px;
+    z-index: 3;
+  }
+
+  .neeloos-video__mute[hidden] {
+    display: none;
+  }
+
+  .neeloos-video__mute:hover {
+    transform: scale(1.05);
+  }
+
+  .neeloos-video__mute-icon {
+    align-items: center;
+    display: inline-flex;
+    height: 16px;
+    justify-content: center;
+    width: 16px;
+  }
+
+  .neeloos-video__mute-icon[hidden] {
+    display: none !important;
+  }
+
+  .neeloos-video__mute-icon svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .neeloos-video__caption {
+    color: var(--neeloos-video-caption-color, var(--color-foreground-heading));
+    font-family: var(--font-heading--family);
+    font-size: clamp(0.875rem, 1.1vw, 1.0625rem);
+    font-weight: 400;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .neeloos-video__carousel {
+    display: block;
+  }
+
+  .neeloos-video__modal {
+    background: transparent;
+    border: 0;
+    margin: auto;
+    max-height: none;
+    max-width: none;
+    overflow: visible;
+    padding: 0;
+    position: relative;
+    width: min(92vw, 960px);
+  }
+
+  .neeloos-video__modal::backdrop {
+    background: rgb(0 0 0 / 0.72);
+  }
+
+  .neeloos-video__modal-close {
+    align-items: center;
+    background: rgb(255 255 255 / 0.95);
+    border: 0;
+    border-radius: 999px;
+    color: #2b211b;
+    cursor: pointer;
+    display: inline-flex;
+    height: 40px;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: -48px;
+    width: 40px;
+    z-index: 2;
+  }
+
+  .neeloos-video__modal-close svg {
+    height: 18px;
+    width: 18px;
+  }
+
+  .neeloos-video__modal-body {
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .neeloos-video__modal-body iframe,
+  .neeloos-video__modal-body video {
+    border: 0;
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 750px) {
+    .neeloos-video__carousel[data-desktop-popup='true'] .neeloos-video__mute {
+      display: none !important;
+    }
+  }
+
+  .neeloos-video__dots {
+    display: none;
+  }
+
+  .neeloos-video__dot {
+    appearance: none;
+    background: var(--neeloos-video-dot-inactive, rgb(43 33 27 / 0.2));
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    display: block;
+    height: 8px;
+    padding: 0;
+    transition: background 0.25s ease, width 0.25s ease, transform 0.25s ease;
+    width: 8px;
+  }
+
+  .neeloos-video__dot[aria-selected='true'] {
+    background: var(--neeloos-video-dot-active, #7e9364);
+    transform: scale(1.05);
+    width: 20px;
+  }
+
+  @media screen and (max-width: 989px) {
+    .neeloos-video__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .neeloos-video {
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .neeloos-video__inner {
+      box-sizing: border-box;
+      max-width: 100%;
+      padding-inline: var(--page-margin, 16px);
+      width: 100%;
+    }
+
+    .neeloos-video__header {
+      align-items: flex-start;
+      flex-direction: column;
+      margin-bottom: 24px;
+    }
+
+    .neeloos-video__title {
+      gap: 8px;
+    }
+
+    .neeloos-video--mobile-row-scroll .neeloos-video__grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--neeloos-video-gap);
+      -webkit-overflow-scrolling: touch;
+      margin-inline: 0;
+      max-width: 100%;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      padding-bottom: 4px;
+      padding-inline: 0;
+      scroll-behavior: auto;
+      scroll-padding-inline: 0;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      width: 100%;
+    }
+
+    .neeloos-video--mobile-row-scroll .neeloos-video__grid.is-scrolling {
+      scroll-snap-type: none;
+    }
+
+    .neeloos-video--mobile-row-scroll .neeloos-video__grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .neeloos-video--mobile-row-scroll .neeloos-video__card {
+      flex: 0 0 min(78%, calc(100% - var(--neeloos-video-gap)));
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+
+    .neeloos-video__thumb--ratio-9-16 {
+      aspect-ratio: 9 / 16;
+    }
+
+    .neeloos-video__thumb--ratio-4-3 {
+      aspect-ratio: 4 / 3;
+    }
+
+    .neeloos-video--mobile-row-scroll .neeloos-video__card--ratio-9-16 {
+      flex: 0 0 min(56%, 260px);
+    }
+
+    .neeloos-video--mobile-grid-2x2 .neeloos-video__card--ratio-9-16 {
+      max-width: 100%;
+    }
+
+    .neeloos-video--mobile-column-1 .neeloos-video__card--ratio-9-16 {
+      margin-inline: auto;
+      max-width: min(72vw, 320px);
+      width: 100%;
+    }
+
+    .neeloos-video--mobile-row-scroll .neeloos-video__dots {
+      align-items: center;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .neeloos-video--mobile-row-scroll .neeloos-video__dots:empty {
+      display: none;
+    }
+
+    .neeloos-video--mobile-grid-2x2 .neeloos-video__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .neeloos-video--mobile-column-1 .neeloos-video__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  class NeeloosVideoCarousel extends HTMLElement {
+    constructor() {
+      super();
+      this.activeIndex = 0;
+      this.isUserPaused = false;
+      this.isCarouselSuspended = false;
+      this.autoplayTimer = null;
+      this.autoplayLoopId = 0;
+      this.scrollAnimationId = null;
+      this.scrollRaf = null;
+      this.scrollingProgrammatically = false;
+      this.autoplayEnabled = this.dataset.autoplay === 'true';
+      this.autoplaySpeed = (parseInt(this.dataset.autoplaySpeed, 10) || 5) * 1000;
+      this.slideDuration = parseInt(this.dataset.slideDuration, 10) || 700;
+      this.mobileAspectMode = this.dataset.mobileAspect || 'auto';
+      this.videoAutoplayEnabled = this.dataset.videoAutoplay === 'true';
+      this.defaultMuted = this.dataset.videoMuted !== 'false';
+      this.showMuteButton = this.dataset.showMuteButton !== 'false';
+      this.videoLoop = this.dataset.videoLoop === 'true';
+      this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    connectedCallback() {
+      this.track = this.querySelector('[data-track]');
+      this.dotsContainer = this.querySelector('[data-dots]');
+      this.cards = Array.from(this.track?.querySelectorAll('.neeloos-video__card') || []);
+
+      if (!this.track || this.cards.length === 0) return;
+
+      this.activeIndex = this.getIndexFromScroll();
+      this.readSettings();
+
+      this.initInlinePlayers();
+      this.initVideoAutoplayObserver();
+      this.initModal();
+      this.bindEvents();
+      this.refresh();
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => this.refresh());
+      });
+
+      this.resizeObserver = new ResizeObserver(() => {
+        window.clearTimeout(this._refreshDebounce);
+        this._refreshDebounce = window.setTimeout(() => this.refresh(), 200);
+      });
+      this.resizeObserver.observe(this);
+
+      this.reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      this._handleReducedMotionChange = () => {
+        this.prefersReducedMotion = this.reducedMotionQuery.matches;
+        this.refresh();
+      };
+      this.reducedMotionQuery.addEventListener('change', this._handleReducedMotionChange);
+
+      this._handleResize = () => {
+        window.clearTimeout(this._resizeDebounce);
+        this._resizeDebounce = window.setTimeout(() => this.refresh(), 150);
+      };
+      window.addEventListener('resize', this._handleResize);
+    }
+
+    disconnectedCallback() {
+      this.resizeObserver?.disconnect();
+      this.videoObserver?.disconnect();
+      this.stopAutoplay();
+      this.cancelScrollAnimation();
+      window.clearTimeout(this._refreshDebounce);
+      window.clearTimeout(this._resizeDebounce);
+      if (this._resumeTimer) clearTimeout(this._resumeTimer);
+      this.reducedMotionQuery?.removeEventListener('change', this._handleReducedMotionChange);
+      window.removeEventListener('resize', this._handleResize);
+    }
+
+    readSettings() {
+      this.autoplayEnabled = this.dataset.autoplay === 'true';
+      this.autoplaySpeed = (parseInt(this.dataset.autoplaySpeed, 10) || 5) * 1000;
+      this.slideDuration = parseInt(this.dataset.slideDuration, 10) || 700;
+      this.mobileAspectMode = this.dataset.mobileAspect || 'auto';
+      this.videoAutoplayEnabled = this.dataset.videoAutoplay === 'true';
+      this.defaultMuted = this.dataset.videoMuted !== 'false';
+      this.showMuteButton = this.dataset.showMuteButton !== 'false';
+      this.videoLoop = this.dataset.videoLoop === 'true';
+      this.desktopPopupEnabled = this.dataset.desktopPopup === 'true';
+      this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    isDesktopViewport() {
+      return window.innerWidth >= 750;
+    }
+
+    useDesktopPopup() {
+      return this.desktopPopupEnabled && this.isDesktopViewport();
+    }
+
+    isMobileCarousel() {
+      return window.innerWidth <= 749 && this.dataset.mobileLayout === 'row-scroll';
+    }
+
+    shouldDisableVideoAutoplayOnMobile() {
+      return this.isMobileCarousel() && this.autoplayEnabled;
+    }
+
+    refresh() {
+      this.readSettings();
+      this.cards = Array.from(this.track?.querySelectorAll('.neeloos-video__card') || []);
+
+      if (!this.isMobileCarousel()) {
+        this.dotsContainer.innerHTML = '';
+        this.stopAutoplay();
+        return;
+      }
+
+      this.activeIndex = this.getIndexFromScroll();
+      this.createDots();
+      this.updateDots();
+
+      if (!this.hasPlayingVideo()) {
+        this.isCarouselSuspended = false;
+      }
+
+      if (!this.isUserPaused && !this.isCarouselSuspended) {
+        this.startAutoplay();
+      }
+    }
+
+    easeInOutCubic(progress) {
+      return progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+    }
+
+    getCardScrollLeft(index) {
+      const card = this.cards[index];
+      if (!card || !this.track) return 0;
+
+      const trackWidth = this.track.clientWidth;
+      const cardWidth = card.offsetWidth;
+      const maxScroll = Math.max(0, this.track.scrollWidth - trackWidth);
+      const cardStart = card.offsetLeft;
+      const centered = cardStart - (trackWidth - cardWidth) / 2;
+
+      return Math.min(maxScroll, Math.max(0, centered));
+    }
+
+    cancelScrollAnimation() {
+      if (this.scrollAnimationId) {
+        cancelAnimationFrame(this.scrollAnimationId);
+        this.scrollAnimationId = null;
+      }
+      this.track?.classList.remove('is-scrolling');
+      this.scrollingProgrammatically = false;
+    }
+
+    animateScrollTo(targetLeft, duration = this.slideDuration) {
+      if (!this.track) return Promise.resolve();
+
+      this.cancelScrollAnimation();
+
+      if (this.prefersReducedMotion || duration <= 0) {
+        this.track.scrollLeft = targetLeft;
+        this.scrollingProgrammatically = false;
+        return Promise.resolve();
+      }
+
+      const startLeft = this.track.scrollLeft;
+      const distance = targetLeft - startLeft;
+
+      if (Math.abs(distance) < 1) {
+        this.track.scrollLeft = targetLeft;
+        return Promise.resolve();
+      }
+
+      this.scrollingProgrammatically = true;
+      this.track.classList.add('is-scrolling');
+      const startTime = performance.now();
+
+      return new Promise((resolve) => {
+        const step = (now) => {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          this.track.scrollLeft = startLeft + distance * this.easeInOutCubic(progress);
+
+          if (progress < 1) {
+            this.scrollAnimationId = requestAnimationFrame(step);
+            return;
+          }
+
+          this.track.scrollLeft = targetLeft;
+          this.scrollAnimationId = null;
+          this.track.classList.remove('is-scrolling');
+          this.scrollingProgrammatically = false;
+          resolve();
+        };
+
+        this.scrollAnimationId = requestAnimationFrame(step);
+      });
+    }
+
+    createDots() {
+      if (!this.dotsContainer) return;
+
+      this.dotsContainer.innerHTML = '';
+
+      this.cards.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.className = 'neeloos-video__dot';
+        dot.type = 'button';
+        dot.setAttribute('role', 'tab');
+        dot.dataset.dotIndex = String(index);
+        dot.setAttribute('aria-label', `Go to video ${index + 1}`);
+        dot.setAttribute('aria-selected', index === this.activeIndex ? 'true' : 'false');
+        dot.addEventListener('click', () => this.scrollToIndex(index));
+        this.dotsContainer.appendChild(dot);
+      });
+    }
+
+    bindEvents() {
+      this.track.addEventListener(
+        'scroll',
+        () => {
+          if (this.scrollingProgrammatically) return;
+          cancelAnimationFrame(this.scrollRaf);
+          this.scrollRaf = requestAnimationFrame(() => {
+            this.activeIndex = this.getIndexFromScroll();
+            this.updateDots();
+          });
+        },
+        { passive: true }
+      );
+
+      let dragStartX = null;
+      let dragPaused = false;
+
+      const resetDrag = () => {
+        dragStartX = null;
+        dragPaused = false;
+      };
+
+      this.track.addEventListener('pointerdown', (event) => {
+        if (event.target.closest('[data-play-button], [data-mute-button]')) return;
+        dragStartX = event.clientX;
+        dragPaused = false;
+      });
+
+      this.track.addEventListener(
+        'pointermove',
+        (event) => {
+          if (dragStartX === null || dragPaused) return;
+          if (Math.abs(event.clientX - dragStartX) > 12) {
+            dragPaused = true;
+            this.pauseCarouselForUser();
+          }
+        },
+        { passive: true }
+      );
+
+      this.track.addEventListener('pointerup', () => {
+        if (dragPaused) this.scheduleUserResume();
+        resetDrag();
+      });
+      this.track.addEventListener('pointercancel', resetDrag);
+      this.track.addEventListener('lostpointercapture', resetDrag);
+    }
+
+    getIndexFromScroll() {
+      if (!this.track || this.cards.length === 0) return 0;
+
+      const scrollLeft = this.track.scrollLeft;
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      this.cards.forEach((card, index) => {
+        const distance = Math.abs(this.getCardScrollLeft(index) - scrollLeft);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      return closestIndex;
+    }
+
+    async scrollToIndex(index, duration = this.slideDuration, options = {}) {
+      const { fromAutoplay = false } = options;
+      const card = this.cards[index];
+      if (!card || !this.track) return;
+
+      const previousIndex = this.activeIndex;
+      const targetLeft = this.getCardScrollLeft(index);
+      const isWrap =
+        index === 0 &&
+        previousIndex === this.cards.length - 1 &&
+        previousIndex !== index;
+
+      this.activeIndex = index;
+      this.updateDots();
+
+      if (isWrap) {
+        this.cancelScrollAnimation();
+        this.track.scrollLeft = targetLeft;
+        return;
+      }
+
+      await this.animateScrollTo(targetLeft, duration);
+      this.activeIndex = this.getIndexFromScroll();
+      this.updateDots();
+
+      if (!fromAutoplay) {
+        window.setTimeout(() => {
+          if (!this.hasPlayingVideo()) {
+            this.resumeCarouselAutoplay();
+          }
+        }, 150);
+      }
+    }
+
+    updateDots() {
+      this.dotsContainer?.querySelectorAll('.neeloos-video__dot').forEach((dot, index) => {
+        dot.setAttribute('aria-selected', index === this.activeIndex ? 'true' : 'false');
+      });
+    }
+
+    waitAutoplayDelay(ms, loopId) {
+      return new Promise((resolve) => {
+        this._delayResolve = (completed) => {
+          this._delayResolve = null;
+          resolve(completed && loopId === this.autoplayLoopId);
+        };
+        this.autoplayTimer = window.setTimeout(() => {
+          this.autoplayTimer = null;
+          this._delayResolve?.(true);
+        }, ms);
+      });
+    }
+
+    cancelAutoplayDelay() {
+      if (this.autoplayTimer) {
+        clearTimeout(this.autoplayTimer);
+        this.autoplayTimer = null;
+      }
+      this._delayResolve?.(false);
+    }
+
+    pauseAllVideosForCarousel() {
+      this.mediaItems?.forEach((item) => {
+        const thumb = item.querySelector('.neeloos-video__thumb');
+        const video = item.querySelector('video');
+        const muteButton = item.querySelector('[data-mute-button]');
+        const embedFrame = item.querySelector('.neeloos-video__player--embed');
+        const durationEl = item.querySelector('[data-duration]');
+
+        this.setVideoPlayingState(thumb, muteButton, video, false);
+
+        if (video && !video.paused) {
+          video.pause();
+          if (durationEl && Number.isFinite(video.duration)) {
+            durationEl.textContent = this.formatTime(video.duration);
+          }
+        }
+
+        if (embedFrame?.src) {
+          embedFrame.src = '';
+          item.querySelector('[data-embed-wrap]')?.setAttribute('hidden', '');
+        }
+      });
+    }
+
+    startAutoplay() {
+      this.stopAutoplay();
+      if (!this.autoplayEnabled || !this.isMobileCarousel()) return;
+      if (this.isUserPaused || this.isCarouselSuspended) return;
+      if (this.cards.length < 2) return;
+
+      const loopId = ++this.autoplayLoopId;
+
+      const runAutoplay = async () => {
+        while (
+          loopId === this.autoplayLoopId &&
+          this.autoplayEnabled &&
+          this.isMobileCarousel() &&
+          !this.isUserPaused &&
+          !this.isCarouselSuspended
+        ) {
+          const holdTime = Math.max(1200, this.autoplaySpeed - this.slideDuration);
+          const delayOk = await this.waitAutoplayDelay(holdTime, loopId);
+          if (!delayOk) break;
+
+          if (
+            loopId !== this.autoplayLoopId ||
+            this.isUserPaused ||
+            this.isCarouselSuspended ||
+            !this.isMobileCarousel()
+          ) {
+            break;
+          }
+
+          this._carouselAdvancing = true;
+          this.isCarouselSuspended = false;
+          this.pauseAllVideosForCarousel();
+
+          const nextIndex = (this.activeIndex + 1) % this.cards.length;
+          await this.scrollToIndex(nextIndex, this.slideDuration, { fromAutoplay: true });
+          this._carouselAdvancing = false;
+        }
+      };
+
+      runAutoplay();
+    }
+
+    stopAutoplay() {
+      this.autoplayLoopId += 1;
+      this.cancelAutoplayDelay();
+    }
+
+    suspendCarouselAutoplay() {
+      this.isCarouselSuspended = true;
+      this.stopAutoplay();
+    }
+
+    resumeCarouselAutoplay() {
+      this.isCarouselSuspended = false;
+      if (!this.isUserPaused) {
+        this.startAutoplay();
+      }
+    }
+
+    pauseCarouselForUser() {
+      this.isUserPaused = true;
+      this.stopAutoplay();
+      this.cancelScrollAnimation();
+    }
+
+    resumeCarouselForUser() {
+      this.isUserPaused = false;
+      this.startAutoplay();
+    }
+
+    scheduleUserResume() {
+      if (this._resumeTimer) clearTimeout(this._resumeTimer);
+      this._resumeTimer = window.setTimeout(() => this.resumeCarouselForUser(), 2500);
+    }
+
+    formatTime(seconds) {
+      if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+      const total = Math.floor(seconds);
+      const mins = Math.floor(total / 60);
+      const secs = total % 60;
+      return `${mins}:${String(secs).padStart(2, '0')}`;
+    }
+
+    applyMobileAspectRatio(thumb, card, video) {
+      if (!thumb || window.innerWidth > 749) return;
+      if (thumb.classList.contains('neeloos-video__thumb--ratio-9-16') || thumb.classList.contains('neeloos-video__thumb--ratio-4-3')) {
+        return;
+      }
+
+      let ratio = '4-3';
+      if (video && video.videoWidth && video.videoHeight) {
+        ratio = video.videoHeight > video.videoWidth ? '9-16' : '4-3';
+      } else if (this.mobileAspectMode === '9-16') {
+        ratio = '9-16';
+      }
+
+      thumb.classList.remove('neeloos-video__thumb--ratio-auto');
+      thumb.classList.add(`neeloos-video__thumb--ratio-${ratio}`);
+      card?.classList.remove('neeloos-video__card--ratio-auto');
+      card?.classList.add(`neeloos-video__card--ratio-${ratio}`);
+    }
+
+    updateMuteButton(muteButton, isMuted) {
+      if (!muteButton) return;
+      const mutedIcon = muteButton.querySelector('.neeloos-video__mute-icon--muted');
+      const unmutedIcon = muteButton.querySelector('.neeloos-video__mute-icon--unmuted');
+
+      muteButton.setAttribute('aria-pressed', isMuted ? 'true' : 'false');
+      muteButton.setAttribute('aria-label', isMuted ? 'Unmute video' : 'Mute video');
+
+      if (mutedIcon) mutedIcon.hidden = !isMuted;
+      if (unmutedIcon) unmutedIcon.hidden = isMuted;
+    }
+
+    syncMuteButton(muteButton, video) {
+      if (!muteButton || !video) return;
+      this.updateMuteButton(muteButton, video.muted);
+    }
+
+    setVideoPlayingState(thumb, muteButton, video, isPlaying) {
+      thumb?.classList.toggle('is-playing', isPlaying);
+      if (this.showMuteButton && muteButton && video) {
+        muteButton.hidden = !isPlaying;
+      }
+    }
+
+    pauseOtherVideos(currentMedia) {
+      this.mediaItems?.forEach((item) => {
+        if (item === currentMedia) return;
+        const otherThumb = item.querySelector('.neeloos-video__thumb');
+        const otherVideo = item.querySelector('video');
+        const otherFrame = item.querySelector('.neeloos-video__player--embed');
+        const otherMute = item.querySelector('[data-mute-button]');
+        this.setVideoPlayingState(otherThumb, otherMute, otherVideo, false);
+        if (otherVideo) {
+          otherVideo.pause();
+          const otherDuration = item.querySelector('[data-duration]');
+          if (otherDuration && Number.isFinite(otherVideo.duration)) {
+            otherDuration.textContent = this.formatTime(otherVideo.duration);
+          }
+        }
+        if (otherFrame) {
+          otherFrame.src = '';
+          item.querySelector('[data-embed-wrap]')?.setAttribute('hidden', '');
+        }
+      });
+
+      if (!this.hasPlayingVideo()) {
+        this.resumeCarouselAutoplay();
+      }
+    }
+
+    hasPlayingVideo() {
+      return (
+        this.mediaItems?.some((item) => {
+          const video = item.querySelector('video');
+          return video && !video.paused && !video.ended;
+        }) || false
+      );
+    }
+
+    initVideoAutoplayObserver() {
+      this.videoObserver?.disconnect();
+      if (!this.videoAutoplayEnabled || this.prefersReducedMotion) return;
+
+      this.videoObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const media = entry.target;
+            const video = media.querySelector('video');
+            const thumb = media.querySelector('.neeloos-video__thumb');
+            const muteButton = media.querySelector('[data-mute-button]');
+            if (!video) return;
+
+            if (this.shouldDisableVideoAutoplayOnMobile()) return;
+
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.55) {
+              if (this.useDesktopPopup()) return;
+
+              this.pauseOtherVideos(media);
+              this.suspendCarouselAutoplay();
+              if (media.dataset.userUnmuted !== 'true') {
+                video.muted = this.defaultMuted;
+                this.updateMuteButton(muteButton, video.muted);
+              }
+              video.loop = this.videoLoop;
+              this.setVideoPlayingState(thumb, muteButton, video, true);
+              video.play().catch(() => {
+                this.setVideoPlayingState(thumb, muteButton, video, false);
+              });
+            } else if (!video.paused) {
+              video.pause();
+              if (!video.ended) {
+                this.setVideoPlayingState(thumb, muteButton, video, false);
+              }
+              this.resumeCarouselAutoplay();
+            }
+          });
+        },
+        { threshold: [0, 0.55, 0.85] }
+      );
+
+      this.mediaItems?.forEach((media) => {
+        if (media.querySelector('video')) {
+          this.videoObserver.observe(media);
+        }
+      });
+    }
+
+    initModal() {
+      this.modal = this.querySelector('[data-neeloos-video-modal]');
+      this.modalBody = this.querySelector('[data-neeloos-video-modal-body]');
+      this.modalClose = this.querySelector('[data-neeloos-video-close]');
+      if (!this.modal || !this.modalBody) return;
+
+      this.modalClose?.addEventListener('click', () => this.closeVideoModal());
+      this.modal.addEventListener('click', (event) => {
+        if (event.target === this.modal) this.closeVideoModal();
+      });
+      this.modal.addEventListener('close', () => this.clearVideoModal());
+    }
+
+    clearVideoModal() {
+      if (!this.modalBody) return;
+      this.modalBody.querySelectorAll('video').forEach((video) => {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+      });
+      this.modalBody.innerHTML = '';
+    }
+
+    closeVideoModal() {
+      if (!this.modal?.open) return;
+      this.modal.close();
+      this.clearVideoModal();
+      this.resumeCarouselAutoplay();
+    }
+
+    openVideoModal(media) {
+      if (!this.modal || !this.modalBody) return;
+
+      const kind = media.dataset.videoKind;
+      const card = media.closest('.neeloos-video__card');
+      const caption = card?.querySelector('.neeloos-video__caption')?.textContent?.trim() || 'Video';
+      const isUnmuted = media.dataset.userUnmuted === 'true';
+      const shouldMute = !isUnmuted && this.defaultMuted;
+
+      this.pauseOtherVideos(media);
+      this.suspendCarouselAutoplay();
+      this.clearVideoModal();
+
+      if (kind === 'youtube' && media.dataset.youtubeId) {
+        const iframe = document.createElement('iframe');
+        iframe.className = 'neeloos-video__modal-player';
+        iframe.src = `https://www.youtube.com/embed/${media.dataset.youtubeId}?autoplay=1&playsinline=1&rel=0&mute=${shouldMute ? '1' : '0'}`;
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.title = caption;
+        this.modalBody.appendChild(iframe);
+      } else if (kind === 'vimeo' && media.dataset.vimeoId) {
+        const iframe = document.createElement('iframe');
+        iframe.className = 'neeloos-video__modal-player';
+        iframe.src = `https://player.vimeo.com/video/${media.dataset.vimeoId}?autoplay=1&muted=${shouldMute ? '1' : '0'}`;
+        iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.title = caption;
+        this.modalBody.appendChild(iframe);
+      } else if (kind === 'shopify') {
+        const template = card?.querySelector('[data-neeloos-video-template]');
+        if (!template) return;
+        const clone = template.content.cloneNode(true);
+        const modalVideo = clone.querySelector('video');
+        if (modalVideo) {
+          modalVideo.muted = shouldMute;
+          modalVideo.autoplay = true;
+          modalVideo.controls = true;
+        }
+        this.modalBody.appendChild(clone);
+      } else if (media.dataset.videoUrl) {
+        const modalVideo = document.createElement('video');
+        modalVideo.className = 'neeloos-video__modal-player';
+        modalVideo.src = media.dataset.videoUrl;
+        modalVideo.controls = true;
+        modalVideo.autoplay = true;
+        modalVideo.playsInline = true;
+        modalVideo.muted = shouldMute;
+        this.modalBody.appendChild(modalVideo);
+      } else {
+        const sourceVideo = media.querySelector('video');
+        if (!sourceVideo) return;
+        const modalVideo = document.createElement('video');
+        modalVideo.className = 'neeloos-video__modal-player';
+        modalVideo.controls = true;
+        modalVideo.autoplay = true;
+        modalVideo.playsInline = true;
+        modalVideo.muted = shouldMute;
+        sourceVideo.querySelectorAll('source').forEach((source) => {
+          const clonedSource = document.createElement('source');
+          clonedSource.src = source.src;
+          clonedSource.type = source.type;
+          modalVideo.appendChild(clonedSource);
+        });
+        if (sourceVideo.currentSrc) {
+          modalVideo.src = sourceVideo.currentSrc;
+        }
+        this.modalBody.appendChild(modalVideo);
+      }
+
+      if (typeof this.modal.showModal === 'function') {
+        this.modal.showModal();
+      }
+    }
+
+    initInlinePlayers() {
+      this.mediaItems = Array.from(this.querySelectorAll('[data-neeloos-video-media]'));
+
+      this.mediaItems.forEach((media) => {
+        if (media.dataset.inlineInit === 'true') return;
+        media.dataset.inlineInit = 'true';
+
+        const thumb = media.querySelector('.neeloos-video__thumb');
+        const card = media.closest('.neeloos-video__card');
+        const playButton = media.querySelector('[data-play-button]');
+        const muteButton = media.querySelector('[data-mute-button]');
+        const durationEl = media.querySelector('[data-duration]');
+        const kind = media.dataset.videoKind;
+        const video = media.querySelector('video.neeloos-video__player') || media.querySelector('video');
+        const embedWrap = media.querySelector('[data-embed-wrap]');
+        const embedFrame = media.querySelector('.neeloos-video__player--embed');
+
+        if (video && media.dataset.posterUrl) {
+          video.setAttribute('poster', media.dataset.posterUrl);
+        }
+
+        if (video) {
+          video.muted = this.defaultMuted;
+          video.loop = this.videoLoop;
+          this.syncMuteButton(muteButton, video);
+
+          video.addEventListener('volumechange', () => {
+            this.syncMuteButton(muteButton, video);
+          });
+        }
+
+        const showDuration = (seconds) => {
+          if (!durationEl || !Number.isFinite(seconds)) return;
+          durationEl.textContent = this.formatTime(seconds);
+          durationEl.hidden = false;
+        };
+
+        const updateCountdown = () => {
+          if (!video || !durationEl) return;
+          const remaining = Math.max(0, video.duration - video.currentTime);
+          durationEl.textContent = this.formatTime(remaining);
+        };
+
+        const pauseOthers = (currentMedia) => {
+          this.pauseOtherVideos(currentMedia);
+        };
+
+        const startPlaying = () => {
+          if (this.useDesktopPopup()) {
+            this.openVideoModal(media);
+            return;
+          }
+
+          pauseOthers(media);
+          this.suspendCarouselAutoplay();
+          if (video && media.dataset.userUnmuted !== 'true') {
+            video.muted = this.defaultMuted;
+            this.updateMuteButton(muteButton, video.muted);
+          }
+          this.setVideoPlayingState(thumb, muteButton, video, true);
+
+          if (kind === 'youtube' && embedWrap && embedFrame && media.dataset.youtubeId) {
+            embedWrap.removeAttribute('hidden');
+            const muteParam = this.defaultMuted && media.dataset.userUnmuted !== 'true' ? '1' : '0';
+            embedFrame.src = `https://www.youtube.com/embed/${media.dataset.youtubeId}?autoplay=1&playsinline=1&rel=0&mute=${muteParam}`;
+            return;
+          }
+
+          if (kind === 'vimeo' && embedWrap && embedFrame && media.dataset.vimeoId) {
+            embedWrap.removeAttribute('hidden');
+            const muteParam = this.defaultMuted && media.dataset.userUnmuted !== 'true' ? '1' : '0';
+            embedFrame.src = `https://player.vimeo.com/video/${media.dataset.vimeoId}?autoplay=1&muted=${muteParam}`;
+            return;
+          }
+
+          if (video) {
+            video.play().catch(() => {
+              this.setVideoPlayingState(thumb, muteButton, video, false);
+              this.resumeCarouselAutoplay();
+            });
+          }
+        };
+
+        if (video) {
+          video.addEventListener('loadedmetadata', () => {
+            this.applyMobileAspectRatio(thumb, card, video);
+            showDuration(video.duration);
+          });
+
+          video.addEventListener('loadeddata', () => {
+            this.applyMobileAspectRatio(thumb, card, video);
+            if (!video.getAttribute('poster') && video.paused) {
+              video.currentTime = Math.min(0.1, video.duration || 0.1);
+            }
+          });
+
+          video.addEventListener('timeupdate', updateCountdown);
+
+          video.addEventListener('play', () => {
+            this.setVideoPlayingState(thumb, muteButton, video, true);
+            if (!this._carouselAdvancing) {
+              this.suspendCarouselAutoplay();
+            }
+            pauseOthers(media);
+          });
+
+          video.addEventListener('pause', () => {
+            if (video.ended) return;
+            this.setVideoPlayingState(thumb, muteButton, video, false);
+            if (Number.isFinite(video.duration)) {
+              showDuration(video.duration);
+            }
+            this.resumeCarouselAutoplay();
+          });
+
+          video.addEventListener('ended', () => {
+            if (!this.videoLoop) {
+              this.setVideoPlayingState(thumb, muteButton, video, false);
+            }
+            video.currentTime = 0;
+            if (!video.getAttribute('poster') && Number.isFinite(video.duration)) {
+              video.currentTime = Math.min(0.1, video.duration);
+            }
+            if (Number.isFinite(video.duration)) {
+              showDuration(video.duration);
+            }
+            if (!this.videoLoop) {
+              this.resumeCarouselAutoplay();
+            }
+          });
+
+          if (video.readyState >= 1) {
+            showDuration(video.duration);
+          }
+        }
+
+        playButton?.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          startPlaying();
+        });
+
+        muteButton?.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          if (!video) return;
+
+          const willBeMuted = !video.muted;
+          video.muted = willBeMuted;
+
+          if (willBeMuted) {
+            delete media.dataset.userUnmuted;
+          } else {
+            media.dataset.userUnmuted = 'true';
+          }
+
+          this.syncMuteButton(muteButton, video);
+        });
+
+        thumb?.addEventListener('click', (event) => {
+          if (event.target.closest('[data-play-button], [data-mute-button]')) return;
+
+          if (this.useDesktopPopup()) {
+            startPlaying();
+            return;
+          }
+
+          if (kind === 'youtube' || kind === 'vimeo') return;
+          if (video?.paused) {
+            startPlaying();
+          } else if (video) {
+            video.pause();
+          }
+        });
+
+        if ((kind === 'youtube' || kind === 'vimeo') && durationEl) {
+          durationEl.hidden = true;
+        }
+      });
+    }
+  }
+
+  if (!customElements.get('neeloos-video-carousel')) {
+    customElements.define('neeloos-video-carousel', NeeloosVideoCarousel);
+  }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Neeloos Video",
+  "class": "ui-test-neeloos-video",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Easy to Prepare. Moms Love It."
+    },
+    {
+      "type": "select",
+      "id": "heading_type_preset",
+      "label": "Heading style",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading size",
+      "min": 24,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "checkbox",
+      "id": "show_leaf_icon",
+      "label": "Show leaf icon on heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "View All Recipes"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "color",
+      "id": "leaf_color",
+      "label": "Leaf color",
+      "default": "#7e9364"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Heading color",
+      "default": "#2b211b"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#7e9364"
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Caption color",
+      "default": "#2b211b"
+    },
+    {
+      "type": "header",
+      "content": "Grid"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between cards",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Gap (mobile)",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile layout",
+      "options": [
+        { "value": "row-scroll", "label": "Horizontal scroll" },
+        { "value": "grid-2x2", "label": "2 × 2 grid" },
+        { "value": "column-1", "label": "1 column stack" }
+      ],
+      "default": "row-scroll"
+    },
+    {
+      "type": "select",
+      "id": "mobile_aspect_ratio",
+      "label": "Mobile video shape",
+      "options": [
+        { "value": "auto", "label": "Auto (detect from video)" },
+        { "value": "4-3", "label": "Landscape (4:3)" },
+        { "value": "9-16", "label": "Portrait (9:16)" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "header",
+      "content": "Video playback"
+    },
+    {
+      "type": "select",
+      "id": "desktop_video_playback",
+      "label": "Desktop video playback",
+      "options": [
+        { "value": "popup", "label": "Popup player" },
+        { "value": "inline", "label": "Play inline in card" }
+      ],
+      "default": "popup",
+      "info": "On mobile, videos always play inline in the card."
+    },
+    {
+      "type": "checkbox",
+      "id": "video_autoplay",
+      "label": "Autoplay videos when visible",
+      "info": "Plays the video when it scrolls into view. Browsers require videos to start muted.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "video_muted",
+      "label": "Mute by default",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mute_button",
+      "label": "Show mute / unmute button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_loop",
+      "label": "Loop videos",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Mobile carousel"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_autoplay",
+      "label": "Auto-scroll on mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "mobile_autoplay_speed",
+      "label": "Time between slides",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "mobile_slide_duration",
+      "label": "Slide animation speed",
+      "min": 400,
+      "max": 1200,
+      "step": 100,
+      "unit": "ms",
+      "default": 700
+    },
+    {
+      "type": "color",
+      "id": "dot_active_color",
+      "label": "Active dot color",
+      "default": "#7e9364"
+    },
+    {
+      "type": "color",
+      "id": "dot_inactive_color",
+      "label": "Inactive dot color",
+      "default": "#2b211b33"
+    },
+    {
+      "type": "range",
+      "id": "thumbnail_radius",
+      "label": "Thumbnail corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "duration_bg",
+      "label": "Duration badge background",
+      "default": "#3d3834cc"
+    },
+    {
+      "type": "color",
+      "id": "duration_color",
+      "label": "Duration badge text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        { "value": "page-width", "label": "Page width" },
+        { "value": "full-width", "label": "Full width" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "thumbnail",
+          "label": "Thumbnail",
+          "info": "Optional. If empty, the video preview frame is used automatically."
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "Plays inline in the card. Duration is read automatically from the file."
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL",
+          "info": "YouTube link or direct MP4 URL. Used if no Shopify video is set."
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "default": "Recipe video title"
+        },
+        {
+          "type": "select",
+          "id": "aspect_ratio",
+          "label": "Video shape (mobile)",
+          "options": [
+            { "value": "default", "label": "Use section setting" },
+            { "value": "4-3", "label": "Landscape (4:3)" },
+            { "value": "9-16", "label": "Portrait (9:16)" }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Optional. Used when no video is set — card opens this URL instead."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Neeloos Video",
+      "category": "Content",
+      "settings": {
+        "show_heading": true,
+        "heading": "Easy to Prepare. Moms Love It.",
+        "heading_type_preset": "h2",
+        "heading_font_size": 40,
+        "heading_font_size_mobile": 28,
+        "show_leaf_icon": true,
+        "link_label": "View All Recipes",
+        "leaf_color": "#7e9364",
+        "title_color": "#2b211b",
+        "link_color": "#7e9364",
+        "caption_color": "#2b211b",
+        "desktop_video_playback": "popup",
+        "columns": 4,
+        "gap": 20,
+        "mobile_gap": 12,
+        "mobile_layout": "row-scroll",
+        "mobile_aspect_ratio": "auto",
+        "video_autoplay": false,
+        "video_muted": true,
+        "show_mute_button": true,
+        "video_loop": true,
+        "mobile_autoplay": true,
+        "mobile_autoplay_speed": 5,
+        "mobile_slide_duration": 700,
+        "dot_active_color": "#7e9364",
+        "dot_inactive_color": "#2b211b33",
+        "thumbnail_radius": 12,
+        "duration_bg": "#3d3834cc",
+        "duration_color": "#ffffff",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      },
+      "blocks": [
+        {
+          "type": "video",
+          "settings": {
+            "caption": "Ragi Banana Porridge in 3 Easy Steps"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "caption": "Sathu Maavu Mix Quick Recipe"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "caption": "How My Baby Loves Neeloos Every Day"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "caption": "Travel-Friendly Nutritious Meals"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,333 @@
+{
+  "section_id": "featured-product-grid-v2",
+  "section_type": "featured-product-grid-v2",
+  "section_path": "sections/featured-product-grid-v2.liquid",
+  "section_schema_name": "Featured products grid v2",
+  "section_category": "products",
+  "section_role": "conversion",
+  "section_family": "products",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Featured products grid v2"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "heading",
+      "type": "richtext",
+      "label": "Heading"
+    },
+    {
+      "id": "product_list",
+      "type": "product_list",
+      "label": "Products"
+    },
+    {
+      "id": "products_to_show",
+      "type": "range",
+      "label": "Products to show"
+    },
+    {
+      "id": "desktop_width_percent",
+      "type": "range",
+      "label": "Desktop width"
+    },
+    {
+      "id": "columns_desktop",
+      "type": "range",
+      "label": "Columns on desktop"
+    },
+    {
+      "id": "columns_tablet",
+      "type": "range",
+      "label": "Columns on tablet"
+    },
+    {
+      "id": "columns_mobile",
+      "type": "select",
+      "label": "Columns on mobile"
+    },
+    {
+      "id": "section_padding",
+      "type": "range",
+      "label": "Section padding"
+    },
+    {
+      "id": "heading_alignment",
+      "type": "select",
+      "label": "Alignment"
+    },
+    {
+      "id": "heading_size",
+      "type": "range",
+      "label": "Size"
+    },
+    {
+      "id": "heading_color",
+      "type": "color",
+      "label": "Color"
+    },
+    {
+      "id": "heading_spacing",
+      "type": "range",
+      "label": "Bottom spacing"
+    },
+    {
+      "id": "card_background",
+      "type": "color",
+      "label": "Background"
+    },
+    {
+      "id": "card_padding",
+      "type": "range",
+      "label": "Padding"
+    },
+    {
+      "id": "show_card_border",
+      "type": "checkbox",
+      "label": "Show border"
+    },
+    {
+      "id": "card_border_width",
+      "type": "range",
+      "label": "Border width"
+    },
+    {
+      "id": "card_border_color",
+      "type": "color",
+      "label": "Border color"
+    },
+    {
+      "id": "show_card_shadow",
+      "type": "checkbox",
+      "label": "Show shadow"
+    },
+    {
+      "id": "image_ratio",
+      "type": "range",
+      "label": "Image aspect ratio"
+    },
+    {
+      "id": "product_title_size",
+      "type": "range",
+      "label": "Title size"
+    },
+    {
+      "id": "product_title_color",
+      "type": "color",
+      "label": "Title color"
+    },
+    {
+      "id": "show_price",
+      "type": "checkbox",
+      "label": "Show price"
+    },
+    {
+      "id": "price_size",
+      "type": "range",
+      "label": "Price size"
+    },
+    {
+      "id": "price_color",
+      "type": "color",
+      "label": "Price color"
+    },
+    {
+      "id": "sale_price_color",
+      "type": "color",
+      "label": "Sale price color"
+    },
+    {
+      "id": "show_badges",
+      "type": "checkbox",
+      "label": "Show badges"
+    },
+    {
+      "id": "sale_badge_text",
+      "type": "inline_richtext",
+      "label": "Sale badge text"
+    },
+    {
+      "id": "sold_out_badge_text",
+      "type": "inline_richtext",
+      "label": "Sold out badge text"
+    },
+    {
+      "id": "badge_background",
+      "type": "color",
+      "label": "Background"
+    },
+    {
+      "id": "badge_text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "badge_border_radius",
+      "type": "range",
+      "label": "Border radius"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 80,
+  "required": true,
+  "name": "Featured products grid v2",
+  "purpose": "Featured products grid v2 section — products",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Featured products grid v2",
+      "conversion_goal": "Intent"
+    },
+    "layout": {
+      "desktop_layout": "3-column-grid",
+      "tablet_layout": "2-column-grid",
+      "mobile_layout": "1-column-stack",
+      "alignment_rules": "heading-center, products-left",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "lift",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "4/3",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "default",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "button"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "main",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 85,
+    "fashion": 70,
+    "minimal_modern": 80
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "background_secondary"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font",
+      "type_size_h2"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius",
+      "card_2_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [
+      "primary_button_background",
+      "primary_button_text"
+    ],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "trust",
+      "storytelling",
+      "content",
+      "promotion",
+      "urgency"
+    ],
+    "allowed_after": [
+      "social_proof",
+      "trust",
+      "urgency",
+      "faq",
+      "lead_capture",
+      "footer",
+      "products",
+      "content"
+    ],
+    "recommended_before": [
+      "hero",
+      "content"
+    ],
+    "recommended_after": [
+      "social_proof",
+      "trust"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

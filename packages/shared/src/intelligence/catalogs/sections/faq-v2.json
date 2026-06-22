@@ -1,0 +1,366 @@
+{
+  "section_id": "faq-v2",
+  "section_type": "faq-v2",
+  "section_path": "sections/faq-v2.liquid",
+  "section_schema_name": "FAQ accordion v2",
+  "section_category": "faq",
+  "section_role": "content",
+  "section_family": "faq",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "FAQ accordion v2"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "heading",
+      "type": "richtext",
+      "label": "Heading"
+    },
+    {
+      "id": "heading_size",
+      "type": "range",
+      "label": "Size"
+    },
+    {
+      "id": "heading_weight",
+      "type": "select",
+      "label": "Weight"
+    },
+    {
+      "id": "heading_letter_spacing",
+      "type": "range",
+      "label": "Letter spacing"
+    },
+    {
+      "id": "heading_alignment",
+      "type": "select",
+      "label": "Alignment"
+    },
+    {
+      "id": "heading_color",
+      "type": "color",
+      "label": "Color"
+    },
+    {
+      "id": "heading_spacing",
+      "type": "range",
+      "label": "Bottom spacing"
+    },
+    {
+      "id": "question_1",
+      "type": "inline_richtext",
+      "label": "Question 1"
+    },
+    {
+      "id": "answer_1",
+      "type": "richtext",
+      "label": "Answer 1"
+    },
+    {
+      "id": "question_2",
+      "type": "inline_richtext",
+      "label": "Question 2"
+    },
+    {
+      "id": "answer_2",
+      "type": "richtext",
+      "label": "Answer 2"
+    },
+    {
+      "id": "question_3",
+      "type": "inline_richtext",
+      "label": "Question 3"
+    },
+    {
+      "id": "answer_3",
+      "type": "richtext",
+      "label": "Answer 3"
+    },
+    {
+      "id": "question_4",
+      "type": "inline_richtext",
+      "label": "Question 4"
+    },
+    {
+      "id": "answer_4",
+      "type": "richtext",
+      "label": "Answer 4"
+    },
+    {
+      "id": "question_5",
+      "type": "inline_richtext",
+      "label": "Question 5"
+    },
+    {
+      "id": "answer_5",
+      "type": "richtext",
+      "label": "Answer 5"
+    },
+    {
+      "id": "question_6",
+      "type": "inline_richtext",
+      "label": "Question 6"
+    },
+    {
+      "id": "answer_6",
+      "type": "richtext",
+      "label": "Answer 6"
+    },
+    {
+      "id": "question_size",
+      "type": "range",
+      "label": "Size"
+    },
+    {
+      "id": "question_weight",
+      "type": "select",
+      "label": "Weight"
+    },
+    {
+      "id": "question_letter_spacing",
+      "type": "range",
+      "label": "Letter spacing"
+    },
+    {
+      "id": "question_color",
+      "type": "color",
+      "label": "Color"
+    },
+    {
+      "id": "question_padding_vertical",
+      "type": "range",
+      "label": "Vertical padding"
+    },
+    {
+      "id": "answer_size",
+      "type": "range",
+      "label": "Size"
+    },
+    {
+      "id": "answer_color",
+      "type": "color",
+      "label": "Color"
+    },
+    {
+      "id": "answer_padding_bottom",
+      "type": "range",
+      "label": "Bottom padding"
+    },
+    {
+      "id": "icon_size",
+      "type": "range",
+      "label": "Size"
+    },
+    {
+      "id": "icon_thickness",
+      "type": "range",
+      "label": "Thickness"
+    },
+    {
+      "id": "icon_color",
+      "type": "color",
+      "label": "Color"
+    },
+    {
+      "id": "divider_width",
+      "type": "range",
+      "label": "Width"
+    },
+    {
+      "id": "divider_color",
+      "type": "color",
+      "label": "Color"
+    },
+    {
+      "id": "first_item_open",
+      "type": "checkbox",
+      "label": "Open first item by default"
+    },
+    {
+      "id": "allow_multiple_open",
+      "type": "checkbox",
+      "label": "Allow multiple items open"
+    },
+    {
+      "id": "content_max_width",
+      "type": "range",
+      "label": "Content max width"
+    },
+    {
+      "id": "desktop_width_percent",
+      "type": "range",
+      "label": "Desktop width"
+    },
+    {
+      "id": "section_padding_top",
+      "type": "range",
+      "label": "Top padding"
+    },
+    {
+      "id": "section_padding_bottom",
+      "type": "range",
+      "label": "Bottom padding"
+    },
+    {
+      "id": "section_padding_horizontal",
+      "type": "range",
+      "label": "Horizontal padding"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "t:settings.color_scheme"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 83,
+  "required": true,
+  "name": "FAQ accordion v2",
+  "purpose": "FAQ accordion v2 section — faq",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display FAQ accordion v2",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "single-column-accordion",
+      "tablet_layout": "single-column-accordion",
+      "mobile_layout": "single-column-accordion",
+      "alignment_rules": "heading-left, items-left",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 70,
+    "fashion": 45,
+    "minimal_modern": 80
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "products",
+      "social_proof",
+      "trust",
+      "content",
+      "storytelling"
+    ],
+    "allowed_after": [
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "products",
+      "social_proof"
+    ],
+    "recommended_after": [
+      "lead_capture"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

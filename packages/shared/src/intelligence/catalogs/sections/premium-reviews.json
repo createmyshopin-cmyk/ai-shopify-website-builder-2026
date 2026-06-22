@@ -1,0 +1,412 @@
+{
+  "section_id": "premium-reviews",
+  "section_type": "premium-reviews",
+  "section_path": "sections/premium-reviews.liquid",
+  "section_schema_name": "Premium customer reviews",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Premium customer reviews"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "section_title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "section_subtitle",
+      "type": "text",
+      "label": "Subtitle"
+    },
+    {
+      "id": "section_padding_top",
+      "type": "range",
+      "label": "Top padding"
+    },
+    {
+      "id": "section_padding_bottom",
+      "type": "range",
+      "label": "Bottom padding"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "section_background",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "title_size",
+      "type": "range",
+      "label": "Title size"
+    },
+    {
+      "id": "title_color",
+      "type": "color",
+      "label": "Title color"
+    },
+    {
+      "id": "subtitle_size",
+      "type": "range",
+      "label": "Subtitle size"
+    },
+    {
+      "id": "subtitle_color",
+      "type": "color",
+      "label": "Subtitle color"
+    },
+    {
+      "id": "header_spacing",
+      "type": "range",
+      "label": "Header spacing"
+    },
+    {
+      "id": "enable_auto_scroll",
+      "type": "checkbox",
+      "label": "Enable auto-scroll"
+    },
+    {
+      "id": "scroll_speed",
+      "type": "range",
+      "label": "Scroll speed"
+    },
+    {
+      "id": "card_width",
+      "type": "range",
+      "label": "Card width"
+    },
+    {
+      "id": "card_width_mobile",
+      "type": "range",
+      "label": "Card width on mobile"
+    },
+    {
+      "id": "card_background",
+      "type": "color",
+      "label": "Card background"
+    },
+    {
+      "id": "card_padding",
+      "type": "range",
+      "label": "Card padding"
+    },
+    {
+      "id": "avatar_size",
+      "type": "range",
+      "label": "Avatar size"
+    },
+    {
+      "id": "avatar_placeholder_bg",
+      "type": "color",
+      "label": "Placeholder background"
+    },
+    {
+      "id": "avatar_placeholder_color",
+      "type": "color",
+      "label": "Placeholder text color"
+    },
+    {
+      "id": "name_size",
+      "type": "range",
+      "label": "Name size"
+    },
+    {
+      "id": "name_color",
+      "type": "color",
+      "label": "Name color"
+    },
+    {
+      "id": "testimonial_size",
+      "type": "range",
+      "label": "Testimonial size"
+    },
+    {
+      "id": "testimonial_color",
+      "type": "color",
+      "label": "Testimonial color"
+    },
+    {
+      "id": "star_size",
+      "type": "range",
+      "label": "Star size"
+    },
+    {
+      "id": "star_color",
+      "type": "color",
+      "label": "Star color"
+    },
+    {
+      "id": "review_1_enabled",
+      "type": "checkbox",
+      "label": "Enable review 1"
+    },
+    {
+      "id": "review_1_avatar",
+      "type": "image_picker",
+      "label": "Avatar"
+    },
+    {
+      "id": "review_1_customer_name",
+      "type": "text",
+      "label": "Customer name"
+    },
+    {
+      "id": "review_1_testimonial",
+      "type": "textarea",
+      "label": "Testimonial"
+    },
+    {
+      "id": "review_2_enabled",
+      "type": "checkbox",
+      "label": "Enable review 2"
+    },
+    {
+      "id": "review_2_avatar",
+      "type": "image_picker",
+      "label": "Avatar"
+    },
+    {
+      "id": "review_2_customer_name",
+      "type": "text",
+      "label": "Customer name"
+    },
+    {
+      "id": "review_2_testimonial",
+      "type": "textarea",
+      "label": "Testimonial"
+    },
+    {
+      "id": "review_3_enabled",
+      "type": "checkbox",
+      "label": "Enable review 3"
+    },
+    {
+      "id": "review_3_avatar",
+      "type": "image_picker",
+      "label": "Avatar"
+    },
+    {
+      "id": "review_3_customer_name",
+      "type": "text",
+      "label": "Customer name"
+    },
+    {
+      "id": "review_3_testimonial",
+      "type": "textarea",
+      "label": "Testimonial"
+    },
+    {
+      "id": "review_4_enabled",
+      "type": "checkbox",
+      "label": "Enable review 4"
+    },
+    {
+      "id": "review_4_avatar",
+      "type": "image_picker",
+      "label": "Avatar"
+    },
+    {
+      "id": "review_4_customer_name",
+      "type": "text",
+      "label": "Customer name"
+    },
+    {
+      "id": "review_4_testimonial",
+      "type": "textarea",
+      "label": "Testimonial"
+    },
+    {
+      "id": "review_5_enabled",
+      "type": "checkbox",
+      "label": "Enable review 5"
+    },
+    {
+      "id": "review_5_avatar",
+      "type": "image_picker",
+      "label": "Avatar"
+    },
+    {
+      "id": "review_5_customer_name",
+      "type": "text",
+      "label": "Customer name"
+    },
+    {
+      "id": "review_5_testimonial",
+      "type": "textarea",
+      "label": "Testimonial"
+    },
+    {
+      "id": "review_6_enabled",
+      "type": "checkbox",
+      "label": "Enable review 6"
+    },
+    {
+      "id": "review_6_avatar",
+      "type": "image_picker",
+      "label": "Avatar"
+    },
+    {
+      "id": "review_6_customer_name",
+      "type": "text",
+      "label": "Customer name"
+    },
+    {
+      "id": "review_6_testimonial",
+      "type": "textarea",
+      "label": "Testimonial"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 55,
+  "required": false,
+  "name": "Premium customer reviews",
+  "purpose": "Premium customer reviews section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Premium customer reviews",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "content-centered",
+      "tablet_layout": "content-centered",
+      "mobile_layout": "content-stacked",
+      "alignment_rules": "heading-center",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

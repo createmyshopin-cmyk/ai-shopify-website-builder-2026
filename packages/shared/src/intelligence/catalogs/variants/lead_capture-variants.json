@@ -1,0 +1,32 @@
+{
+  "family": "lead_capture",
+  "sections": [
+    {
+      "section_type": "editorial-newsletter",
+      "schema_name": "Editorial Newsletter",
+      "preset_scores": {
+        "high-converting": 85,
+        "fashion": 80,
+        "minimal-modern": 80
+      }
+    },
+    {
+      "section_type": "newsletter-signup",
+      "schema_name": "Newsletter signup",
+      "preset_scores": {
+        "high-converting": 70,
+        "fashion": 65,
+        "minimal-modern": 70
+      }
+    },
+    {
+      "section_type": "newsletter-signup-v2",
+      "schema_name": "Newsletter signup",
+      "preset_scores": {
+        "high-converting": 65,
+        "fashion": 60,
+        "minimal-modern": 65
+      }
+    }
+  ]
+}

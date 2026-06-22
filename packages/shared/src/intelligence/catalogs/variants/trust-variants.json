@@ -1,0 +1,32 @@
+{
+  "family": "trust",
+  "sections": [
+    {
+      "section_type": "editorial-trust-bar",
+      "schema_name": "Editorial Trust Bar",
+      "preset_scores": {
+        "high-converting": 90,
+        "fashion": 55,
+        "minimal-modern": 45
+      }
+    },
+    {
+      "section_type": "trust-badges-v4",
+      "schema_name": "Trust badges",
+      "preset_scores": {
+        "high-converting": 80,
+        "fashion": 45,
+        "minimal-modern": 40
+      }
+    },
+    {
+      "section_type": "trust-icons-row",
+      "schema_name": "Trust icons row",
+      "preset_scores": {
+        "high-converting": 75,
+        "fashion": 60,
+        "minimal-modern": 50
+      }
+    }
+  ]
+}

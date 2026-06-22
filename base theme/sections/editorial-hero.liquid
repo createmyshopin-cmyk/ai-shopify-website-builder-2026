@@ -1,0 +1,1290 @@
+{% liquid
+  assign heading = section.settings.heading | strip_html | strip
+  assign subheading = section.settings.subheading | strip_html | strip
+  assign btn_label = section.settings.button_label
+  assign btn_link = section.settings.button_link
+  assign overlay_opacity = section.settings.overlay_opacity | divided_by: 100.0
+  assign slide_blocks = section.blocks | where: 'type', 'slide'
+
+  if section.settings.use_custom_colors
+    assign eh_text_color = section.settings.text_color
+    assign eh_btn_bg = section.settings.button_bg
+    assign eh_btn_text = section.settings.button_text_color
+  else
+    assign eh_text_color = section.settings.color_scheme.settings.foreground
+    assign eh_btn_bg = section.settings.color_scheme.settings.primary_button_background
+    assign eh_btn_text = section.settings.color_scheme.settings.primary_button_text
+  endif
+
+  assign forge_image = section.settings.image
+  if slide_blocks.size > 0 and slide_blocks.first.settings.image != blank
+    assign forge_image = slide_blocks.first.settings.image
+  endif
+%}
+
+<div
+  class="editorial-hero spacing-style color-{{ section.settings.color_scheme }} editorial-hero--effect-{{ section.settings.transition_effect }}{% if section.settings.enable_zoom_animation %} editorial-hero--zoom-enabled{% endif %}"
+  data-direction="forward"
+  style="
+    --eh-overlay-opacity: {{ overlay_opacity }};
+    --eh-min-height: {{ section.settings.min_height }}px;
+    --eh-text-color: {{ eh_text_color }};
+    --eh-btn-bg: {{ eh_btn_bg }};
+    --eh-btn-text: {{ eh_btn_text }};
+    --eh-zoom-scale: {{ section.settings.zoom_scale | divided_by: 100.0 }};
+    --eh-zoom-duration: {{ section.settings.zoom_duration }}s;
+    --eh-transition-duration: {{ section.settings.transition_duration }}ms;
+    {% render 'spacing-style', settings: section.settings %}
+  "
+>
+  <div class="editorial-hero__media" data-forge-slot-id="image"{% if forge_image == blank %} data-forge-slot-blank="true"{% endif %}>
+    {% if slide_blocks.size > 0 %}
+      <editorial-hero-slideshow
+        class="editorial-hero__slideshow"
+        data-autoplay="{{ section.settings.autoplay }}"
+        data-interval="{{ section.settings.autoplay_speed }}"
+        data-effect="{{ section.settings.transition_effect }}"
+      >
+        <div class="editorial-hero__slides">
+          {% for block in slide_blocks %}
+            <div
+              class="editorial-hero__slide{% if forloop.first %} is-active{% endif %}"
+              data-slide-index="{{ forloop.index0 }}"
+              {{ block.shopify_attributes }}
+            >
+              {% if block.settings.image != blank %}
+                <div
+                  class="editorial-hero__img-wrap"
+                  style="
+                    --eh-img-pos-desktop-x: {{ block.settings.desktop_position_x }}%;
+                    --eh-img-pos-desktop-y: {{ block.settings.desktop_position_y }}%;
+                    --eh-img-pos-mobile-x: {{ block.settings.mobile_position_x }}%;
+                    --eh-img-pos-mobile-y: {{ block.settings.mobile_position_y }}%;
+                  "
+                >
+                  {% if block.settings.image_mobile != blank %}
+                    {{
+                      block.settings.image_mobile
+                      | image_url: width: 1200
+                      | image_tag:
+                        class: 'editorial-hero__img editorial-hero__img--mobile',
+                        loading: 'eager',
+                        widths: '400, 600, 750, 1000, 1200',
+                        sizes: '100vw'
+                    }}
+                    {{
+                      block.settings.image
+                      | image_url: width: 2000
+                      | image_tag:
+                        class: 'editorial-hero__img editorial-hero__img--desktop',
+                        loading: 'eager',
+                        widths: '750, 1100, 1500, 2000',
+                        sizes: '100vw'
+                    }}
+                  {% else %}
+                    {{
+                      block.settings.image
+                      | image_url: width: 2000
+                      | image_tag:
+                        class: 'editorial-hero__img',
+                        loading: 'eager',
+                        widths: '750, 1100, 1500, 2000',
+                        sizes: '100vw'
+                    }}
+                  {% endif %}
+                </div>
+              {% else %}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'editorial-hero__img editorial-hero__img--placeholder' }}
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        {% if slide_blocks.size > 1 %}
+          {% if section.settings.show_arrows %}
+            <button type="button" class="editorial-hero__arrow editorial-hero__arrow--prev" aria-label="Previous slide">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <button type="button" class="editorial-hero__arrow editorial-hero__arrow--next" aria-label="Next slide">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          {% endif %}
+
+          {% if section.settings.show_dots %}
+            <div class="editorial-hero__dots" role="tablist" aria-label="Slide pagination">
+              {% for block in slide_blocks %}
+                <button
+                  type="button"
+                  class="editorial-hero__dot{% if forloop.first %} is-active{% endif %}"
+                  data-slide-index="{{ forloop.index0 }}"
+                  aria-label="Go to slide {{ forloop.index }}"
+                  aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                  role="tab"
+                ></button>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endif %}
+      </editorial-hero-slideshow>
+    {% elsif section.settings.image %}
+      <div class="editorial-hero__static-media">
+        <div
+          class="editorial-hero__img-wrap"
+          style="
+            --eh-img-pos-desktop-x: {{ section.settings.desktop_position_x }}%;
+            --eh-img-pos-desktop-y: {{ section.settings.desktop_position_y }}%;
+            --eh-img-pos-mobile-x: {{ section.settings.mobile_position_x }}%;
+            --eh-img-pos-mobile-y: {{ section.settings.mobile_position_y }}%;
+          "
+        >
+          {% if section.settings.image_mobile != blank %}
+            {{
+              section.settings.image_mobile
+              | image_url: width: 1200
+              | image_tag:
+                class: 'editorial-hero__img editorial-hero__img--mobile',
+                loading: 'eager',
+                widths: '400, 600, 750, 1000, 1200',
+                sizes: '100vw'
+            }}
+            {{
+              section.settings.image
+              | image_url: width: 2000
+              | image_tag:
+                class: 'editorial-hero__img editorial-hero__img--desktop',
+                loading: 'eager',
+                widths: '750, 1100, 1500, 2000',
+                sizes: '100vw'
+            }}
+          {% else %}
+            {{
+              section.settings.image
+              | image_url: width: 2000
+              | image_tag:
+                class: 'editorial-hero__img',
+                loading: 'eager',
+                widths: '750, 1100, 1500, 2000',
+                sizes: '100vw'
+            }}
+          {% endif %}
+        </div>
+      </div>
+    {% else %}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'editorial-hero__img editorial-hero__img--placeholder' }}
+    {% endif %}
+    <div class="editorial-hero__overlay"></div>
+  </div>
+
+  <div class="editorial-hero__content">
+    <div class="editorial-hero__inner">
+      {% if section.settings.show_heading and heading != blank %}
+        <h1 class="editorial-hero__heading">{{ heading }}</h1>
+      {% endif %}
+      {% if section.settings.show_subheading and subheading != blank %}
+        <p class="editorial-hero__subheading">{{ subheading }}</p>
+      {% endif %}
+      {% if section.settings.show_button and btn_label != blank %}
+        <a href="{{ btn_link | default: '/collections/all' }}" class="editorial-hero__btn">
+          {{ btn_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .editorial-hero {
+    position: relative;
+    min-height: var(--eh-min-height, 520px);
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .editorial-hero__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .editorial-hero__slideshow,
+  .editorial-hero__slides {
+    position: absolute;
+    inset: 0;
+  }
+
+  .editorial-hero__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateX(0) translateY(0) scale(1);
+    transition:
+      opacity var(--eh-transition-duration, 800ms) ease-in-out,
+      transform var(--eh-transition-duration, 800ms) ease-in-out;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .editorial-hero__slide.is-active {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+    pointer-events: auto;
+    z-index: 2;
+  }
+
+  .editorial-hero__slide.is-exiting {
+    z-index: 1;
+  }
+
+  .editorial-hero__static-media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .editorial-hero__img-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    transition:
+      opacity var(--eh-transition-duration, 800ms) ease-in-out,
+      transform var(--eh-transition-duration, 800ms) ease-in-out,
+      filter var(--eh-transition-duration, 800ms) ease-in-out,
+      clip-path var(--eh-transition-duration, 800ms) ease-in-out;
+  }
+
+  .editorial-hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  .editorial-hero__img-wrap .editorial-hero__img--desktop {
+    object-position: var(--eh-img-pos-desktop-x, 50%) var(--eh-img-pos-desktop-y, 50%);
+  }
+
+  .editorial-hero__img-wrap .editorial-hero__img--mobile {
+    object-position: var(--eh-img-pos-mobile-x, 50%) var(--eh-img-pos-mobile-y, 50%);
+  }
+
+  .editorial-hero__img-wrap .editorial-hero__img:not(.editorial-hero__img--desktop):not(.editorial-hero__img--mobile) {
+    object-position: var(--eh-img-pos-desktop-x, 50%) var(--eh-img-pos-desktop-y, 50%);
+  }
+
+  @media screen and (max-width: 749px) {
+    .editorial-hero__img-wrap .editorial-hero__img:not(.editorial-hero__img--desktop):not(.editorial-hero__img--mobile) {
+      object-position: var(--eh-img-pos-mobile-x, 50%) var(--eh-img-pos-mobile-y, 50%);
+    }
+  }
+
+  /* Ken Burns zoom in / zoom out */
+  .editorial-hero--zoom-enabled .editorial-hero__slide.is-active .editorial-hero__img-wrap .editorial-hero__img,
+  .editorial-hero--zoom-enabled .editorial-hero__static-media .editorial-hero__img-wrap .editorial-hero__img {
+    animation: eh-ken-burns var(--eh-zoom-duration, 8s) ease-in-out infinite alternate;
+  }
+
+  @keyframes eh-ken-burns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(var(--eh-zoom-scale, 1.12));
+    }
+  }
+
+  /* Transition presets */
+  .editorial-hero--effect-fade .editorial-hero__slide:not(.is-active):not(.is-exiting) {
+    opacity: 0;
+  }
+
+  .editorial-hero--effect-slide_left .editorial-hero__slide {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+
+  .editorial-hero--effect-slide_left .editorial-hero__slide.is-active {
+    transform: translateX(0);
+  }
+
+  .editorial-hero--effect-slide_left[data-direction="forward"] .editorial-hero__slide.is-exiting {
+    transform: translateX(-100%);
+  }
+
+  .editorial-hero--effect-slide_left[data-direction="backward"] .editorial-hero__slide:not(.is-active):not(.is-exiting) {
+    transform: translateX(-100%);
+  }
+
+  .editorial-hero--effect-slide_left[data-direction="backward"] .editorial-hero__slide.is-exiting {
+    transform: translateX(100%);
+  }
+
+  .editorial-hero--effect-slide_right .editorial-hero__slide {
+    opacity: 1;
+    transform: translateX(-100%);
+  }
+
+  .editorial-hero--effect-slide_right .editorial-hero__slide.is-active {
+    transform: translateX(0);
+  }
+
+  .editorial-hero--effect-slide_right[data-direction="forward"] .editorial-hero__slide.is-exiting {
+    transform: translateX(100%);
+  }
+
+  .editorial-hero--effect-slide_right[data-direction="backward"] .editorial-hero__slide:not(.is-active):not(.is-exiting) {
+    transform: translateX(100%);
+  }
+
+  .editorial-hero--effect-slide_right[data-direction="backward"] .editorial-hero__slide.is-exiting {
+    transform: translateX(-100%);
+  }
+
+  .editorial-hero--effect-slide_up .editorial-hero__slide {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+
+  .editorial-hero--effect-slide_up .editorial-hero__slide.is-active {
+    transform: translateY(0);
+  }
+
+  .editorial-hero--effect-slide_up[data-direction="forward"] .editorial-hero__slide.is-exiting {
+    transform: translateY(-100%);
+  }
+
+  .editorial-hero--effect-slide_up[data-direction="backward"] .editorial-hero__slide:not(.is-active):not(.is-exiting) {
+    transform: translateY(-100%);
+  }
+
+  .editorial-hero--effect-slide_up[data-direction="backward"] .editorial-hero__slide.is-exiting {
+    transform: translateY(100%);
+  }
+
+  .editorial-hero--effect-slide_down .editorial-hero__slide {
+    opacity: 1;
+    transform: translateY(-100%);
+  }
+
+  .editorial-hero--effect-slide_down .editorial-hero__slide.is-active {
+    transform: translateY(0);
+  }
+
+  .editorial-hero--effect-slide_down[data-direction="forward"] .editorial-hero__slide.is-exiting {
+    transform: translateY(100%);
+  }
+
+  .editorial-hero--effect-slide_down[data-direction="backward"] .editorial-hero__slide:not(.is-active):not(.is-exiting) {
+    transform: translateY(100%);
+  }
+
+  .editorial-hero--effect-slide_down[data-direction="backward"] .editorial-hero__slide.is-exiting {
+    transform: translateY(-100%);
+  }
+
+  .editorial-hero--effect-zoom_in .editorial-hero__slide {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+
+  .editorial-hero--effect-zoom_in .editorial-hero__slide.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .editorial-hero--effect-zoom_in .editorial-hero__slide.is-exiting {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  .editorial-hero--effect-zoom_out .editorial-hero__slide {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  .editorial-hero--effect-zoom_out .editorial-hero__slide.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .editorial-hero--effect-zoom_out .editorial-hero__slide.is-exiting {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+
+  /* Blur in / out */
+  .editorial-hero--effect-blur_in_out .editorial-hero__slide {
+    opacity: 1;
+    transform: none;
+  }
+
+  .editorial-hero--effect-blur_in_out .editorial-hero__slide .editorial-hero__img-wrap {
+    opacity: 0;
+    filter: blur(28px);
+    transform: scale(1.05);
+  }
+
+  .editorial-hero--effect-blur_in_out .editorial-hero__slide.is-active .editorial-hero__img-wrap {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+
+  .editorial-hero--effect-blur_in_out .editorial-hero__slide.is-exiting .editorial-hero__img-wrap {
+    opacity: 0;
+    filter: blur(28px);
+    transform: scale(0.97);
+  }
+
+  /* Smooth blur */
+  .editorial-hero--effect-smooth_blur .editorial-hero__slide {
+    opacity: 1;
+    transform: none;
+  }
+
+  .editorial-hero--effect-smooth_blur .editorial-hero__slide .editorial-hero__img-wrap {
+    opacity: 0;
+    filter: blur(14px) brightness(1.06);
+    transform: scale(1.02);
+    transition-duration: calc(var(--eh-transition-duration, 800ms) * 1.2);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .editorial-hero--effect-smooth_blur .editorial-hero__slide.is-active .editorial-hero__img-wrap {
+    opacity: 1;
+    filter: blur(0) brightness(1);
+    transform: scale(1);
+  }
+
+  .editorial-hero--effect-smooth_blur .editorial-hero__slide.is-exiting .editorial-hero__img-wrap {
+    opacity: 0;
+    filter: blur(14px) brightness(1.06);
+    transform: scale(0.99);
+  }
+
+  /* Clouds — soft mist dissolve */
+  .editorial-hero--effect-clouds .editorial-hero__slide {
+    opacity: 1;
+    transform: none;
+  }
+
+  .editorial-hero--effect-clouds .editorial-hero__slide .editorial-hero__img-wrap {
+    opacity: 0;
+    filter: blur(42px) brightness(1.3) saturate(0.75);
+    transform: scale(1.1);
+  }
+
+  .editorial-hero--effect-clouds .editorial-hero__slide.is-active .editorial-hero__img-wrap {
+    opacity: 1;
+    filter: blur(0) brightness(1) saturate(1);
+    transform: scale(1);
+  }
+
+  .editorial-hero--effect-clouds .editorial-hero__slide.is-exiting .editorial-hero__img-wrap {
+    opacity: 0;
+    filter: blur(48px) brightness(1.35) saturate(0.65);
+    transform: scale(1.06);
+  }
+
+  .editorial-hero--effect-clouds .editorial-hero__slide .editorial-hero__img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -10%;
+    background:
+      radial-gradient(ellipse 45% 35% at 25% 40%, rgba(255, 255, 255, 0.55) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 75% 55%, rgba(255, 255, 255, 0.5) 0%, transparent 72%),
+      radial-gradient(ellipse 40% 30% at 50% 80%, rgba(255, 255, 255, 0.4) 0%, transparent 68%);
+    opacity: 0;
+    transition: opacity var(--eh-transition-duration, 800ms) ease-in-out;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+  }
+
+  .editorial-hero--effect-clouds .editorial-hero__slide.is-exiting .editorial-hero__img-wrap::after,
+  .editorial-hero--effect-clouds .editorial-hero__slide:not(.is-active):not(.is-exiting) .editorial-hero__img-wrap::after {
+    opacity: 1;
+  }
+
+  /* Ink — radial ink bleed reveal */
+  .editorial-hero--effect-ink .editorial-hero__slide {
+    opacity: 1;
+    transform: none;
+  }
+
+  .editorial-hero--effect-ink .editorial-hero__slide .editorial-hero__img-wrap {
+    opacity: 1;
+    clip-path: circle(0% at 50% 52%);
+    filter: contrast(1.35) brightness(0.65) saturate(1.2);
+    transform: scale(1.06);
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .editorial-hero--effect-ink .editorial-hero__slide.is-active .editorial-hero__img-wrap {
+    clip-path: circle(150% at 50% 52%);
+    filter: contrast(1) brightness(1) saturate(1);
+    transform: scale(1);
+  }
+
+  .editorial-hero--effect-ink .editorial-hero__slide.is-exiting .editorial-hero__img-wrap {
+    clip-path: circle(0% at 48% 48%);
+    filter: contrast(1.25) brightness(0.7) saturate(1.15);
+    opacity: 0.85;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .editorial-hero__slide,
+    .editorial-hero__img,
+    .editorial-hero__img-wrap {
+      transition: none !important;
+      animation: none !important;
+      filter: none !important;
+      clip-path: none !important;
+    }
+  }
+
+  .editorial-hero__img--placeholder {
+    background: #e8e0d8;
+  }
+
+  .editorial-hero__img--desktop {
+    display: none;
+  }
+
+  .editorial-hero__img--mobile {
+    display: block;
+  }
+
+  @media screen and (min-width: 750px) {
+    .editorial-hero__img--desktop {
+      display: block;
+    }
+
+    .editorial-hero__img--mobile {
+      display: none;
+    }
+  }
+
+  .editorial-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.18) 50%, transparent 100%);
+    opacity: var(--eh-overlay-opacity, 1);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .editorial-hero__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    color: #111;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .editorial-hero__arrow:hover {
+    background: #fff;
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .editorial-hero__arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .editorial-hero__arrow--prev {
+    left: 20px;
+  }
+
+  .editorial-hero__arrow--next {
+    right: 20px;
+  }
+
+  .editorial-hero__dots {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .editorial-hero__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .editorial-hero__dot.is-active {
+    background: #fff;
+    transform: scale(1.25);
+  }
+
+  .editorial-hero__content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding: 48px;
+  }
+
+  .editorial-hero__inner {
+    max-width: 560px;
+  }
+
+  .editorial-hero__heading {
+    margin: 0 0 12px 0;
+    color: var(--eh-text-color, #ffffff);
+    font-family: var(--font-heading--family, inherit);
+    font-style: var(--font-heading--style, normal);
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-weight: var(--font-heading--weight, 600);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .editorial-hero__subheading {
+    margin: 0 0 28px 0;
+    color: var(--eh-text-color, #ffffff);
+    font-family: var(--font-body--family, inherit);
+    opacity: 0.85;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .editorial-hero__btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--eh-btn-bg, #ffffff);
+    color: var(--eh-btn-text, #000000);
+    border: none;
+    border-radius: var(--style-border-radius-buttons-primary, 0px);
+    font-family: var(--button-font-family, var(--font-body--family, inherit));
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: var(--button-text-case, uppercase);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .editorial-hero__btn:hover {
+    opacity: 0.85;
+  }
+
+  @media screen and (max-width: 989px) {
+    .editorial-hero__content {
+      padding: 36px 32px;
+    }
+    .editorial-hero__inner {
+      max-width: 480px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .editorial-hero {
+      min-height: 420px;
+      align-items: flex-end;
+    }
+    .editorial-hero__content {
+      padding: 28px 20px;
+    }
+    .editorial-hero__inner {
+      max-width: 100%;
+    }
+    .editorial-hero__heading {
+      font-size: clamp(1.6rem, 7vw, 2.4rem);
+    }
+    .editorial-hero__arrow {
+      width: 36px;
+      height: 36px;
+    }
+    .editorial-hero__arrow--prev {
+      left: 12px;
+    }
+    .editorial-hero__arrow--next {
+      right: 12px;
+    }
+    .editorial-hero__dots {
+      bottom: 20px;
+    }
+  }
+{% endstylesheet %}
+
+<script>
+  (function() {
+    if (customElements.get('editorial-hero-slideshow') || window.__EditorialHeroSlideshowRegistered) {
+      return;
+    }
+
+    window.__EditorialHeroSlideshowRegistered = true;
+
+    class EditorialHeroSlideshow extends HTMLElement {
+      constructor() {
+        super();
+        this.currentIndex = 0;
+        this.timer = null;
+        this._boundPrev = () => this.go(-1);
+        this._boundNext = () => this.go(1);
+        this._boundTouchStart = (e) => {
+          this.startX = e.touches[0].clientX;
+        };
+        this._boundTouchEnd = (e) => {
+          const diff = this.startX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 50) {
+            this.go(diff > 0 ? 1 : -1);
+          }
+        };
+        this._boundMouseEnter = () => this.stopAutoplay();
+        this._boundMouseLeave = () => this.startAutoplay();
+      }
+
+      connectedCallback() {
+        this.slides = Array.from(this.querySelectorAll('.editorial-hero__slide'));
+        this.dots = Array.from(this.querySelectorAll('.editorial-hero__dot'));
+        this.prevButton = this.querySelector('.editorial-hero__arrow--prev');
+        this.nextButton = this.querySelector('.editorial-hero__arrow--next');
+        this.autoplay = this.dataset.autoplay === 'true';
+        this.interval = (parseInt(this.dataset.interval, 10) || 5) * 1000;
+        this.effect = this.dataset.effect || 'fade';
+        this.hero = this.closest('.editorial-hero');
+        this.transitionDuration = 800;
+
+        if (this.hero) {
+          const duration = parseInt(getComputedStyle(this.hero).getPropertyValue('--eh-transition-duration'), 10);
+          if (!Number.isNaN(duration)) this.transitionDuration = duration;
+        }
+
+        if (this.slides.length <= 1) return;
+
+        this.restartZoom(this.slides[this.currentIndex]);
+
+        this.prevButton?.addEventListener('click', this._boundPrev);
+        this.nextButton?.addEventListener('click', this._boundNext);
+        this.dots.forEach((dot) => {
+          dot.addEventListener('click', () => {
+            const index = parseInt(dot.dataset.slideIndex, 10);
+            if (!Number.isNaN(index)) this.goTo(index);
+          });
+        });
+        this.addEventListener('touchstart', this._boundTouchStart, { passive: true });
+        this.addEventListener('touchend', this._boundTouchEnd, { passive: true });
+        this.addEventListener('mouseenter', this._boundMouseEnter);
+        this.addEventListener('mouseleave', this._boundMouseLeave);
+
+        if (this.autoplay) this.startAutoplay();
+      }
+
+      disconnectedCallback() {
+        this.stopAutoplay();
+        this.prevButton?.removeEventListener('click', this._boundPrev);
+        this.nextButton?.removeEventListener('click', this._boundNext);
+        this.removeEventListener('touchstart', this._boundTouchStart);
+        this.removeEventListener('touchend', this._boundTouchEnd);
+        this.removeEventListener('mouseenter', this._boundMouseEnter);
+        this.removeEventListener('mouseleave', this._boundMouseLeave);
+      }
+
+      go(delta) {
+        const next = (this.currentIndex + delta + this.slides.length) % this.slides.length;
+        this.goTo(next, delta > 0);
+      }
+
+      goTo(index, forward) {
+        if (index < 0 || index >= this.slides.length || index === this.currentIndex) return;
+
+        if (typeof forward !== 'boolean') {
+          forward = index > this.currentIndex || (this.currentIndex === this.slides.length - 1 && index === 0);
+        }
+
+        if (this.hero) {
+          this.hero.dataset.direction = forward ? 'forward' : 'backward';
+        }
+
+        const outgoing = this.slides[this.currentIndex];
+        outgoing.classList.add('is-exiting');
+        outgoing.classList.remove('is-active');
+        this.restartZoom(outgoing, true);
+
+        this.currentIndex = index;
+        const incoming = this.slides[this.currentIndex];
+        incoming.classList.add('is-active');
+        this.restartZoom(incoming);
+        this.updateDots();
+
+        window.setTimeout(() => {
+          outgoing.classList.remove('is-exiting');
+        }, this.transitionDuration);
+      }
+
+      restartZoom(slide, stopOnly) {
+        if (!slide) return;
+        const imgs = slide.querySelectorAll('.editorial-hero__img-wrap .editorial-hero__img');
+        imgs.forEach((img) => {
+          img.style.animation = 'none';
+          void img.offsetWidth;
+          if (!stopOnly) {
+            img.style.animation = '';
+          }
+        });
+      }
+
+      updateDots() {
+        this.dots.forEach((dot, index) => {
+          const isActive = index === this.currentIndex;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+      }
+
+      startAutoplay() {
+        if (!this.autoplay || this.slides.length <= 1) return;
+        this.stopAutoplay();
+        this.timer = window.setInterval(() => this.go(1), this.interval);
+      }
+
+      stopAutoplay() {
+        if (this.timer) {
+          window.clearInterval(this.timer);
+          this.timer = null;
+        }
+      }
+    }
+
+    customElements.define('editorial-hero-slideshow', EditorialHeroSlideshow);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Editorial Hero",
+  "tag": "section",
+  "class": "section-wrapper",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Essential T-Shirts",
+      "visible_if": "{{ section.settings.show_heading }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subheading",
+      "label": "Show subheading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Three fits. One refined everyday essential.",
+      "visible_if": "{{ section.settings.show_subheading }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Now",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "header",
+      "content": "Slideshow"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add slide blocks below for a rotating background slideshow. Slides take priority over the fallback image."
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto-rotate slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Change slides every",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show pagination dots",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show navigation arrows",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "transition_effect",
+      "label": "Slide transition effect",
+      "options": [
+        { "value": "fade", "label": "Fade" },
+        { "value": "slide_left", "label": "Slide left" },
+        { "value": "slide_right", "label": "Slide right" },
+        { "value": "slide_up", "label": "Slide up" },
+        { "value": "slide_down", "label": "Slide down" },
+        { "value": "zoom_in", "label": "Zoom in" },
+        { "value": "zoom_out", "label": "Zoom out" },
+        { "value": "blur_in_out", "label": "Blur in / out" },
+        { "value": "smooth_blur", "label": "Smooth blur" },
+        { "value": "clouds", "label": "Clouds" },
+        { "value": "ink", "label": "Ink" }
+      ],
+      "default": "fade"
+    },
+    {
+      "type": "range",
+      "id": "transition_duration",
+      "label": "Transition duration",
+      "min": 400,
+      "max": 1400,
+      "step": 100,
+      "unit": "ms",
+      "default": 800
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_zoom_animation",
+      "label": "Enable zoom in / zoom out animation",
+      "info": "Ken Burns effect on the active slide image (ease-in-out).",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "zoom_scale",
+      "label": "Zoom amount",
+      "min": 105,
+      "max": 130,
+      "step": 1,
+      "unit": "%",
+      "default": 112,
+      "visible_if": "{{ section.settings.enable_zoom_animation }}"
+    },
+    {
+      "type": "range",
+      "id": "zoom_duration",
+      "label": "Zoom cycle duration",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "unit": "s",
+      "default": 8,
+      "visible_if": "{{ section.settings.enable_zoom_animation }}"
+    },
+    {
+      "type": "header",
+      "content": "Fallback image"
+    },
+    {
+      "type": "paragraph",
+      "content": "Used only when no slide blocks are added."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image (desktop)",
+      "info": "Recommended: 2000 × 1200px (landscape). Full-width hero background."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Background image (mobile)",
+      "info": "Recommended: 1200 × 1600px (portrait). Optional — uses desktop image if empty."
+    },
+    {
+      "type": "header",
+      "content": "Desktop image position"
+    },
+    {
+      "type": "range",
+      "id": "desktop_position_x",
+      "label": "Horizontal position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50,
+      "info": "Slide left or right. 50% = center."
+    },
+    {
+      "type": "range",
+      "id": "desktop_position_y",
+      "label": "Vertical position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50,
+      "info": "Slide up or down. 50% = center."
+    },
+    {
+      "type": "header",
+      "content": "Mobile image position"
+    },
+    {
+      "type": "range",
+      "id": "mobile_position_x",
+      "label": "Horizontal position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50,
+      "info": "Slide left or right. 50% = center."
+    },
+    {
+      "type": "range",
+      "id": "mobile_position_y",
+      "label": "Vertical position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50,
+      "info": "Slide up or down. 50% = center."
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_custom_colors",
+      "label": "Use custom colors",
+      "info": "Override the color scheme for this section.",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Min height",
+      "min": 300,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 560
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background image (desktop)",
+          "info": "Recommended: 2000 × 1200px (landscape). Full-width hero background."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Background image (mobile)",
+          "info": "Recommended: 1200 × 1600px (portrait). Optional — uses desktop image if empty."
+        },
+        {
+          "type": "header",
+          "content": "Desktop image position"
+        },
+        {
+          "type": "range",
+          "id": "desktop_position_x",
+          "label": "Horizontal position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50,
+          "info": "Slide left or right. 50% = center."
+        },
+        {
+          "type": "range",
+          "id": "desktop_position_y",
+          "label": "Vertical position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50,
+          "info": "Slide up or down. 50% = center."
+        },
+        {
+          "type": "header",
+          "content": "Mobile image position"
+        },
+        {
+          "type": "range",
+          "id": "mobile_position_x",
+          "label": "Horizontal position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50,
+          "info": "Slide left or right. 50% = center."
+        },
+        {
+          "type": "range",
+          "id": "mobile_position_y",
+          "label": "Vertical position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50,
+          "info": "Slide up or down. 50% = center."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Editorial Hero",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" }
+      ],
+      "settings": {
+        "heading": "Essential T-Shirts",
+        "subheading": "Three fits. One refined everyday essential.",
+        "button_label": "Shop Now",
+        "show_heading": true,
+        "show_subheading": true,
+        "show_button": true,
+        "use_custom_colors": true,
+        "text_color": "#ffffff",
+        "button_bg": "#ffffff",
+        "button_text_color": "#000000",
+        "overlay_opacity": 100,
+        "min_height": 560,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_dots": true,
+        "show_arrows": false,
+        "transition_effect": "fade",
+        "transition_duration": 800,
+        "enable_zoom_animation": true,
+        "zoom_scale": 112,
+        "zoom_duration": 8
+      }
+    }
+  ]
+}
+{% endschema %}

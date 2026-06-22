@@ -1,0 +1,377 @@
+{
+  "section_id": "promotional-banners",
+  "section_type": "promotional-banners",
+  "section_path": "sections/promotional-banners.liquid",
+  "section_schema_name": "Promotional banners",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Promotional banners"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "max_width",
+      "type": "range",
+      "label": "Max width"
+    },
+    {
+      "id": "gap",
+      "type": "range",
+      "label": "Gap between banners"
+    },
+    {
+      "id": "gap_mobile",
+      "type": "range",
+      "label": "Gap on mobile"
+    },
+    {
+      "id": "section_padding_top",
+      "type": "range",
+      "label": "Section padding top"
+    },
+    {
+      "id": "section_padding_bottom",
+      "type": "range",
+      "label": "Section padding bottom"
+    },
+    {
+      "id": "banner_min_height",
+      "type": "range",
+      "label": "Min height desktop"
+    },
+    {
+      "id": "banner_min_height_mobile",
+      "type": "range",
+      "label": "Min height mobile"
+    },
+    {
+      "id": "banner_padding",
+      "type": "range",
+      "label": "Banner padding desktop"
+    },
+    {
+      "id": "banner_padding_mobile",
+      "type": "range",
+      "label": "Banner padding mobile"
+    },
+    {
+      "id": "content_gap",
+      "type": "range",
+      "label": "Content gap desktop"
+    },
+    {
+      "id": "content_gap_mobile",
+      "type": "range",
+      "label": "Content gap mobile"
+    },
+    {
+      "id": "mobile_stack",
+      "type": "checkbox",
+      "label": "Stack content on mobile"
+    },
+    {
+      "id": "text_alignment",
+      "type": "select",
+      "label": "Text alignment"
+    },
+    {
+      "id": "heading_size",
+      "type": "range",
+      "label": "Heading size desktop"
+    },
+    {
+      "id": "heading_size_mobile",
+      "type": "range",
+      "label": "Heading size mobile"
+    },
+    {
+      "id": "heading_letter_spacing",
+      "type": "range",
+      "label": "Heading letter spacing"
+    },
+    {
+      "id": "heading_margin_bottom",
+      "type": "range",
+      "label": "Heading margin bottom"
+    },
+    {
+      "id": "subheading_size",
+      "type": "range",
+      "label": "Subheading size desktop"
+    },
+    {
+      "id": "subheading_size_mobile",
+      "type": "range",
+      "label": "Subheading size mobile"
+    },
+    {
+      "id": "banner1_link",
+      "type": "url",
+      "label": "Link"
+    },
+    {
+      "id": "banner1_bg_color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "banner1_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "banner1_image_width",
+      "type": "range",
+      "label": "Image width desktop"
+    },
+    {
+      "id": "banner1_image_width_mobile",
+      "type": "range",
+      "label": "Image width mobile"
+    },
+    {
+      "id": "banner1_heading",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "banner1_heading_color",
+      "type": "color",
+      "label": "Heading color"
+    },
+    {
+      "id": "banner1_accent_word",
+      "type": "text",
+      "label": "Accent word"
+    },
+    {
+      "id": "banner1_accent_color",
+      "type": "color",
+      "label": "Accent color"
+    },
+    {
+      "id": "banner1_subheading",
+      "type": "text",
+      "label": "Subheading"
+    },
+    {
+      "id": "banner1_subheading_color",
+      "type": "color",
+      "label": "Subheading color"
+    },
+    {
+      "id": "banner2_link",
+      "type": "url",
+      "label": "Link"
+    },
+    {
+      "id": "banner2_use_gradient",
+      "type": "checkbox",
+      "label": "Use gradient background"
+    },
+    {
+      "id": "banner2_bg_color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "banner2_gradient_start",
+      "type": "color",
+      "label": "Gradient start color"
+    },
+    {
+      "id": "banner2_gradient_end",
+      "type": "color",
+      "label": "Gradient end color"
+    },
+    {
+      "id": "banner2_bg_image",
+      "type": "image_picker",
+      "label": "Background image"
+    },
+    {
+      "id": "banner2_bg_image_opacity",
+      "type": "range",
+      "label": "Background image opacity"
+    },
+    {
+      "id": "banner2_logo",
+      "type": "image_picker",
+      "label": "Logo"
+    },
+    {
+      "id": "banner2_logo_width",
+      "type": "range",
+      "label": "Logo width desktop"
+    },
+    {
+      "id": "banner2_logo_width_mobile",
+      "type": "range",
+      "label": "Logo width mobile"
+    },
+    {
+      "id": "banner2_heading",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "banner2_heading_color",
+      "type": "color",
+      "label": "Heading color"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 55,
+  "required": false,
+  "name": "Promotional banners",
+  "purpose": "Promotional banners section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Promotional banners",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "full-width-image",
+      "tablet_layout": "full-width-stack",
+      "mobile_layout": "full-width-stack",
+      "alignment_rules": "heading-center, cta-center",
+      "content_hierarchy": "image-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

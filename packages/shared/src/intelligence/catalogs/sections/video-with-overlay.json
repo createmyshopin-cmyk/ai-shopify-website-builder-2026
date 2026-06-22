@@ -1,0 +1,327 @@
+{
+  "section_id": "video-with-overlay",
+  "section_type": "video-with-overlay",
+  "section_path": "sections/video-with-overlay.liquid",
+  "section_schema_name": "Video with text overlay",
+  "section_category": "content",
+  "section_role": "content",
+  "section_family": "content",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Video with text overlay"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "video",
+      "type": "video",
+      "label": "Video"
+    },
+    {
+      "id": "autoplay",
+      "type": "checkbox",
+      "label": "Autoplay"
+    },
+    {
+      "id": "loop",
+      "type": "checkbox",
+      "label": "Loop"
+    },
+    {
+      "id": "muted",
+      "type": "checkbox",
+      "label": "Muted"
+    },
+    {
+      "id": "show_controls",
+      "type": "checkbox",
+      "label": "Show controls"
+    },
+    {
+      "id": "desktop_width_percent",
+      "type": "range",
+      "label": "Desktop width"
+    },
+    {
+      "id": "height_type",
+      "type": "select",
+      "label": "Height type"
+    },
+    {
+      "id": "aspect_ratio",
+      "type": "select",
+      "label": "Aspect ratio"
+    },
+    {
+      "id": "custom_height",
+      "type": "range",
+      "label": "Custom height"
+    },
+    {
+      "id": "height_type_mobile",
+      "type": "select",
+      "label": "Height type"
+    },
+    {
+      "id": "aspect_ratio_mobile",
+      "type": "select",
+      "label": "Aspect ratio"
+    },
+    {
+      "id": "custom_height_mobile",
+      "type": "range",
+      "label": "Custom height"
+    },
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "subheading",
+      "type": "textarea",
+      "label": "Subheading"
+    },
+    {
+      "id": "heading_size",
+      "type": "range",
+      "label": "Heading size"
+    },
+    {
+      "id": "subheading_size",
+      "type": "range",
+      "label": "Subheading size"
+    },
+    {
+      "id": "heading_color",
+      "type": "color",
+      "label": "Heading color"
+    },
+    {
+      "id": "subheading_color",
+      "type": "color",
+      "label": "Subheading color"
+    },
+    {
+      "id": "text_vertical_alignment",
+      "type": "select",
+      "label": "Vertical alignment"
+    },
+    {
+      "id": "text_horizontal_alignment",
+      "type": "select",
+      "label": "Horizontal alignment"
+    },
+    {
+      "id": "text_alignment",
+      "type": "select",
+      "label": "Text alignment"
+    },
+    {
+      "id": "text_padding",
+      "type": "range",
+      "label": "Text padding"
+    },
+    {
+      "id": "text_max_width",
+      "type": "range",
+      "label": "Text max width"
+    },
+    {
+      "id": "text_spacing",
+      "type": "range",
+      "label": "Spacing between texts"
+    },
+    {
+      "id": "text_shadow_horizontal",
+      "type": "range",
+      "label": "Horizontal offset"
+    },
+    {
+      "id": "text_shadow_vertical",
+      "type": "range",
+      "label": "Vertical offset"
+    },
+    {
+      "id": "text_shadow_blur",
+      "type": "range",
+      "label": "Blur radius"
+    },
+    {
+      "id": "text_shadow_color",
+      "type": "color",
+      "label": "Shadow color"
+    },
+    {
+      "id": "show_overlay",
+      "type": "checkbox",
+      "label": "Show overlay"
+    },
+    {
+      "id": "overlay_color",
+      "type": "color",
+      "label": "Overlay color"
+    },
+    {
+      "id": "overlay_opacity",
+      "type": "range",
+      "label": "Overlay opacity"
+    },
+    {
+      "id": "control_button_bg",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "control_button_color",
+      "type": "color",
+      "label": "Icon color"
+    },
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "t:settings.color_scheme"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 55,
+  "required": false,
+  "name": "Video with text overlay",
+  "purpose": "Video with text overlay section — content",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Video with text overlay",
+      "conversion_goal": "Consideration"
+    },
+    "layout": {
+      "desktop_layout": "content-centered",
+      "tablet_layout": "content-centered",
+      "mobile_layout": "content-stacked",
+      "alignment_rules": "heading-center",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "4/3",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "region",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 65,
+    "fashion": 60,
+    "minimal_modern": 75
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "storytelling",
+      "promotion",
+      "content"
+    ],
+    "allowed_after": [
+      "products",
+      "social_proof",
+      "trust",
+      "faq",
+      "lead_capture",
+      "footer"
+    ],
+    "recommended_before": [
+      "hero"
+    ],
+    "recommended_after": [
+      "products"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "section_id": "bestsellers-row",
+  "section_type": "bestsellers-row",
+  "section_path": "sections/bestsellers-row.liquid",
+  "section_schema_name": "Bestsellers Row",
+  "section_category": "products",
+  "section_role": "conversion",
+  "section_family": "products",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Bestsellers Row"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "Collection"
+    },
+    {
+      "id": "show_heading",
+      "type": "checkbox",
+      "label": "Show heading"
+    },
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "subheading",
+      "type": "text",
+      "label": "Subheading"
+    },
+    {
+      "id": "heading_alignment",
+      "type": "select",
+      "label": "Heading alignment"
+    },
+    {
+      "id": "show_view_all",
+      "type": "checkbox",
+      "label": "Show View All link"
+    },
+    {
+      "id": "view_all_text",
+      "type": "text",
+      "label": "View All text"
+    },
+    {
+      "id": "heading_type_preset",
+      "type": "select",
+      "label": "Heading preset"
+    },
+    {
+      "id": "heading_font_size",
+      "type": "range",
+      "label": "Heading font size"
+    },
+    {
+      "id": "heading_font_size_mobile",
+      "type": "range",
+      "label": "Heading font size (mobile)"
+    },
+    {
+      "id": "subheading_type_preset",
+      "type": "select",
+      "label": "Subheading preset"
+    },
+    {
+      "id": "product_title_type_preset",
+      "type": "select",
+      "label": "Product title preset"
+    },
+    {
+      "id": "show_tabs",
+      "type": "checkbox",
+      "label": "Show collection tabs"
+    },
+    {
+      "id": "show_all_tab",
+      "type": "checkbox",
+      "label": "Show All Products tab"
+    },
+    {
+      "id": "all_tab_label",
+      "type": "text",
+      "label": "All products tab label"
+    },
+    {
+      "id": "max_products",
+      "type": "range",
+      "label": "Max products"
+    },
+    {
+      "id": "show_badge",
+      "type": "checkbox",
+      "label": "Show ranking badge"
+    },
+    {
+      "id": "card_width",
+      "type": "range",
+      "label": "Card width"
+    },
+    {
+      "id": "gap",
+      "type": "range",
+      "label": "Gap between cards"
+    },
+    {
+      "id": "section_border_radius",
+      "type": "select",
+      "label": "Corner style"
+    },
+    {
+      "id": "section_width",
+      "type": "select",
+      "label": "Width"
+    },
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "padding-block-start",
+      "type": "range",
+      "label": "Top padding"
+    },
+    {
+      "id": "padding-block-end",
+      "type": "range",
+      "label": "Bottom padding"
+    }
+  ],
+  "section_blocks_raw": [
+    {
+      "type": "collection_tab",
+      "settings": [
+        {
+          "id": "label",
+          "type": "text"
+        },
+        {
+          "id": "collection",
+          "type": "collection"
+        }
+      ]
+    }
+  ],
+  "priority_score": 75,
+  "required": false,
+  "name": "Bestsellers Row",
+  "purpose": "Bestsellers Row section — products",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Bestsellers Row",
+      "conversion_goal": "Intent"
+    },
+    "layout": {
+      "desktop_layout": "3-column-grid",
+      "tablet_layout": "2-column-grid",
+      "mobile_layout": "1-column-stack",
+      "alignment_rules": "heading-center, products-left",
+      "content_hierarchy": "headline-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h3",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "fade-in",
+      "hover_animation": "lift",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "none"
+    },
+    "commerce": {
+      "product_card_style": "default",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "button"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "main",
+      "heading_hierarchy": "h2",
+      "accessibility_rules": "landmark-region, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 85,
+    "fashion": 70,
+    "minimal_modern": 80
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "background_secondary"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font",
+      "type_size_h2"
+    ],
+    "spacing": [
+      "card_gap"
+    ],
+    "radius": [
+      "global_border_radius",
+      "card_2_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [
+      "primary_button_background",
+      "primary_button_text"
+    ],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [
+      "hero",
+      "trust",
+      "storytelling",
+      "content",
+      "promotion",
+      "urgency"
+    ],
+    "allowed_after": [
+      "social_proof",
+      "trust",
+      "urgency",
+      "faq",
+      "lead_capture",
+      "footer",
+      "products",
+      "content"
+    ],
+    "recommended_before": [
+      "hero",
+      "content"
+    ],
+    "recommended_after": [
+      "social_proof",
+      "trust"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "standard",
+    "lcp_risk": "low",
+    "cls_risk": "low",
+    "lazy_load_strategy": "viewport",
+    "preload_asset": false,
+    "core_web_vitals_target": null
+  }
+}

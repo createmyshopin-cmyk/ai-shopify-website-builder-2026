@@ -1,0 +1,115 @@
+{%- doc -%}
+  Bestseller / Card 2 product card (shared by Bestsellers Row and You May Also Like).
+
+  @param {object} product - The product object
+  @param {string} section_id - Section ID for product forms
+  @param {string} [product_title_type_preset] - Typography preset for title
+  @param {number} [fallback_index] - Index for placeholder fallbacks
+  @param {string} [subtitle] - Optional subtitle override
+  @param {string} [age_badge] - Optional age badge override
+{%- enddoc -%}
+
+{% liquid
+  assign fallback_titles = 'Ragi Banana Porridge Mix|Sathu Maavu Mix|Multigrain Porridge Mix|Little Bites Snacks|Cereal Mix' | split: '|'
+  assign fallback_subtitles = '| | |Banana & Ragi|' | split: '|'
+  assign fallback_badges = '6+ Months|6.5+ Months|7+ Months|12+ Months|6+ Months' | split: '|'
+  assign fallback_ratings = '4.8 (230)|4.9 (186)|4.8 (152)|4.7 (103)|4.8 (98)' | split: '|'
+  assign fallback_prices = 'Rs. 349|Rs. 399|Rs. 349|Rs. 299|Rs. 369' | split: '|'
+  assign index = fallback_index | default: 0 | modulo: fallback_titles.size
+  assign title_preset = product_title_type_preset | default: 'h5'
+
+  if product != blank and product.id != empty
+    assign display_title = product.title | default: fallback_titles[index]
+    assign display_subtitle = subtitle | default: product.metafields.custom.card_2_subtitle.value | default: fallback_subtitles[index]
+    assign display_age_badge = age_badge | default: product.metafields.custom.card_2_badge.value | default: fallback_badges[index]
+    assign display_age_badge = display_age_badge | replace: '|', ' '
+    assign rating = product.metafields.forge_reviews.aggregate_rating.value
+    assign review_count = product.metafields.forge_reviews.review_count.value
+    assign rating_text = fallback_ratings[index]
+    if rating != blank and review_count != blank
+      assign rating_text = rating | append: ' (' | append: review_count | append: ')'
+    endif
+  else
+    assign display_title = fallback_titles[index]
+    assign display_subtitle = subtitle | default: fallback_subtitles[index]
+    assign display_age_badge = age_badge | default: fallback_badges[index]
+    assign rating_text = fallback_ratings[index]
+  endif
+%}
+
+{% if product != blank and product.id != empty %}
+  <div class="bestseller-card">
+    <div class="bestseller-card__image-wrapper">
+      <span class="bestseller-card__age-badge">{{ display_age_badge }}</span>
+      {% render 'wishlist-button', product: product, class: 'bestseller-card__wishlist' %}
+      <a href="{{ product.url }}" class="bestseller-card__image-link" aria-label="{{ display_title }}">
+        {% if product.featured_image %}
+          {{ product.featured_image | image_url: width: 800 | image_tag:
+            class: 'bestseller-card__image',
+            loading: 'lazy',
+            widths: '200, 300, 400, 600, 800',
+            sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 50vw'
+          }}
+        {% else %}
+          <div class="bestseller-card__placeholder">
+            {{ 'product-1' | placeholder_svg_tag: 'bestseller-card__placeholder-svg' }}
+          </div>
+        {% endif %}
+      </a>
+    </div>
+    <div class="bestseller-card__content">
+      <a href="{{ product.url }}" class="bestseller-card__title-link">
+        <h3 class="bestseller-card__name {{ title_preset }} {{ title_preset }}">{{ display_title }}</h3>
+      </a>
+      {% if display_subtitle != blank %}
+        <p class="bestseller-card__subtitle paragraph">{{ display_subtitle }}</p>
+      {% endif %}
+      <div class="bestseller-card__rating paragraph">
+        <span class="bestseller-card__star" aria-hidden="true">★</span>
+        <span>{{ rating_text }}</span>
+      </div>
+      <div class="bestseller-card__price">
+        <span>{{ product.price | money }}</span>
+      </div>
+      <div class="bestseller-card__cta">
+        {% render 'product-card-card-2-cta', product: product, section_id: section_id %}
+      </div>
+    </div>
+  </div>
+{% else %}
+  {% assign placeholder_variant = index | modulo: 6 | plus: 1 %}
+  {% assign placeholder_name = 'product-' | append: placeholder_variant %}
+  <div class="bestseller-card bestseller-card--placeholder">
+    <div class="bestseller-card__image-wrapper">
+      <span class="bestseller-card__age-badge">{{ display_age_badge }}</span>
+      <button class="bestseller-card__wishlist" type="button" aria-label="Add product to wishlist">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 20s-7-4.4-9.3-8.5C.8 8.2 2.7 4.5 6.3 4.5c2 0 3.4 1 4.3 2.3.9-1.3 2.3-2.3 4.3-2.3 3.6 0 5.5 3.7 3.6 7C19 15.6 12 20 12 20Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="bestseller-card__placeholder">
+        {{ placeholder_name | placeholder_svg_tag: 'bestseller-card__placeholder-svg' }}
+      </div>
+    </div>
+    <div class="bestseller-card__content">
+      <h3 class="bestseller-card__name {{ title_preset }} {{ title_preset }}">{{ display_title }}</h3>
+      {% if display_subtitle != blank %}
+        <p class="bestseller-card__subtitle paragraph">{{ display_subtitle }}</p>
+      {% endif %}
+      <div class="bestseller-card__rating paragraph">
+        <span class="bestseller-card__star" aria-hidden="true">★</span>
+        <span>{{ rating_text }}</span>
+      </div>
+      <div class="bestseller-card__price">
+        <span>{{ fallback_prices[index] }}</span>
+      </div>
+      <button class="bestseller-card__button button" type="button">
+        <span>Add to Bag</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M7 9h10l-.7 10H7.7L7 9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M9.5 9V7a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+{% endif %}

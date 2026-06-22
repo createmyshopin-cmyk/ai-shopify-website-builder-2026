@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-06-22T07:48:42.516Z",
+  "flows": [
+    {
+      "preset_id": "high-converting",
+      "slot_count": 10,
+      "flow_file": "relationships/high-converting-flow.json"
+    },
+    {
+      "preset_id": "fashion",
+      "slot_count": 8,
+      "flow_file": "relationships/fashion-flow.json"
+    },
+    {
+      "preset_id": "minimal-modern",
+      "slot_count": 6,
+      "flow_file": "relationships/minimal-modern-flow.json"
+    }
+  ]
+}

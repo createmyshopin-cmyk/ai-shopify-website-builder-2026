@@ -1,0 +1,13 @@
+{
+  "primary": "#2d1b4e",
+  "background": "#fafaf8",
+  "background_secondary": "#f0ede8",
+  "foreground": "#1a1815",
+  "foreground_heading": "#1a1815",
+  "border": "rgba(26, 24, 21, 0.08)",
+  "shadow": "rgba(45, 27, 78, 0.06)",
+  "primary_button_background": "#2d1b4e",
+  "primary_button_text": "#ffffff",
+  "secondary_button_background": "#6b6460",
+  "secondary_button_text": "#2d1b4e"
+}

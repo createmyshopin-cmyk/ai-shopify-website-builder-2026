@@ -1,0 +1,348 @@
+{
+  "section_id": "editorial-hero",
+  "section_type": "editorial-hero",
+  "section_path": "sections/editorial-hero.liquid",
+  "section_schema_name": "Editorial Hero",
+  "section_category": "hero",
+  "section_role": "hero",
+  "section_family": "hero",
+  "section_max_blocks": 8,
+  "section_presets_raw": [
+    "Editorial Hero"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "show_heading",
+      "type": "checkbox",
+      "label": "Show heading"
+    },
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "show_subheading",
+      "type": "checkbox",
+      "label": "Show subheading"
+    },
+    {
+      "id": "subheading",
+      "type": "text",
+      "label": "Subheading"
+    },
+    {
+      "id": "show_button",
+      "type": "checkbox",
+      "label": "Show button"
+    },
+    {
+      "id": "button_label",
+      "type": "text",
+      "label": "Button label"
+    },
+    {
+      "id": "button_link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "autoplay",
+      "type": "checkbox",
+      "label": "Auto-rotate slides"
+    },
+    {
+      "id": "autoplay_speed",
+      "type": "range",
+      "label": "Change slides every"
+    },
+    {
+      "id": "show_dots",
+      "type": "checkbox",
+      "label": "Show pagination dots"
+    },
+    {
+      "id": "show_arrows",
+      "type": "checkbox",
+      "label": "Show navigation arrows"
+    },
+    {
+      "id": "transition_effect",
+      "type": "select",
+      "label": "Slide transition effect"
+    },
+    {
+      "id": "transition_duration",
+      "type": "range",
+      "label": "Transition duration"
+    },
+    {
+      "id": "enable_zoom_animation",
+      "type": "checkbox",
+      "label": "Enable zoom in / zoom out animation"
+    },
+    {
+      "id": "zoom_scale",
+      "type": "range",
+      "label": "Zoom amount"
+    },
+    {
+      "id": "zoom_duration",
+      "type": "range",
+      "label": "Zoom cycle duration"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Background image (desktop)"
+    },
+    {
+      "id": "image_mobile",
+      "type": "image_picker",
+      "label": "Background image (mobile)"
+    },
+    {
+      "id": "desktop_position_x",
+      "type": "range",
+      "label": "Horizontal position"
+    },
+    {
+      "id": "desktop_position_y",
+      "type": "range",
+      "label": "Vertical position"
+    },
+    {
+      "id": "mobile_position_x",
+      "type": "range",
+      "label": "Horizontal position"
+    },
+    {
+      "id": "mobile_position_y",
+      "type": "range",
+      "label": "Vertical position"
+    },
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Use custom colors"
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "button_bg",
+      "type": "color",
+      "label": "Button background"
+    },
+    {
+      "id": "button_text_color",
+      "type": "color",
+      "label": "Button text color"
+    },
+    {
+      "id": "overlay_opacity",
+      "type": "range",
+      "label": "Overlay opacity"
+    },
+    {
+      "id": "min_height",
+      "type": "range",
+      "label": "Min height"
+    },
+    {
+      "id": "padding-block-start",
+      "type": "range",
+      "label": "Top padding"
+    },
+    {
+      "id": "padding-block-end",
+      "type": "range",
+      "label": "Bottom padding"
+    }
+  ],
+  "section_blocks_raw": [
+    {
+      "type": "slide",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker"
+        },
+        {
+          "id": "image_mobile",
+          "type": "image_picker"
+        },
+        {
+          "id": "desktop_position_x",
+          "type": "range"
+        },
+        {
+          "id": "desktop_position_y",
+          "type": "range"
+        },
+        {
+          "id": "mobile_position_x",
+          "type": "range"
+        },
+        {
+          "id": "mobile_position_y",
+          "type": "range"
+        }
+      ]
+    }
+  ],
+  "priority_score": 95,
+  "required": true,
+  "name": "Editorial Hero",
+  "purpose": "Editorial Hero section — hero",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Editorial Hero",
+      "conversion_goal": "Awareness"
+    },
+    "layout": {
+      "desktop_layout": "full-width-image",
+      "tablet_layout": "full-width-stack",
+      "mobile_layout": "full-width-stack",
+      "alignment_rules": "heading-center, cta-center",
+      "content_hierarchy": "image-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h2",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "slide-up",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "4/3",
+      "image_shape": "rounded",
+      "image_treatment": "full-bleed"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "banner",
+      "heading_hierarchy": "h1",
+      "accessibility_rules": "landmark-banner, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 95,
+    "fashion": 90,
+    "minimal_modern": 85
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground_heading",
+      "primary_button_background"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font",
+      "type_size_h2"
+    ],
+    "spacing": [
+      "card_gap",
+      "page_width"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [
+      "primary_button_background",
+      "primary_button_text",
+      "button_shape"
+    ],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [],
+    "allowed_after": [
+      "products",
+      "trust",
+      "social_proof",
+      "urgency",
+      "storytelling",
+      "content",
+      "lead_capture",
+      "faq",
+      "footer",
+      "promotion"
+    ],
+    "recommended_before": [],
+    "recommended_after": [
+      "products",
+      "trust",
+      "content"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "critical",
+    "lcp_risk": "high",
+    "cls_risk": "medium",
+    "lazy_load_strategy": "eager",
+    "preload_asset": true,
+    "core_web_vitals_target": "lcp"
+  }
+}

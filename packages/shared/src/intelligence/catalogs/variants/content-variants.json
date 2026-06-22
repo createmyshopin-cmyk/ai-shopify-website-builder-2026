@@ -1,0 +1,32 @@
+{
+  "family": "content",
+  "sections": [
+    {
+      "section_type": "benefits",
+      "schema_name": "Benefits",
+      "preset_scores": {
+        "high-converting": 80,
+        "fashion": 55,
+        "minimal-modern": 80
+      }
+    },
+    {
+      "section_type": "benefits-swap",
+      "schema_name": "Benefits Swap",
+      "preset_scores": {
+        "high-converting": 70,
+        "fashion": 60,
+        "minimal-modern": 70
+      }
+    },
+    {
+      "section_type": "editorial-marquee",
+      "schema_name": "Editorial Marquee",
+      "preset_scores": {
+        "high-converting": 40,
+        "fashion": 80,
+        "minimal-modern": 55
+      }
+    }
+  ]
+}

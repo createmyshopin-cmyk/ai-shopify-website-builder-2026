@@ -1,0 +1,438 @@
+{
+  "section_id": "premium-hero-banner",
+  "section_type": "premium-hero-banner",
+  "section_path": "sections/premium-hero-banner.liquid",
+  "section_schema_name": "Premium hero banner",
+  "section_category": "hero",
+  "section_role": "hero",
+  "section_family": "hero",
+  "section_max_blocks": null,
+  "section_presets_raw": [
+    "Premium hero banner"
+  ],
+  "section_settings_raw": [
+    {
+      "id": "color_scheme",
+      "type": "color_scheme",
+      "label": "Color scheme"
+    },
+    {
+      "id": "min_height",
+      "type": "range",
+      "label": "Minimum height"
+    },
+    {
+      "id": "container_width",
+      "type": "range",
+      "label": "Container width"
+    },
+    {
+      "id": "padding_top",
+      "type": "range",
+      "label": "Padding top"
+    },
+    {
+      "id": "padding_bottom",
+      "type": "range",
+      "label": "Padding bottom"
+    },
+    {
+      "id": "padding_horizontal",
+      "type": "range",
+      "label": "Padding horizontal"
+    },
+    {
+      "id": "use_custom_colors",
+      "type": "checkbox",
+      "label": "Override theme gradient colors"
+    },
+    {
+      "id": "gradient_color_1",
+      "type": "color",
+      "label": "Color 1"
+    },
+    {
+      "id": "gradient_color_2",
+      "type": "color",
+      "label": "Color 2"
+    },
+    {
+      "id": "gradient_color_3",
+      "type": "color",
+      "label": "Color 3"
+    },
+    {
+      "id": "gradient_angle",
+      "type": "range",
+      "label": "Gradient angle"
+    },
+    {
+      "id": "product_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "show_decorative_elements",
+      "type": "checkbox",
+      "label": "Show decorative elements"
+    },
+    {
+      "id": "decorative_opacity",
+      "type": "range",
+      "label": "Opacity"
+    },
+    {
+      "id": "decorative_blur",
+      "type": "range",
+      "label": "Blur"
+    },
+    {
+      "id": "decorative_size_1",
+      "type": "range",
+      "label": "Element 1 size"
+    },
+    {
+      "id": "decorative_color_1",
+      "type": "color",
+      "label": "Element 1 color"
+    },
+    {
+      "id": "decorative_1_top",
+      "type": "range",
+      "label": "Element 1 top position"
+    },
+    {
+      "id": "decorative_1_left",
+      "type": "range",
+      "label": "Element 1 left position"
+    },
+    {
+      "id": "decorative_size_2",
+      "type": "range",
+      "label": "Element 2 size"
+    },
+    {
+      "id": "decorative_color_2",
+      "type": "color",
+      "label": "Element 2 color"
+    },
+    {
+      "id": "decorative_2_bottom",
+      "type": "range",
+      "label": "Element 2 bottom position"
+    },
+    {
+      "id": "decorative_2_right",
+      "type": "range",
+      "label": "Element 2 right position"
+    },
+    {
+      "id": "decorative_size_3",
+      "type": "range",
+      "label": "Element 3 size"
+    },
+    {
+      "id": "decorative_color_3",
+      "type": "color",
+      "label": "Element 3 color"
+    },
+    {
+      "id": "decorative_3_top",
+      "type": "range",
+      "label": "Element 3 top position"
+    },
+    {
+      "id": "decorative_3_right",
+      "type": "range",
+      "label": "Element 3 right position"
+    },
+    {
+      "id": "eyebrow_text",
+      "type": "text",
+      "label": "Eyebrow text"
+    },
+    {
+      "id": "eyebrow_size",
+      "type": "range",
+      "label": "Eyebrow size"
+    },
+    {
+      "id": "eyebrow_color",
+      "type": "color",
+      "label": "Eyebrow color"
+    },
+    {
+      "id": "eyebrow_letter_spacing",
+      "type": "range",
+      "label": "Eyebrow letter spacing"
+    },
+    {
+      "id": "heading",
+      "type": "richtext",
+      "label": "Heading"
+    },
+    {
+      "id": "heading_size",
+      "type": "range",
+      "label": "Heading size"
+    },
+    {
+      "id": "heading_color",
+      "type": "color",
+      "label": "Heading color"
+    },
+    {
+      "id": "heading_line_height",
+      "type": "range",
+      "label": "Heading line height"
+    },
+    {
+      "id": "heading_weight",
+      "type": "range",
+      "label": "Heading weight"
+    },
+    {
+      "id": "subheading",
+      "type": "richtext",
+      "label": "Subheading"
+    },
+    {
+      "id": "subheading_size",
+      "type": "range",
+      "label": "Subheading size"
+    },
+    {
+      "id": "subheading_color",
+      "type": "color",
+      "label": "Subheading color"
+    },
+    {
+      "id": "subheading_line_height",
+      "type": "range",
+      "label": "Subheading line height"
+    },
+    {
+      "id": "content_gap",
+      "type": "range",
+      "label": "Content spacing"
+    },
+    {
+      "id": "text_alignment",
+      "type": "select",
+      "label": "Text alignment"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button text"
+    },
+    {
+      "id": "button_link",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "button_font_size",
+      "type": "range",
+      "label": "Font size"
+    },
+    {
+      "id": "button_padding_vertical",
+      "type": "range",
+      "label": "Padding vertical"
+    },
+    {
+      "id": "button_padding_horizontal",
+      "type": "range",
+      "label": "Padding horizontal"
+    },
+    {
+      "id": "button_border_width",
+      "type": "range",
+      "label": "Border width"
+    },
+    {
+      "id": "button_margin_top",
+      "type": "range",
+      "label": "Top margin"
+    },
+    {
+      "id": "button_bg_color",
+      "type": "color",
+      "label": "Background color"
+    },
+    {
+      "id": "button_text_color",
+      "type": "color",
+      "label": "Text color"
+    },
+    {
+      "id": "button_border_color",
+      "type": "color",
+      "label": "Border color"
+    },
+    {
+      "id": "button_hover_bg_color",
+      "type": "color",
+      "label": "Hover background color"
+    },
+    {
+      "id": "button_hover_text_color",
+      "type": "color",
+      "label": "Hover text color"
+    },
+    {
+      "id": "button_hover_border_color",
+      "type": "color",
+      "label": "Hover border color"
+    }
+  ],
+  "section_blocks_raw": [],
+  "priority_score": 90,
+  "required": false,
+  "name": "Premium hero banner",
+  "purpose": "Premium hero banner section — hero",
+  "metadata": {
+    "identity": {
+      "merchant_goal": "Display Premium hero banner",
+      "conversion_goal": "Awareness"
+    },
+    "layout": {
+      "desktop_layout": "full-width-image",
+      "tablet_layout": "full-width-stack",
+      "mobile_layout": "full-width-stack",
+      "alignment_rules": "heading-center, cta-center",
+      "content_hierarchy": "image-first"
+    },
+    "spacing": {
+      "section_padding_top": 60,
+      "section_padding_bottom": 60,
+      "block_spacing": 20,
+      "grid_spacing": 20,
+      "image_spacing": 16
+    },
+    "typography": {
+      "heading_font": "type_heading_font",
+      "subheading_font": "type_subheading_font",
+      "body_font": "type_body_font",
+      "heading_size": "type_size_h2",
+      "subheading_size": "type_size_h3",
+      "body_size": "type_size_paragraph",
+      "font_weight": "700",
+      "line_height": "1.5",
+      "letter_spacing": "0em"
+    },
+    "colorSystem": {
+      "background_color": "#fafaf8",
+      "text_color": "#1a1815",
+      "heading_color": "#1a1815",
+      "secondary_text_color": "#1a1815",
+      "accent_color": "#2d1b4e",
+      "border_color": "rgba(26, 24, 21, 0.08)"
+    },
+    "buttons": {
+      "primary_button_color": "#2d1b4e",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_color": "#6b6460"
+    },
+    "cards": {
+      "border_radius": 8,
+      "shadow_style": "medium",
+      "elevation": "default",
+      "hover_effect": "lift"
+    },
+    "animation": {
+      "reveal_animation": "slide-up",
+      "hover_animation": "none",
+      "transition_duration": 300
+    },
+    "image": {
+      "image_ratio": "16/9",
+      "image_shape": "rounded",
+      "image_treatment": "full-bleed"
+    },
+    "commerce": {
+      "product_card_style": "none",
+      "price_style": "standard",
+      "badge_style": "pill",
+      "discount_style": "percentage",
+      "add_to_cart_style": "none"
+    },
+    "trust": {
+      "ratings": false,
+      "reviews": false,
+      "trust_badges": false,
+      "guarantees": false
+    },
+    "seo": {
+      "semantic_role": "banner",
+      "heading_hierarchy": "h1",
+      "accessibility_rules": "landmark-banner, alt-required"
+    }
+  },
+  "compatibility_scores": {
+    "high_converting": 95,
+    "fashion": 90,
+    "minimal_modern": 85
+  },
+  "token_refs": {
+    "colors": [
+      "primary",
+      "background",
+      "foreground_heading",
+      "primary_button_background"
+    ],
+    "typography": [
+      "type_heading_font",
+      "type_body_font",
+      "type_size_h2"
+    ],
+    "spacing": [
+      "card_gap",
+      "page_width"
+    ],
+    "radius": [
+      "global_border_radius"
+    ],
+    "shadows": [
+      "card_shadow"
+    ],
+    "buttons": [
+      "primary_button_background",
+      "primary_button_text",
+      "button_shape"
+    ],
+    "animations": [
+      "card_hover_effect"
+    ]
+  },
+  "flow_rules": {
+    "allowed_before": [],
+    "allowed_after": [
+      "products",
+      "trust",
+      "social_proof",
+      "urgency",
+      "storytelling",
+      "content",
+      "lead_capture",
+      "faq",
+      "footer",
+      "promotion"
+    ],
+    "recommended_before": [],
+    "recommended_after": [
+      "products",
+      "trust",
+      "content"
+    ]
+  },
+  "runtime_intelligence": {
+    "performance_tier": "critical",
+    "lcp_risk": "high",
+    "cls_risk": "low",
+    "lazy_load_strategy": "eager",
+    "preload_asset": true,
+    "core_web_vitals_target": "lcp"
+  }
+}
