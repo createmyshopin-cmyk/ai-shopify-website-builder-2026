@@ -44,7 +44,7 @@ async function bootstrap() {
   });
   app.use(requestLoggingMiddleware);
   app.use(rateLimitMiddleware);
-  const port = Number(process.env.API_PORT ?? 3001);
+  const port = Number(process.env.PORT ?? process.env.API_PORT ?? 3001);
   await app.listen(port);
   logger.info("api_started", {
     port,

@@ -100,6 +100,34 @@ Set production env via host secrets manager or `.env` file (never commit):
 
 MVP deploys separately (Vercel, Fly, or Shopify hosting). Point `PROJECT_API_URL` at the production API.
 
+## Railway (API)
+
+Production API: `https://ai-shopify-website-builder-2026-production.up.railway.app`
+
+Deploy from repo root using the root `Dockerfile`. Railway injects `PORT`; the API listens on `PORT` (falls back to `API_PORT` / `3001` locally).
+
+**Required Railway variables:**
+
+| Variable | Example / notes |
+|----------|-----------------|
+| `DATABASE_URL` | Supabase pooler URI (`?pgbouncer=true`) |
+| `DIRECT_URL` | Supabase direct URI — run `npm run db:migrate:supabase` before first deploy |
+| `REDIS_URL` | Railway Redis plugin or Upstash |
+| `OPENROUTER_API_KEY` | Server-side only |
+| `MOCK_AI` | `false` |
+| `MOCK_SHOPIFY_UPLOAD` | `false` |
+| `BASE_THEME_PATH` | `./base theme` (set in Dockerfile layout) |
+
+**Verify after deploy:**
+
+```bash
+curl https://ai-shopify-website-builder-2026-production.up.railway.app/health
+```
+
+Expected: `{ "status": "ok", "service": "@theme-editor/api", "phase": 10, ... }`
+
+**MVP production:** set `PROJECT_API_URL=https://ai-shopify-website-builder-2026-production.up.railway.app` on the Shopify app host.
+
 ## Shopify app release
 
 1. Update `mvp/shopify.app.toml` `application_url` and `redirect_urls` to production host.

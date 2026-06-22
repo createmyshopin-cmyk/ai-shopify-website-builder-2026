@@ -81,6 +81,22 @@ const DUPLICATE_THEME_MUTATION = `
   }
 `;
 
+const THEME_CREATE_MUTATION = `
+  mutation ThemeCreate($name: String!, $src: URL) {
+    themeCreate(name: $name, src: $src) {
+      theme {
+        id
+        name
+        role
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
 const THEME_FILES_UPSERT_MUTATION = `
   mutation ThemeFilesUpsert($themeId: ID!, $files: [OnlineStoreThemeFilesUpsertFileInput!]!) {
     themeFilesUpsert(themeId: $themeId, files: $files) {
@@ -228,6 +244,44 @@ export class ShopifyThemeClient {
     }
 
     return draft.id;
+  }
+
+  /**
+   * Installs the base theme as a new draft on the merchant's shop.
+   *
+   * - If `zipUrl` is provided (BASE_THEME_ZIP_URL env var), uses `themeCreate`
+   *   to create a fresh draft directly from the hosted Horizon Pro ZIP.
+   * - If `zipUrl` is omitted, falls back to `provisionDraftTheme` which
+   *   duplicates the shop's existing Horizon Pro / live theme.
+   */
+  async installBaseThemeAsDraft(projectLabel: string, zipUrl?: string): Promise<string> {
+    if (!zipUrl) {
+      return this.provisionDraftTheme(projectLabel);
+    }
+
+    const name = `AI Draft — ${projectLabel}`.slice(0, 50);
+
+    const data = await withRetry(() =>
+      adminGraphql<{
+        themeCreate: {
+          theme: ThemeSummary | null;
+          userErrors: Array<{ field: string[]; message: string }>;
+        };
+      }>(this.config, THEME_CREATE_MUTATION, { name, src: zipUrl }),
+    );
+
+    if (data.themeCreate.userErrors.length > 0) {
+      throw new Error(
+        data.themeCreate.userErrors.map((e) => e.message).join("; "),
+      );
+    }
+
+    const theme = data.themeCreate.theme;
+    if (!theme?.id) {
+      throw new Error("themeCreate returned no theme");
+    }
+
+    return theme.id;
   }
 
   async uploadThemeFiles(

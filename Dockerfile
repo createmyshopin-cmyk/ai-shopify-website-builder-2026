@@ -39,7 +39,6 @@ FROM node:22-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV API_PORT=3001
 
 RUN addgroup -S app && adduser -S app -G app
 
@@ -56,6 +55,6 @@ USER app
 EXPOSE 3001
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD wget -qO- http://127.0.0.1:3001/health || exit 1
+  CMD sh -c 'wget -qO- http://127.0.0.1:$${PORT:-3001}/health || exit 1'
 
 CMD ["node", "packages/api/dist/main.js"]

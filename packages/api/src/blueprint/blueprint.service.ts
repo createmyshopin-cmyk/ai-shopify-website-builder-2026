@@ -34,7 +34,12 @@ export class BlueprintService {
         shop: options.shop,
         accessToken,
       });
-      const draftThemeId = await client.provisionDraftTheme(options.projectId);
+
+      const zipUrl = process.env.BASE_THEME_ZIP_URL?.trim() || undefined;
+      const draftThemeId = await client.installBaseThemeAsDraft(
+        options.projectId,
+        zipUrl,
+      );
 
       await prisma.designProject.update({
         where: { id: options.projectId },

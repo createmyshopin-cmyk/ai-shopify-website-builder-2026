@@ -60,22 +60,6 @@ const THEME_PUBLISH_MUTATION = `
   }
 `;
 
-const THEME_CREATE_MUTATION = `
-  mutation ThemeCreate($name: String!, $src: URL!) {
-    themeCreate(name: $name, src: $src) {
-      theme {
-        id
-        name
-        role
-      }
-      userErrors {
-        field
-        message
-      }
-    }
-  }
-`;
-
 export interface PublishThemeResult {
   themeId: string;
   role: string;
@@ -139,6 +123,10 @@ export class ShopifyPublishClient {
 
   async provisionDraftTheme(label: string): Promise<string> {
     return this.themeClient.provisionDraftTheme(label);
+  }
+
+  async installBaseThemeAsDraft(label: string, zipUrl?: string): Promise<string> {
+    return this.themeClient.installBaseThemeAsDraft(label, zipUrl);
   }
 
   async getThemeByRole(role: "MAIN" | "UNPUBLISHED"): Promise<{ id: string; name: string } | null> {
