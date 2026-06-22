@@ -128,6 +128,43 @@ Expected: `{ "status": "ok", "service": "@theme-editor/api", "phase": 10, ... }`
 
 **MVP production:** set `PROJECT_API_URL=https://ai-shopify-website-builder-2026-production.up.railway.app` on the Shopify app host.
 
+### Two Railway services (API + Shopify app)
+
+Use **one GitHub repo**, **two Railway services**:
+
+| Service | Dockerfile path | Root directory | Public URL |
+|---------|-----------------|----------------|------------|
+| **api** | `Dockerfile` | `/` | `https://ai-shopify-website-builder-2026-production.up.railway.app` |
+| **mvp** (Shopify app) | `mvp/Dockerfile` | `/` | e.g. `https://your-mvp-service.up.railway.app` |
+
+**API service variables** — see table above (`DATABASE_URL`, `REDIS_URL`, `OPENROUTER_API_KEY`, …).
+
+**MVP service variables:**
+
+| Variable | Example |
+|----------|---------|
+| `SHOPIFY_API_KEY` | From Partner Dashboard |
+| `SHOPIFY_API_SECRET` | From Partner Dashboard |
+| `SHOPIFY_APP_URL` | `https://your-mvp-service.up.railway.app` |
+| `SCOPES` | `read_themes,write_metaobject_definitions,write_metaobjects,write_products,write_themes` |
+| `DATABASE_URL` | Same Supabase pooler URI as API |
+| `PROJECT_API_URL` | `https://ai-shopify-website-builder-2026-production.up.railway.app` |
+| `NODE_ENV` | `production` |
+
+After MVP service gets a domain:
+
+1. Update `mvp/shopify.app.toml` `application_url` and `redirect_urls` to the MVP Railway URL.
+2. From `mvp/`: `shopify app deploy`.
+3. Verify `SHOPIFY_APP_URL` matches `application_url` exactly.
+
+```bash
+# API
+curl https://ai-shopify-website-builder-2026-production.up.railway.app/health
+
+# MVP app (should return HTML, not 502)
+curl -I https://your-mvp-service.up.railway.app/
+```
+
 ## Shopify app release
 
 1. Update `mvp/shopify.app.toml` `application_url` and `redirect_urls` to production host.

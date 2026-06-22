@@ -50,6 +50,9 @@
     "db:apply-rls": "dotenv -e .env -- npx tsx packages/db/supabase/rls/apply-rls.ts",
     "setup": "npm run db:generate && npm run db:migrate",
     "setup:supabase": "npm run db:migrate:supabase",
+    "deploy:railway:env:api": "node scripts/railway-sync-env.mjs --service api",
+    "deploy:railway:env:mvp": "node scripts/railway-sync-env.mjs --service mvp",
+    "deploy:shopify:url": "node scripts/sync-shopify-app-url.mjs",
     "generate:theme-map": "npx tsx scripts/generate-theme-llm-map.ts && npx tsx scripts/generate-theme-blueprint-manifest.ts",
     "generate:blueprint-manifest": "npx tsx scripts/generate-theme-blueprint-manifest.ts",
     "generate:intelligence": "npx tsx scripts/generate-theme-intelligence.ts"
