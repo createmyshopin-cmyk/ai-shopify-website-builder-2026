@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 FROM node:22-alpine AS deps
 WORKDIR /app
 
@@ -32,7 +30,7 @@ COPY tsconfig.base.json ./
 COPY packages/shared packages/shared
 COPY packages/db packages/db
 COPY packages/api packages/api
-COPY "base theme" "base theme"
+COPY base\ theme/ base-theme/
 
 RUN npm run build --workspace=@theme-editor/shared \
   && npm run build --workspace=@theme-editor/db \
@@ -43,6 +41,8 @@ FROM node:22-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV REPO_ROOT=/app
+ENV BASE_THEME_PATH=/app/base-theme
 
 RUN apk add --no-cache openssl \
   && addgroup -S app && adduser -S app -G app
@@ -55,7 +55,7 @@ COPY --from=build /app/packages/api/package.json ./packages/api/package.json
 COPY --from=build /app/packages/db ./packages/db
 COPY --from=build /app/packages/shared/dist ./packages/shared/dist
 COPY --from=build /app/packages/shared/package.json ./packages/shared/package.json
-COPY --from=build "/app/base theme" "./base theme"
+COPY --from=build /app/base-theme ./base-theme
 
 USER app
 EXPOSE 3001
