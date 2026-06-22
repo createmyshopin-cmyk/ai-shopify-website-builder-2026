@@ -2,6 +2,7 @@
 [build]
 builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile"
+watchPatterns = ["Dockerfile", "packages/**", "base theme/**"]
 
 [deploy]
 healthcheckPath = "/health"

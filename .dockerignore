@@ -1,0 +1,13 @@
+node_modules
+.git
+.cursor
+test-results
+playwright-report
+*.log
+.env
+.env.*
+!.env.example
+mvp/node_modules
+packages/*/node_modules
+coverage
+.react-router

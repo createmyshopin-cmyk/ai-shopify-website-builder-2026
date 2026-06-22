@@ -3,6 +3,8 @@
 FROM node:22-alpine AS deps
 WORKDIR /app
 
+RUN apk add --no-cache openssl
+
 COPY package.json package-lock.json ./
 COPY mvp/package.json mvp/
 COPY packages/api/package.json packages/api/
@@ -14,6 +16,8 @@ RUN npm ci --omit=dev
 
 FROM node:22-alpine AS build
 WORKDIR /app
+
+RUN apk add --no-cache openssl
 
 COPY package.json package-lock.json ./
 COPY mvp/package.json mvp/
@@ -40,21 +44,20 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-RUN addgroup -S app && adduser -S app -G app
+RUN apk add --no-cache openssl \
+  && addgroup -S app && adduser -S app -G app
 
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=build /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/packages/api/dist ./packages/api/dist
 COPY --from=build /app/packages/api/package.json ./packages/api/package.json
 COPY --from=build /app/packages/db ./packages/db
 COPY --from=build /app/packages/shared/dist ./packages/shared/dist
 COPY --from=build /app/packages/shared/package.json ./packages/shared/package.json
-COPY --from=build /app/base\ theme ./base\ theme
+COPY --from=build "/app/base theme" "./base theme"
 
 USER app
 EXPOSE 3001
-
-HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD sh -c 'wget -qO- http://127.0.0.1:$${PORT:-3001}/health || exit 1'
 
 CMD ["node", "packages/api/dist/main.js"]
