@@ -55,9 +55,20 @@ async function bootstrap() {
   });
 }
 
-bootstrap().catch((error) => {
-  logger.error("api_start_failed", {
-    error: error instanceof Error ? error.message : String(error),
-  });
+// Hard timeout — if NestJS hangs during bootstrap, exit with a clear message
+const startupTimeout = setTimeout(() => {
+  logger.error("api_start_timeout", { message: "Bootstrap exceeded 60s — force exiting" });
   process.exit(1);
-});
+}, 60_000);
+startupTimeout.unref(); // don't block normal exit
+
+bootstrap()
+  .then(() => clearTimeout(startupTimeout))
+  .catch((error) => {
+    clearTimeout(startupTimeout);
+    logger.error("api_start_failed", {
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
+    process.exit(1);
+  });
