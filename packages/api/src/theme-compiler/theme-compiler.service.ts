@@ -264,7 +264,7 @@ export class ThemeCompilerService {
     // FIX #1: uses variantOrderedSections (not pre-variant orderedSections).
     // blueprint types + all variant-selected types are allowed through.
     const blueprintTypes = new Set(blueprint.sections.map((s) => s.type));
-    for (const t of effectiveSectionTypes) blueprintTypes.add(t);
+    for (const t of effectiveSectionTypes) blueprintTypes.add(t as string);
 
     const orderedForAssembler = variantOrderedSections.map((s, index) => ({
       section_type: s.section_type,
