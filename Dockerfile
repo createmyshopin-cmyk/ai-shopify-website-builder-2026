@@ -30,7 +30,7 @@ COPY tsconfig.base.json ./
 COPY packages/shared packages/shared
 COPY packages/db packages/db
 COPY packages/api packages/api
-COPY base\ theme/ base-theme/
+COPY ["base theme", "base-theme"]
 
 RUN npm run build --workspace=@theme-editor/shared \
   && npm run build --workspace=@theme-editor/db \

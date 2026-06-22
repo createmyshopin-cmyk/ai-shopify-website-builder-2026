@@ -20,7 +20,9 @@ function normalizeRepoPaths(): void {
     process.env.BASE_THEME_PATH
       ? resolve(cwd, process.env.BASE_THEME_PATH)
       : null,
+    resolve(cwd, "base-theme"),
     resolve(cwd, "base theme"),
+    resolve(cwd, "../..", "base-theme"),
     resolve(cwd, "../..", "base theme"),
   ].filter((value): value is string => Boolean(value));
 
